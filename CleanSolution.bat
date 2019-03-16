@@ -1,11 +1,9 @@
 @echo off
 echo Cleaning solution...
 
-rmdir /q /s "Win32"
-rmdir /q /s "x64"
-rmdir /q /s "Minigin/Win32"
-rmdir /q /s "Minigin/x64"
 rmdir /q /s ".vs"
+rmdir /q /s "bin"
+rmdir /q /s "bin-int"
 
 echo Solution cleaned!
 PAUSE

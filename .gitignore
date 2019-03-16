@@ -1,7 +1,9 @@
 # Folders
 .vs/
-Win32/
-x64/
+
+# Build directories
+bin/
+bin-int/
 
 # Files
 *.user
