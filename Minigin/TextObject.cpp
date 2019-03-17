@@ -8,15 +8,18 @@
 #include "Texture2D.h"
 
 dae::TextObject::TextObject(const std::string& text, std::shared_ptr<Font> font) 
-	: mNeedsUpdate(true), mText(text), mFont(font), mTexture(nullptr)
+	: TextObject(text, font, {255, 255, 255})
+{ }
+
+dae::TextObject::TextObject(const std::string& text, std::shared_ptr<Font> font, const SDL_Color& color)
+	: mNeedsUpdate(true), mText(text), mFont(font), mTexture(nullptr), mColor(color)
 { }
 
 void dae::TextObject::Update()
 {
 	if (mNeedsUpdate)
 	{
-		const SDL_Color color = { 255,255,255 }; // only white text is supported now
-		const auto surf = TTF_RenderText_Blended(mFont->GetFont(), mText.c_str(), color);
+		const auto surf = TTF_RenderText_Blended(mFont->GetFont(), mText.c_str(), mColor);
 		if (surf == nullptr) 
 		{
 			throw std::runtime_error(std::string("Render text failed: ") + SDL_GetError());
@@ -49,6 +52,11 @@ void dae::TextObject::SetText(const std::string& text)
 void dae::TextObject::SetPosition(const float x, const float y)
 {
 	mTransform.SetPosition(x, y, 0.0f);
+}
+
+void dae::TextObject::SetColor(const SDL_Color& color)
+{
+	mColor = color;
 }
 
 

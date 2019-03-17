@@ -10,6 +10,8 @@
 #include "TextObject.h"
 #include "GameObject.h"
 #include "Scene.h"
+#include "Time.h"
+#include "FpsObject.h"
 
 
 void dae::Minigin::Initialize()
@@ -55,6 +57,11 @@ void dae::Minigin::LoadGame() const
 	auto to = std::make_shared<TextObject>("Programming 4 Assignment", font);
 	to->SetPosition(80, 20);
 	scene.Add(to);
+
+	auto fpsFont = ResourceManager::GetInstance().LoadFont("Lingua.otf", 25);
+	auto fpsObject = std::make_shared<FpsObject>(fpsFont);
+	fpsObject->SetPosition(0, 0);
+	scene.Add(fpsObject);
 }
 
 void dae::Minigin::Cleanup()
@@ -81,13 +88,18 @@ void dae::Minigin::Run()
 		auto& input = InputManager::GetInstance();
 
 		bool doContinue = true;
+		auto lastTime = std::chrono::high_resolution_clock::now();
 		while (doContinue)
 		{
-			doContinue = input.ProcessInput();
+			const auto currentTime = std::chrono::high_resolution_clock::now();
+			const float deltaTime = std::chrono::duration<float>(currentTime - lastTime).count();
+			Time::SetDeltaTime(deltaTime);
 
+			doContinue = input.ProcessInput();
 			sceneManager.Update();
 			renderer.Render();
 
+			lastTime = currentTime;
 			t += std::chrono::milliseconds(msPerFrame);
 			std::this_thread::sleep_until(t);
 		}
