@@ -1,20 +1,33 @@
 #pragma once
 #include <memory>
 
-#include "Transform.h"
-#include "Texture2D.h"
 #include "SceneObject.h"
+#include "BaseComponent.h"
 
 namespace dae
 {
-	class GameObject : public SceneObject
+	class GameObject final : public SceneObject
 	{
 	public:
 		void Update() override;
 		void Render() const override;
 
-		void SetTexture(const std::string& filename);
-		void SetPosition(float x, float y);
+		void AddComponent(std::shared_ptr<BaseComponent> component);
+
+		template<class T>
+		std::shared_ptr<T> GetComponent()
+		{
+			const type_info& ti = typeid(T);
+			for (auto component : mComponents)
+			{
+				if (component && typeid(*component) == ti)
+				{
+					return std::dynamic_pointer_cast<T>(component);
+				}
+			}
+
+			return nullptr;
+		}
 
 		GameObject() = default;
 		virtual ~GameObject();
@@ -24,7 +37,6 @@ namespace dae
 		GameObject& operator=(GameObject&& other) = delete;
 
 	private:
-		Transform mTransform;
-		std::shared_ptr<Texture2D> mTexture;
+		std::vector<std::shared_ptr<BaseComponent>> mComponents;
 	};
 }

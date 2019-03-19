@@ -3,9 +3,9 @@ This project is my assignment for the final exam of the Programming 4 course at 
 
 The goal is to make a game engine, and make the classic game DigDug with it.
 
-You can see some images of the game below:
-
 ![](https://seppedekeyser.be/img-ext/DigDug-Engine/DigDug-Showcase.png)
+
+[Github Repo](https://github.com/SeppahBaws/DigDug-Engine-Prog4)
 
 ---
 ##### This project is part of my education at [Digital Arts and Entertainment](http://digitalartsandentertainment.be).

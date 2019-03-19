@@ -21,9 +21,6 @@
     <ClInclude Include="SceneObject.h">
       <Filter>SceneObjects</Filter>
     </ClInclude>
-    <ClInclude Include="TextObject.h">
-      <Filter>SceneObjects</Filter>
-    </ClInclude>
     <ClInclude Include="InputManager.h">
       <Filter>Managers</Filter>
     </ClInclude>
@@ -34,12 +31,6 @@
       <Filter>Managers</Filter>
     </ClInclude>
     <ClInclude Include="MiniginPCH.h" />
-    <ClInclude Include="Transform.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Texture2D.h">
-      <Filter>Components</Filter>
-    </ClInclude>
     <ClInclude Include="Log.h">
       <Filter>Core</Filter>
     </ClInclude>
@@ -62,15 +53,27 @@
     <ClInclude Include="Font.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="FpsObject.h">
-      <Filter>SceneObjects</Filter>
+    <ClInclude Include="BaseComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="TransformComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture2D.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="TextComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="FpsComponent.h">
+      <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameObject.cpp">
-      <Filter>SceneObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="TextObject.cpp">
       <Filter>SceneObjects</Filter>
     </ClCompile>
     <ClCompile Include="InputManager.cpp">
@@ -84,12 +87,6 @@
     </ClCompile>
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MiniginPCH.cpp" />
-    <ClCompile Include="Transform.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="Texture2D.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
     <ClCompile Include="Log.cpp">
       <Filter>Core</Filter>
     </ClCompile>
@@ -108,8 +105,23 @@
     <ClCompile Include="Font.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="FpsObject.cpp">
-      <Filter>SceneObjects</Filter>
+    <ClCompile Include="BaseComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="TransformComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture2D.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="TextComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="FpsComponent.cpp">
+      <Filter>Components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -4,8 +4,8 @@
 namespace dae
 {
 	// Static member initialization
-	float Time::m_DeltaTime = 0.0f;
-	std::chrono::high_resolution_clock::time_point Time::m_StartTime;
+	float Time::mDeltaTime = 0.0f;
+	std::chrono::high_resolution_clock::time_point Time::mStartTime;
 
 	std::chrono::high_resolution_clock::time_point Time::GetTime()
 	{
@@ -14,11 +14,11 @@ namespace dae
 
 	float Time::GetDeltaTime()
 	{
-		return m_DeltaTime;
+		return mDeltaTime;
 	}
 
 	void Time::SetDeltaTime(float deltaTime)
 	{
-		m_DeltaTime = deltaTime;
+		mDeltaTime = deltaTime;
 	}
 }

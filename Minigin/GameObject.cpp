@@ -1,24 +1,26 @@
 #include "MiniginPCH.h"
 #include "GameObject.h"
-#include "ResourceManager.h"
-#include "Renderer.h"
 
 dae::GameObject::~GameObject() = default;
 
-void dae::GameObject::Update(){}
+void dae::GameObject::Update()
+{
+	for (auto component : mComponents)
+	{
+		component->Update();
+	}
+}
 
 void dae::GameObject::Render() const
 {
-	const auto pos = mTransform.GetPosition();
-	Renderer::GetInstance().RenderTexture(*mTexture, pos.x, pos.y);
+	for (auto component : mComponents)
+	{
+		component->Render();
+	}
 }
 
-void dae::GameObject::SetTexture(const std::string& filename)
+void dae::GameObject::AddComponent(std::shared_ptr<BaseComponent> component)
 {
-	mTexture = ResourceManager::GetInstance().LoadTexture(filename);
-}
-
-void dae::GameObject::SetPosition(float x, float y)
-{
-	mTransform.SetPosition(x, y, 0.0f);
+	mComponents.push_back(component);
+	component->mpGameObject = this;
 }
