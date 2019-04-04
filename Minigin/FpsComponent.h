@@ -15,7 +15,6 @@ namespace dae
 		FpsComponent& operator=(FpsComponent&& other) noexcept = delete;
 
 		virtual void Update() override;
-		virtual void Render() const override;
 
 	private:
 		std::string mFpsText;

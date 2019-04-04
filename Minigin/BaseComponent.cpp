@@ -9,3 +9,11 @@ dae::BaseComponent::~BaseComponent()
 {
 	mpGameObject = nullptr;
 }
+
+void dae::BaseComponent::Update()
+{
+}
+
+void dae::BaseComponent::Render()
+{
+}

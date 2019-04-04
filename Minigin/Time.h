@@ -12,6 +12,8 @@ namespace dae
 		static float GetDeltaTime();
 		static void SetDeltaTime(float deltaTime);
 
+		void Update(std::chrono::high_resolution_clock::time_point lastTime);
+
 	private:
 		static float mDeltaTime;
 		static std::chrono::high_resolution_clock::time_point mStartTime;

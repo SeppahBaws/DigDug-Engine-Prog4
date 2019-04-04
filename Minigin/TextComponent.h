@@ -17,8 +17,8 @@ namespace dae
 		TextComponent& operator=(const TextComponent& other) = delete;
 		TextComponent& operator=(TextComponent&& other) noexcept = delete;
 
-		void Update() override;
-		void Render() const override;
+		virtual void Update() override;
+		virtual void Render() override;
 
 		void SetText(const std::string& text);
 		void SetFont(std::shared_ptr<Font> font);

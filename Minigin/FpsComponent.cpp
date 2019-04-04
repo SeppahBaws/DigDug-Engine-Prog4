@@ -16,9 +16,9 @@ namespace dae
 		mAccumulatedTime += Time::GetDeltaTime();
 
 		// Update the fps text
-		if (mAccumulatedTime > 1.0f)
+		if (mAccumulatedTime > 0.5f)
 		{
-			mAccumulatedTime -= 1.0f;
+			mAccumulatedTime -= 0.5f;
 			const float fps = 1 / Time::GetDeltaTime();
 
 			std::stringstream ss;
@@ -26,9 +26,5 @@ namespace dae
 			mFpsText = ss.str();
 			GetGameObject()->GetComponent<TextComponent>()->SetText(mFpsText);
 		}
-	}
-
-	void FpsComponent::Render() const
-	{
 	}
 }

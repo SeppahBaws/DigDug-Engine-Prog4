@@ -14,8 +14,8 @@ namespace dae
 		BaseComponent& operator=(const BaseComponent& other) = delete;
 		BaseComponent& operator=(BaseComponent&& other) noexcept = delete;
 
-		virtual void Update() = 0;
-		virtual void Render() const = 0;
+		virtual void Update();
+		virtual void Render();
 
 		GameObject* GetGameObject() const { return mpGameObject; }
 

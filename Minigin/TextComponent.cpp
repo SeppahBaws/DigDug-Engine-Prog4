@@ -32,7 +32,7 @@ namespace dae
 		mTexture = std::make_shared<Texture2D>(texture);
 	}
 
-	void TextComponent::Render() const
+	void TextComponent::Render()
 	{
 		const auto pos = GetGameObject()->GetComponent<TransformComponent>()->GetPosition();
 		Renderer::GetInstance().RenderTexture(*mTexture, pos.x, pos.y);

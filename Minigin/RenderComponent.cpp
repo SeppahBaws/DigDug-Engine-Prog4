@@ -10,11 +10,7 @@ dae::RenderComponent::RenderComponent(const std::string& file)
 	SetTexture(file);
 }
 
-void dae::RenderComponent::Update()
-{
-}
-
-void dae::RenderComponent::Render() const
+void dae::RenderComponent::Render()
 {
 	const auto pos = GetGameObject()->GetComponent<TransformComponent>()->GetPosition();
 	Renderer::GetInstance().RenderTexture(*mTexture, pos.x, pos.y);

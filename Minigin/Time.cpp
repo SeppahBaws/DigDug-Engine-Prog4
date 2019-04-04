@@ -21,4 +21,10 @@ namespace dae
 	{
 		mDeltaTime = deltaTime;
 	}
+
+	void Time::Update(std::chrono::high_resolution_clock::time_point lastTime)
+	{
+		const auto currentTime = std::chrono::high_resolution_clock::now();
+		mDeltaTime = std::chrono::duration<float>(currentTime - lastTime).count();
+	}
 }
