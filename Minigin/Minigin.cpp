@@ -10,10 +10,7 @@
 #include "GameObject.h"
 #include "Scene.h"
 #include "Time.h"
-#include "TransformComponent.h"
-#include "RenderComponent.h"
-#include "TextComponent.h"
-#include "FpsComponent.h"
+#include "Components.h"
 
 
 void dae::Minigin::Initialize()
@@ -47,24 +44,22 @@ void dae::Minigin::LoadGame() const
 	auto& scene = SceneManager::GetInstance().CreateScene("Demo");
 
 	auto go = std::make_shared<GameObject>();
-	go->AddComponent(std::make_shared<TransformComponent>());
 	go->AddComponent(std::make_shared<RenderComponent>("background.jpg"));
 	scene.Add(go);
 
 	go = std::make_shared<GameObject>();
-	go->AddComponent(std::make_shared<TransformComponent>(glm::vec3{ 216, 180, 0 }));
+	go->GetComponent<TransformComponent>()->SetPosition(glm::vec3{ 216, 180, 0 });
 	go->AddComponent(std::make_shared<RenderComponent>("logo.png"));
 	scene.Add(go);
 
 	auto font = ResourceManager::GetInstance().LoadFont("Lingua.otf", 36);
 	go = std::make_shared<GameObject>();
-	go->AddComponent(std::make_shared<TransformComponent>(glm::vec3{ 80, 20, 0 }));
+	go->GetComponent<TransformComponent>()->SetPosition(glm::vec3{ 80, 20, 0 });
 	go->AddComponent(std::make_shared<TextComponent>("Programming 4 Assignment", font));
 	scene.Add(go);
 
 	auto fpsFont = ResourceManager::GetInstance().LoadFont("Lingua.otf", 25);
 	auto fpsObject = std::make_shared<GameObject>();
-	fpsObject->AddComponent(std::make_shared<TransformComponent>());
 	fpsObject->AddComponent(std::make_shared<TextComponent>("0 fps", fpsFont, SDL_Color{ 255, 255, 0 }));
 	fpsObject->AddComponent(std::make_shared<FpsComponent>());
 	scene.Add(fpsObject);

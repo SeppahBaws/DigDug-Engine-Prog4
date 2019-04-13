@@ -1,26 +1,34 @@
 #include "MiniginPCH.h"
 #include "GameObject.h"
+#include "TransformComponent.h"
 
-dae::GameObject::~GameObject() = default;
-
-void dae::GameObject::Update()
+namespace dae
 {
-	for (auto component : mComponents)
+	GameObject::GameObject()
 	{
-		component->Update();
+		const auto transformComponent = std::make_shared<TransformComponent>();
+		mComponents.push_back(transformComponent);
 	}
-}
 
-void dae::GameObject::Render() const
-{
-	for (auto component : mComponents)
+	void GameObject::Update()
 	{
-		component->Render();
+		for (auto component : mComponents)
+		{
+			component->Update();
+		}
 	}
-}
 
-void dae::GameObject::AddComponent(std::shared_ptr<BaseComponent> component)
-{
-	mComponents.push_back(component);
-	component->mpGameObject = this;
+	void GameObject::Render() const
+	{
+		for (auto component : mComponents)
+		{
+			component->Render();
+		}
+	}
+
+	void GameObject::AddComponent(std::shared_ptr<BaseComponent> component)
+	{
+		mComponents.push_back(component);
+		component->mpGameObject = this;
+	}
 }

@@ -9,6 +9,13 @@ namespace dae
 	class GameObject final : public SceneObject
 	{
 	public:
+		GameObject();
+		virtual ~GameObject() = default;
+		GameObject(const GameObject& other) = delete;
+		GameObject(GameObject&& other) = delete;
+		GameObject& operator=(const GameObject& other) = delete;
+		GameObject& operator=(GameObject&& other) = delete;
+
 		void Update() override;
 		void Render() const override;
 
@@ -28,13 +35,6 @@ namespace dae
 
 			return nullptr;
 		}
-
-		GameObject() = default;
-		virtual ~GameObject();
-		GameObject(const GameObject& other) = delete;
-		GameObject(GameObject&& other) = delete;
-		GameObject& operator=(const GameObject& other) = delete;
-		GameObject& operator=(GameObject&& other) = delete;
 
 	private:
 		std::vector<std::shared_ptr<BaseComponent>> mComponents;
