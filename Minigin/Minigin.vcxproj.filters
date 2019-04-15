@@ -19,6 +19,9 @@
     <Filter Include="Engine\Components">
       <UniqueIdentifier>{4f8a395d-74fd-4b5d-afe8-a8a274c112ab}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Custom Components">
+      <UniqueIdentifier>{f9a039ba-ff0a-43a3-8125-78178cb9ea5f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameObject.h">
@@ -71,14 +74,14 @@
     <ClInclude Include="TextComponent.h">
       <Filter>Engine\Components</Filter>
     </ClInclude>
-    <ClInclude Include="FpsComponent.h">
-      <Filter>Engine\Components</Filter>
-    </ClInclude>
     <ClInclude Include="Minigin.h">
       <Filter>Game</Filter>
     </ClInclude>
     <ClInclude Include="Components.h">
       <Filter>Engine\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="FpsComponent.h">
+      <Filter>Game\Custom Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -125,14 +128,14 @@
     <ClCompile Include="TextComponent.cpp">
       <Filter>Engine\Components</Filter>
     </ClCompile>
-    <ClCompile Include="FpsComponent.cpp">
-      <Filter>Engine\Components</Filter>
-    </ClCompile>
     <ClCompile Include="Minigin.cpp">
       <Filter>Game</Filter>
     </ClCompile>
     <ClCompile Include="Main.cpp">
       <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="FpsComponent.cpp">
+      <Filter>Game\Custom Components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

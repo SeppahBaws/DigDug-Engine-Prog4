@@ -11,6 +11,7 @@
 #include "Scene.h"
 #include "Time.h"
 #include "Components.h"
+#include "SceneSwitcherComponent.h"
 
 
 void dae::Minigin::Initialize()
@@ -41,7 +42,9 @@ void dae::Minigin::Initialize()
  */
 void dae::Minigin::LoadGame() const
 {
+	// Scene 1
 	auto& scene = SceneManager::GetInstance().CreateScene("Demo");
+	SceneManager::GetInstance().SetActiveScene("Demo");
 
 	auto go = std::make_shared<GameObject>();
 	go->AddComponent(std::make_shared<RenderComponent>("background.jpg"));
@@ -63,6 +66,19 @@ void dae::Minigin::LoadGame() const
 	fpsObject->AddComponent(std::make_shared<TextComponent>("0 fps", fpsFont, SDL_Color{ 255, 255, 0 }));
 	fpsObject->AddComponent(std::make_shared<FpsComponent>());
 	scene.Add(fpsObject);
+
+
+
+	// Scene 2
+	auto& scene2 = SceneManager::GetInstance().CreateScene("Demo2");
+
+	auto font2 = ResourceManager::GetInstance().LoadFont("Lingua.otf", 40);
+	auto demoObj2 = std::make_shared<GameObject>();
+	demoObj2->GetComponent<TransformComponent>()->SetPosition(glm::vec3{ 80, 20, 0 });
+	demoObj2->AddComponent(std::make_shared<TextComponent>("Scene 2", font));
+	scene2.Add(demoObj2);
+
+	SceneManager::GetInstance().SetActiveScene("Demo2");
 }
 
 void dae::Minigin::Cleanup()
