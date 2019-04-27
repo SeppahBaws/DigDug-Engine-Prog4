@@ -2,11 +2,12 @@
 #include "Minigin.h"
 #include <chrono>
 #include <thread>
+#include <SDL.h>
+
 #include "InputManager.h"
 #include "SceneManager.h"
 #include "Renderer.h"
 #include "ResourceManager.h"
-#include <SDL.h>
 #include "GameObject.h"
 #include "Scene.h"
 #include "Time.h"
@@ -43,10 +44,10 @@ void dae::Minigin::Initialize()
 void dae::Minigin::LoadGame() const
 {
 	// Scene 1
-	auto& scene = SceneManager::GetInstance().CreateScene("Demo");
-	SceneManager::GetInstance().SetActiveScene("Demo");
+	Scene& scene = SceneManager::GetInstance().CreateScene("Demo");
+	// SceneManager::GetInstance().SetActiveScene("Demo");
 
-	auto go = std::make_shared<GameObject>();
+	std::shared_ptr<GameObject> go = std::make_shared<GameObject>();
 	go->AddComponent(std::make_shared<RenderComponent>("background.jpg"));
 	scene.Add(go);
 
@@ -55,28 +56,35 @@ void dae::Minigin::LoadGame() const
 	go->AddComponent(std::make_shared<RenderComponent>("logo.png"));
 	scene.Add(go);
 
-	auto font = ResourceManager::GetInstance().LoadFont("Lingua.otf", 36);
+	std::shared_ptr<Font> font = ResourceManager::GetInstance().LoadFont("Lingua.otf", 36);
 	go = std::make_shared<GameObject>();
 	go->GetComponent<TransformComponent>()->SetPosition(glm::vec3{ 80, 20, 0 });
 	go->AddComponent(std::make_shared<TextComponent>("Programming 4 Assignment", font));
 	scene.Add(go);
 
-	auto fpsFont = ResourceManager::GetInstance().LoadFont("Lingua.otf", 25);
-	auto fpsObject = std::make_shared<GameObject>();
+	std::shared_ptr<Font> fpsFont = ResourceManager::GetInstance().LoadFont("Lingua.otf", 25);
+	std::shared_ptr<GameObject> fpsObject = std::make_shared<GameObject>();
 	fpsObject->AddComponent(std::make_shared<TextComponent>("0 fps", fpsFont, SDL_Color{ 255, 255, 0 }));
 	fpsObject->AddComponent(std::make_shared<FpsComponent>());
 	scene.Add(fpsObject);
 
+	std::shared_ptr<GameObject> sceneSwitcher = std::make_shared<GameObject>();
+	sceneSwitcher->AddComponent(std::make_shared<SceneSwitcherComponent>());
+	scene.Add(sceneSwitcher);
 
 
 	// Scene 2
-	auto& scene2 = SceneManager::GetInstance().CreateScene("Demo2");
+	Scene& scene2 = SceneManager::GetInstance().CreateScene("Demo2");
 
-	auto font2 = ResourceManager::GetInstance().LoadFont("Lingua.otf", 40);
-	auto demoObj2 = std::make_shared<GameObject>();
+	std::shared_ptr<Font> font2 = ResourceManager::GetInstance().LoadFont("Lingua.otf", 40);
+	std::shared_ptr<GameObject> demoObj2 = std::make_shared<GameObject>();
 	demoObj2->GetComponent<TransformComponent>()->SetPosition(glm::vec3{ 80, 20, 0 });
 	demoObj2->AddComponent(std::make_shared<TextComponent>("Scene 2", font));
 	scene2.Add(demoObj2);
+
+	std::shared_ptr<GameObject> sceneSwitcher2 = std::make_shared<GameObject>();
+	sceneSwitcher2->AddComponent(std::make_shared<SceneSwitcherComponent>());
+	scene2.Add(sceneSwitcher2);
 
 	SceneManager::GetInstance().SetActiveScene("Demo2");
 }

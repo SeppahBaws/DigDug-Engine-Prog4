@@ -22,6 +22,9 @@
     <Filter Include="Game\Custom Components">
       <UniqueIdentifier>{f9a039ba-ff0a-43a3-8125-78178cb9ea5f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Prefabs">
+      <UniqueIdentifier>{a78f0226-9620-4c14-950a-a9c21257e42f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameObject.h">
@@ -83,6 +86,9 @@
     <ClInclude Include="FpsComponent.h">
       <Filter>Game\Custom Components</Filter>
     </ClInclude>
+    <ClInclude Include="SceneSwitcherComponent.h">
+      <Filter>Game\Custom Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameObject.cpp">
@@ -135,6 +141,9 @@
       <Filter>Game</Filter>
     </ClCompile>
     <ClCompile Include="FpsComponent.cpp">
+      <Filter>Game\Custom Components</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneSwitcherComponent.cpp">
       <Filter>Game\Custom Components</Filter>
     </ClCompile>
   </ItemGroup>
