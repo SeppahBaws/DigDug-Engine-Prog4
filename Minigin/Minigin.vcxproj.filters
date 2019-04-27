@@ -30,9 +30,6 @@
     <ClInclude Include="GameObject.h">
       <Filter>Engine\SceneObjects</Filter>
     </ClInclude>
-    <ClInclude Include="SceneObject.h">
-      <Filter>Engine\SceneObjects</Filter>
-    </ClInclude>
     <ClInclude Include="InputManager.h">
       <Filter>Engine\Managers</Filter>
     </ClInclude>
@@ -86,8 +83,8 @@
     <ClInclude Include="FpsComponent.h">
       <Filter>Game\Custom Components</Filter>
     </ClInclude>
-    <ClInclude Include="SceneSwitcherComponent.h">
-      <Filter>Game\Custom Components</Filter>
+    <ClInclude Include="SceneSwitcher.h">
+      <Filter>Game\Prefabs</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -143,8 +140,8 @@
     <ClCompile Include="FpsComponent.cpp">
       <Filter>Game\Custom Components</Filter>
     </ClCompile>
-    <ClCompile Include="SceneSwitcherComponent.cpp">
-      <Filter>Game\Custom Components</Filter>
+    <ClCompile Include="SceneSwitcher.cpp">
+      <Filter>Game\Prefabs</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

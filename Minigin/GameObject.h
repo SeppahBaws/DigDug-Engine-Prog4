@@ -1,12 +1,11 @@
 #pragma once
 #include <memory>
 
-#include "SceneObject.h"
 #include "BaseComponent.h"
 
 namespace dae
 {
-	class GameObject final : public SceneObject
+	class GameObject
 	{
 	public:
 		GameObject();
@@ -16,8 +15,8 @@ namespace dae
 		GameObject& operator=(const GameObject& other) = delete;
 		GameObject& operator=(GameObject&& other) = delete;
 
-		void Update() override;
-		void Render() const override;
+		virtual void Update();
+		virtual void Render() const;
 
 		void AddComponent(std::shared_ptr<BaseComponent> component);
 

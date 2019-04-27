@@ -12,7 +12,8 @@
 #include "Scene.h"
 #include "Time.h"
 #include "Components.h"
-#include "SceneSwitcherComponent.h"
+
+#include "SceneSwitcher.h"
 
 
 void dae::Minigin::Initialize()
@@ -68,9 +69,7 @@ void dae::Minigin::LoadGame() const
 	fpsObject->AddComponent(std::make_shared<FpsComponent>());
 	scene.Add(fpsObject);
 
-	std::shared_ptr<GameObject> sceneSwitcher = std::make_shared<GameObject>();
-	sceneSwitcher->AddComponent(std::make_shared<SceneSwitcherComponent>());
-	scene.Add(sceneSwitcher);
+	scene.Add(std::make_shared<SceneSwitcher>());
 
 
 	// Scene 2
@@ -82,9 +81,7 @@ void dae::Minigin::LoadGame() const
 	demoObj2->AddComponent(std::make_shared<TextComponent>("Scene 2", font));
 	scene2.Add(demoObj2);
 
-	std::shared_ptr<GameObject> sceneSwitcher2 = std::make_shared<GameObject>();
-	sceneSwitcher2->AddComponent(std::make_shared<SceneSwitcherComponent>());
-	scene2.Add(sceneSwitcher2);
+	scene2.Add(std::make_shared<SceneSwitcher>());
 
 	SceneManager::GetInstance().SetActiveScene("Demo2");
 }
