@@ -4,6 +4,7 @@
 #include <thread>
 #include <SDL.h>
 
+// Engine includes
 #include "InputManager.h"
 #include "SceneManager.h"
 #include "Renderer.h"
@@ -13,9 +14,8 @@
 #include "Time.h"
 #include "Components.h"
 
-#include "SceneSwitcher.h"
-#include "TestComponent.h"
-
+// Game includes
+#include "InputTester.h"
 
 void dae::Minigin::Initialize()
 {
@@ -46,7 +46,7 @@ void dae::Minigin::Initialize()
 void dae::Minigin::LoadGame() const
 {
 	// Scene 1
-	Scene& scene = SceneManager::GetInstance().CreateScene("Demo");
+	Scene& scene = SceneManager::GetInstance().CreateScene("Demo", true);
 	// SceneManager::GetInstance().SetActiveScene("Demo");
 
 	std::shared_ptr<GameObject> go = std::make_shared<GameObject>();
@@ -70,25 +70,7 @@ void dae::Minigin::LoadGame() const
 	fpsObject->AddComponent(std::make_shared<FpsComponent>());
 	scene.Add(fpsObject);
 
-	scene.Add(std::make_shared<SceneSwitcher>());
-
-
-	// Scene 2
-	Scene& scene2 = SceneManager::GetInstance().CreateScene("Demo2");
-
-	std::shared_ptr<Font> font2 = ResourceManager::GetInstance().LoadFont("Lingua.otf", 40);
-	std::shared_ptr<GameObject> demoObj2 = std::make_shared<GameObject>();
-	demoObj2->GetComponent<TransformComponent>()->SetPosition(glm::vec3{ 80, 20, 0 });
-	demoObj2->AddComponent(std::make_shared<TextComponent>("Scene 2", font2));
-	demoObj2->AddComponent(std::make_shared<TestComponent>());
-	demoObj2->AddComponent(std::make_shared<TestComponent>());
-	scene2.Add(demoObj2);
-
-	std::vector<std::shared_ptr<TestComponent>> testComponents = demoObj2->GetComponents<TestComponent>();
-
-	scene2.Add(std::make_shared<SceneSwitcher>());
-
-	SceneManager::GetInstance().SetActiveScene("Demo2");
+	scene.Add(std::make_shared<InputTester>());
 }
 
 void dae::Minigin::Cleanup()

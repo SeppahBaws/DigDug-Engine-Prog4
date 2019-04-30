@@ -9,7 +9,27 @@ namespace dae
 		ButtonA,
 		ButtonB,
 		ButtonX,
-		ButtonY
+		ButtonY,
+		DPadUp,
+		DPadDown,
+		DPadLeft,
+		DPadRight,
+		Start,
+		Back,
+		LeftThumb,
+		RightThumb,
+		LeftShoulder,
+		RightShoulder
+	};
+
+	enum class ControllerAxis
+	{
+		LeftTrigger,
+		RightTrigger,
+		LeftThumbstickX,
+		LeftThumbstickY,
+		RightThumbstickX,
+		RightThumbstickY
 	};
 
 	class InputManager final : public Singleton<InputManager>
@@ -18,7 +38,7 @@ namespace dae
 		bool ProcessInput();
 		bool IsPressed(ControllerButton button) const;
 	private:
-		XINPUT_STATE currentState{};
+		XINPUT_STATE m_CurrentState{};
 	};
 
 }

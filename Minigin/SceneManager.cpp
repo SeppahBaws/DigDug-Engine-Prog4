@@ -6,32 +6,38 @@ namespace dae
 {
 	void SceneManager::Update()
 	{
-		mActiveScene->Update();
+		m_ActiveScene->Update();
 	}
 
 	void SceneManager::Render()
 	{
-		mActiveScene->Render();
+		m_ActiveScene->Render();
 	}
 
-	Scene& SceneManager::CreateScene(const std::string& name)
+	Scene& SceneManager::CreateScene(const std::string& name, bool setActive)
 	{
 		const std::shared_ptr<Scene> scene = std::shared_ptr<Scene>(new Scene(name));
-		mScenes.push_back(scene);
+		m_Scenes.push_back(scene);
+
+		if (setActive)
+		{
+			SetActiveScene(name);
+		}
+
 		return *scene;
 	}
 
 	void SceneManager::SetActiveScene(const std::string& name)
 	{
-		for (const std::shared_ptr<Scene> pScene : mScenes)
+		for (const std::shared_ptr<Scene> pScene : m_Scenes)
 		{
 			if (pScene->GetName() == name)
 			{
-				mActiveScene = pScene;
+				m_ActiveScene = pScene;
 
 				// The newly added scene needs to be updated here before we continue
 				// Because otherwise the textures will be invalid once we try to render that scene
-				mActiveScene->Update();
+				m_ActiveScene->Update();
 				break;
 			}
 		}
@@ -39,6 +45,6 @@ namespace dae
 
 	const Scene& SceneManager::GetActiveScene() const
 	{
-		return *mActiveScene;
+		return *m_ActiveScene;
 	}
 }
