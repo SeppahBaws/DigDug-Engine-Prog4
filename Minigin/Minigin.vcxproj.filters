@@ -7,9 +7,6 @@
     <Filter Include="Engine">
       <UniqueIdentifier>{c40bdde7-3c09-4b1c-8f1a-599ecc43d42d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\SceneObjects">
-      <UniqueIdentifier>{504b3759-18c5-408f-b6d3-4d4f2f6021f8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\Managers">
       <UniqueIdentifier>{871ee17a-cd12-413c-a126-c9d8d6f32c6f}</UniqueIdentifier>
     </Filter>
@@ -27,9 +24,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GameObject.h">
-      <Filter>Engine\SceneObjects</Filter>
-    </ClInclude>
     <ClInclude Include="InputManager.h">
       <Filter>Engine\Managers</Filter>
     </ClInclude>
@@ -86,11 +80,14 @@
     <ClInclude Include="SceneSwitcher.h">
       <Filter>Game\Prefabs</Filter>
     </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Engine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="TestComponent.h">
+      <Filter>Game\Custom Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="GameObject.cpp">
-      <Filter>Engine\SceneObjects</Filter>
-    </ClCompile>
     <ClCompile Include="InputManager.cpp">
       <Filter>Engine\Managers</Filter>
     </ClCompile>
@@ -142,6 +139,12 @@
     </ClCompile>
     <ClCompile Include="SceneSwitcher.cpp">
       <Filter>Game\Prefabs</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Engine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="TestComponent.cpp">
+      <Filter>Game\Custom Components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -14,6 +14,7 @@
 #include "Components.h"
 
 #include "SceneSwitcher.h"
+#include "TestComponent.h"
 
 
 void dae::Minigin::Initialize()
@@ -78,8 +79,12 @@ void dae::Minigin::LoadGame() const
 	std::shared_ptr<Font> font2 = ResourceManager::GetInstance().LoadFont("Lingua.otf", 40);
 	std::shared_ptr<GameObject> demoObj2 = std::make_shared<GameObject>();
 	demoObj2->GetComponent<TransformComponent>()->SetPosition(glm::vec3{ 80, 20, 0 });
-	demoObj2->AddComponent(std::make_shared<TextComponent>("Scene 2", font));
+	demoObj2->AddComponent(std::make_shared<TextComponent>("Scene 2", font2));
+	demoObj2->AddComponent(std::make_shared<TestComponent>());
+	demoObj2->AddComponent(std::make_shared<TestComponent>());
 	scene2.Add(demoObj2);
+
+	std::vector<std::shared_ptr<TestComponent>> testComponents = demoObj2->GetComponents<TestComponent>();
 
 	scene2.Add(std::make_shared<SceneSwitcher>());
 

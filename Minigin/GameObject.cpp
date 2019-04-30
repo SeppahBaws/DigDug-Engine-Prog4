@@ -31,4 +31,12 @@ namespace dae
 		mComponents.push_back(component);
 		component->mpGameObject = this;
 	}
+
+	void GameObject::RemoveComponent(std::shared_ptr<BaseComponent> pComponent)
+	{
+		const auto it = std::find(mComponents.begin(), mComponents.end(), pComponent);
+
+		mComponents.erase(it);
+		pComponent = nullptr;  // Set pComponent to nullptr since it doesn't exist anymore
+	}
 }

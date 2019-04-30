@@ -19,12 +19,33 @@ namespace dae
 		virtual void Render() const;
 
 		void AddComponent(std::shared_ptr<BaseComponent> component);
+		void RemoveComponent(std::shared_ptr<BaseComponent> component);
 
+#pragma region Templated Functions
+
+		template<class T>
+		bool HasComponent()
+		{
+			const type_info& ti = typeid(T);
+			for (const std::shared_ptr<BaseComponent> pComponent : mComponents)
+			{
+				if (typeid(*pComponent) == ti)
+				{
+					// Current component matches requested type
+					return true;
+				}
+			}
+
+			// No components of requested type
+			return false;
+		}
+
+		// Returns the first component of given type
 		template<class T>
 		std::shared_ptr<T> GetComponent()
 		{
 			const type_info& ti = typeid(T);
-			for (auto component : mComponents)
+			for (const std::shared_ptr<BaseComponent> component : mComponents)
 			{
 				if (component && typeid(*component) == ti)
 				{
@@ -34,6 +55,26 @@ namespace dae
 
 			return nullptr;
 		}
+
+		// Returns all the components of given type
+		template<class T>
+		std::vector<std::shared_ptr<T>> GetComponents()
+		{
+			std::vector<std::shared_ptr<T>> matchingComponents = {};
+			
+			const type_info& ti = typeid(T);
+			for (const std::shared_ptr<BaseComponent> component : mComponents)
+			{
+				if (component && typeid(*component) == ti)
+				{
+					matchingComponents.push_back(std::dynamic_pointer_cast<T>(component));
+				}
+			}
+
+			return matchingComponents;
+		}
+
+#pragma endregion Templated Functions
 
 	private:
 		std::vector<std::shared_ptr<BaseComponent>> mComponents;
