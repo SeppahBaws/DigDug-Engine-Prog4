@@ -24,7 +24,7 @@ void dae::Minigin::Initialize()
 		throw std::runtime_error(std::string("SDL_Init Error: ") + SDL_GetError());
 	}
 
-	window = SDL_CreateWindow(
+	m_pWindow = SDL_CreateWindow(
 		"Programming 4 assignment",
 		SDL_WINDOWPOS_UNDEFINED,
 		SDL_WINDOWPOS_UNDEFINED,
@@ -32,12 +32,12 @@ void dae::Minigin::Initialize()
 		480,
 		SDL_WINDOW_OPENGL
 	);
-	if (window == nullptr) 
+	if (m_pWindow == nullptr) 
 	{
 		throw std::runtime_error(std::string("SDL_CreateWindow Error: ") + SDL_GetError());
 	}
 
-	Renderer::GetInstance().Init(window);
+	Renderer::GetInstance().Init(m_pWindow);
 }
 
 /**
@@ -47,7 +47,6 @@ void dae::Minigin::LoadGame() const
 {
 	// Scene 1
 	Scene& scene = SceneManager::GetInstance().CreateScene("Demo", true);
-	// SceneManager::GetInstance().SetActiveScene("Demo");
 
 	std::shared_ptr<GameObject> go = std::make_shared<GameObject>();
 	go->AddComponent(std::make_shared<RenderComponent>("background.jpg"));
@@ -76,8 +75,8 @@ void dae::Minigin::LoadGame() const
 void dae::Minigin::Cleanup()
 {
 	Renderer::GetInstance().Destroy();
-	SDL_DestroyWindow(window);
-	window = nullptr;
+	SDL_DestroyWindow(m_pWindow);
+	m_pWindow = nullptr;
 	SDL_Quit();
 }
 
@@ -92,9 +91,9 @@ void dae::Minigin::Run()
 
 	{
 		auto t = std::chrono::high_resolution_clock::now();
-		auto& renderer = Renderer::GetInstance();
-		auto& sceneManager = SceneManager::GetInstance();
-		auto& input = InputManager::GetInstance();
+		Renderer& renderer = Renderer::GetInstance();
+		SceneManager& sceneManager = SceneManager::GetInstance();
+		InputManager& input = InputManager::GetInstance();
 
 		bool doContinue = true;
 		auto lastTime = std::chrono::high_resolution_clock::now();
@@ -107,7 +106,7 @@ void dae::Minigin::Run()
 			sceneManager.Update();
 			renderer.Render();
 
-			t = lastTime + std::chrono::milliseconds(msPerFrame);
+			t = lastTime + std::chrono::milliseconds(m_MsPerFrame);
 			lastTime = currentTime;
 			std::this_thread::sleep_until(t);
 		}

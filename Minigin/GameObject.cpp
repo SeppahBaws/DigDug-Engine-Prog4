@@ -7,12 +7,12 @@ namespace dae
 	GameObject::GameObject()
 	{
 		const auto transformComponent = std::make_shared<TransformComponent>();
-		mComponents.push_back(transformComponent);
+		m_Components.push_back(transformComponent);
 	}
 
 	void GameObject::Update()
 	{
-		for (auto component : mComponents)
+		for (auto& component : m_Components)
 		{
 			component->Update();
 		}
@@ -20,7 +20,7 @@ namespace dae
 
 	void GameObject::Render() const
 	{
-		for (auto component : mComponents)
+		for (auto& component : m_Components)
 		{
 			component->Render();
 		}
@@ -28,15 +28,15 @@ namespace dae
 
 	void GameObject::AddComponent(std::shared_ptr<BaseComponent> component)
 	{
-		mComponents.push_back(component);
+		m_Components.push_back(component);
 		component->mpGameObject = this;
 	}
 
 	void GameObject::RemoveComponent(std::shared_ptr<BaseComponent> pComponent)
 	{
-		const auto it = std::find(mComponents.begin(), mComponents.end(), pComponent);
+		const auto it = std::find(m_Components.begin(), m_Components.end(), pComponent);
 
-		mComponents.erase(it);
+		m_Components.erase(it);
 		pComponent = nullptr;  // Set pComponent to nullptr since it doesn't exist anymore
 	}
 }

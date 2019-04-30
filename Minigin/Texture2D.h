@@ -15,6 +15,6 @@ namespace dae
 		Texture2D & operator= (const Texture2D &) = delete;
 		Texture2D & operator= (const Texture2D &&) = delete;
 	private:
-		SDL_Texture* mTexture;
+		SDL_Texture* m_pTexture;
 	};
 }

@@ -2,13 +2,13 @@
 #include "Font.h"
 
 TTF_Font* dae::Font::GetFont() const {
-	return mFont;
+	return m_Font;
 }
 
-dae::Font::Font(const std::string& fullPath, unsigned size) : mFont(nullptr), mSize(size)
+dae::Font::Font(const std::string& fullPath, unsigned size) : m_Font(nullptr), m_Size(size)
 {
-	mFont = TTF_OpenFont(fullPath.c_str(), size);
-	if (mFont == nullptr) 
+	m_Font = TTF_OpenFont(fullPath.c_str(), size);
+	if (m_Font == nullptr) 
 	{
 		throw std::runtime_error(std::string("Failed to load font: ") + SDL_GetError());
 	}
@@ -16,5 +16,5 @@ dae::Font::Font(const std::string& fullPath, unsigned size) : mFont(nullptr), mS
 
 dae::Font::~Font()
 {
-	TTF_CloseFont(mFont);
+	TTF_CloseFont(m_Font);
 }

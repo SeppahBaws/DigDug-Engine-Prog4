@@ -77,14 +77,14 @@
     <ClInclude Include="FpsComponent.h">
       <Filter>Game\Custom Components</Filter>
     </ClInclude>
-    <ClInclude Include="SceneSwitcher.h">
-      <Filter>Game\Prefabs</Filter>
-    </ClInclude>
     <ClInclude Include="GameObject.h">
       <Filter>Engine\Core</Filter>
     </ClInclude>
     <ClInclude Include="TestComponent.h">
       <Filter>Game\Custom Components</Filter>
+    </ClInclude>
+    <ClInclude Include="InputTester.h">
+      <Filter>Game\Prefabs</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -137,14 +137,11 @@
     <ClCompile Include="FpsComponent.cpp">
       <Filter>Game\Custom Components</Filter>
     </ClCompile>
-    <ClCompile Include="SceneSwitcher.cpp">
-      <Filter>Game\Prefabs</Filter>
-    </ClCompile>
     <ClCompile Include="GameObject.cpp">
       <Filter>Engine\Core</Filter>
     </ClCompile>
-    <ClCompile Include="TestComponent.cpp">
-      <Filter>Game\Custom Components</Filter>
+    <ClCompile Include="InputTester.cpp">
+      <Filter>Game\Prefabs</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

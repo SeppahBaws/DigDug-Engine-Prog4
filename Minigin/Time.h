@@ -15,7 +15,7 @@ namespace dae
 		void Update(std::chrono::high_resolution_clock::time_point lastTime);
 
 	private:
-		static float mDeltaTime;
-		static std::chrono::high_resolution_clock::time_point mStartTime;
+		static float m_DeltaTime;
+		static std::chrono::high_resolution_clock::time_point m_StartTime;
 	};
 }

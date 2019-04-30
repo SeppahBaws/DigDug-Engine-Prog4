@@ -6,8 +6,8 @@ namespace dae
 {
 	class Minigin
 	{
-		const int msPerFrame = 16; //16 for 60 fps, 33 for 30 fps
-		SDL_Window* window{};
+		const int m_MsPerFrame = 16; //16 for 60 fps, 33 for 30 fps
+		SDL_Window* m_pWindow{};
 	public:
 		void Initialize();
 		void LoadGame() const;

@@ -27,7 +27,7 @@ namespace dae
 		bool HasComponent()
 		{
 			const type_info& ti = typeid(T);
-			for (const std::shared_ptr<BaseComponent> pComponent : mComponents)
+			for (const std::shared_ptr<BaseComponent> pComponent : m_Components)
 			{
 				if (typeid(*pComponent) == ti)
 				{
@@ -45,7 +45,7 @@ namespace dae
 		std::shared_ptr<T> GetComponent()
 		{
 			const type_info& ti = typeid(T);
-			for (const std::shared_ptr<BaseComponent> component : mComponents)
+			for (const std::shared_ptr<BaseComponent> component : m_Components)
 			{
 				if (component && typeid(*component) == ti)
 				{
@@ -63,7 +63,7 @@ namespace dae
 			std::vector<std::shared_ptr<T>> matchingComponents = {};
 			
 			const type_info& ti = typeid(T);
-			for (const std::shared_ptr<BaseComponent> component : mComponents)
+			for (const std::shared_ptr<BaseComponent> component : m_Components)
 			{
 				if (component && typeid(*component) == ti)
 				{
@@ -77,6 +77,6 @@ namespace dae
 #pragma endregion Templated Functions
 
 	private:
-		std::vector<std::shared_ptr<BaseComponent>> mComponents;
+		std::vector<std::shared_ptr<BaseComponent>> m_Components;
 	};
 }

@@ -7,7 +7,7 @@ namespace dae
 	class Font;
 	class ResourceManager final : public Singleton<ResourceManager>
 	{
-		std::string mDataPath;
+		std::string m_DataPath;
 	public:
 		ResourceManager() = default;
 

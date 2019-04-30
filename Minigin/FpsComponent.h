@@ -17,7 +17,7 @@ namespace dae
 		virtual void Update() override;
 
 	private:
-		std::string mFpsText;
-		float mAccumulatedTime;
+		std::string m_FpsText;
+		float m_AccumulatedTime;
 	};
 }
