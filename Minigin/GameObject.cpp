@@ -12,7 +12,7 @@ namespace dae
 
 	void GameObject::Update()
 	{
-		for (auto& component : m_Components)
+		for (auto component : m_Components)
 		{
 			component->Update();
 		}
@@ -20,7 +20,7 @@ namespace dae
 
 	void GameObject::Render() const
 	{
-		for (auto& component : m_Components)
+		for (auto component : m_Components)
 		{
 			component->Render();
 		}

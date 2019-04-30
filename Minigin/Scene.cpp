@@ -15,7 +15,7 @@ void dae::Scene::Add(const std::shared_ptr<GameObject>& object)
 
 void dae::Scene::Update()
 {
-	for(auto& gameObject : m_Objects)
+	for(auto gameObject : m_Objects)
 	{
 		gameObject->Update();
 	}
@@ -23,7 +23,7 @@ void dae::Scene::Update()
 
 void dae::Scene::Render() const
 {
-	for (const auto& gameObject : m_Objects)
+	for (const auto gameObject : m_Objects)
 	{
 		gameObject->Render();
 	}
