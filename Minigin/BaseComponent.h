@@ -17,11 +17,11 @@ namespace dae
 		virtual void Update();
 		virtual void Render();
 
-		GameObject* GetGameObject() const { return mpGameObject; }
+		GameObject* GetGameObject() const { return m_pGameObject; }
 
 	private:
 		friend class GameObject;
 
-		GameObject* mpGameObject;
+		GameObject* m_pGameObject;
 	};
 }

@@ -12,13 +12,13 @@ namespace dae
 	}
 
 	TextComponent::TextComponent(const std::string& text, std::shared_ptr<Font> font, const SDL_Color& color)
-		: mText(text), mFont(font), mColor(color), mTexture(nullptr)
+		: m_Text(text), m_Font(font), m_Color(color), m_Texture(nullptr)
 	{
 	}
 
 	void TextComponent::Update()
 	{
-		const auto surf = TTF_RenderText_Blended(mFont->GetFont(), mText.c_str(), mColor);
+		const auto surf = TTF_RenderText_Blended(m_Font->GetFont(), m_Text.c_str(), m_Color);
 		if (surf == nullptr)
 		{
 			throw std::runtime_error(std::string("Render text failed: ") + SDL_GetError());
@@ -29,22 +29,22 @@ namespace dae
 			throw std::runtime_error(std::string("Create texture from surface failed: ") + SDL_GetError());
 		}
 		SDL_FreeSurface(surf);
-		mTexture = std::make_shared<Texture2D>(texture);
+		m_Texture = std::make_shared<Texture2D>(texture);
 	}
 
 	void TextComponent::Render()
 	{
 		const auto pos = GetGameObject()->GetComponent<TransformComponent>()->GetPosition();
-		Renderer::GetInstance().RenderTexture(*mTexture, pos.x, pos.y);
+		Renderer::GetInstance().RenderTexture(*m_Texture, pos.x, pos.y);
 	}
 
 	void TextComponent::SetText(const std::string& text)
 	{
-		mText = text;
+		m_Text = text;
 	}
 
 	void TextComponent::SetFont(std::shared_ptr<Font> font)
 	{
-		mFont = font;
+		m_Font = font;
 	}
 }

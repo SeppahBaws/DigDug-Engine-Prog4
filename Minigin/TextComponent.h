@@ -24,9 +24,9 @@ namespace dae
 		void SetFont(std::shared_ptr<Font> font);
 
 	private:
-		std::string mText;
-		std::shared_ptr<Font> mFont;
-		SDL_Color mColor;
-		std::shared_ptr<Texture2D> mTexture;
+		std::string m_Text;
+		std::shared_ptr<Font> m_Font;
+		SDL_Color m_Color;
+		std::shared_ptr<Texture2D> m_Texture;
 	};
 }

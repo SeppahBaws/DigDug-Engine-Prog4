@@ -15,11 +15,11 @@ namespace dae
 		TransformComponent(const glm::vec3& pos);
 		virtual ~TransformComponent() = default;
 
-		const glm::vec3& GetPosition() const { return mPosition; }
+		const glm::vec3& GetPosition() const { return m_Position; }
 		void SetPosition(float x, float y, float z);
 		void SetPosition(const glm::vec3& vec);
 
 	private:
-		glm::vec3 mPosition;
+		glm::vec3 m_Position;
 	};
 }

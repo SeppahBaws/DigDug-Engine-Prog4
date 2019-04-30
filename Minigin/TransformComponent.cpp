@@ -8,20 +8,20 @@ dae::TransformComponent::TransformComponent()
 }
 
 dae::TransformComponent::TransformComponent(const glm::vec3& pos)
-	: mPosition(pos)
+	: m_Position(pos)
 {
 }
 
 void dae::TransformComponent::SetPosition(float x, float y, float z)
 {
-	mPosition.x = x;
-	mPosition.y = y;
-	mPosition.z = z;
+	m_Position.x = x;
+	m_Position.y = y;
+	m_Position.z = z;
 }
 
 void dae::TransformComponent::SetPosition(const glm::vec3& vec)
 {
-	mPosition.x = vec.x;
-	mPosition.y = vec.y;
-	mPosition.z = vec.z;
+	m_Position.x = vec.x;
+	m_Position.y = vec.y;
+	m_Position.z = vec.z;
 }

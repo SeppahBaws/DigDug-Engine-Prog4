@@ -7,7 +7,7 @@ dae::BaseComponent::BaseComponent()
 
 dae::BaseComponent::~BaseComponent()
 {
-	mpGameObject = nullptr;
+	m_pGameObject = nullptr;
 }
 
 void dae::BaseComponent::Update()
