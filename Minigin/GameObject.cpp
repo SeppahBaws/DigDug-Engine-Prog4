@@ -28,8 +28,6 @@ namespace dae
 
 	void GameObject::AddComponent(std::shared_ptr<BaseComponent> component)
 	{
-		
-
 		mComponents.push_back(component);
 		component->mpGameObject = this;
 	}
