@@ -1,39 +1,32 @@
 ﻿#include "MiniginPCH.h"
-#include "InputTester.h"
+#include "InputTesterComponent.h"
+#include "GameObject.h"
 #include "InputManager.h"
-#include "TextComponent.h"
-#include "ResourceManager.h"
 
 namespace dae
 {
-	InputTester::InputTester()
+	void InputTesterComponent::Update()
 	{
-		std::shared_ptr<Font> pFont = ResourceManager::GetInstance().LoadFont("Lingua.otf", 25);
-		AddComponent(std::make_shared<TextComponent>("No buttons pressed", pFont));
-	}
-
-	void InputTester::Update()
-	{
-		std::shared_ptr<TextComponent> pText = GetComponent<TextComponent>();
+		std::shared_ptr<TextComponent> pTextComp = GetGameObject()->GetComponent<TextComponent>();
 
 		// ------------------------------------
 		// ABXY buttons
 		// ------------------------------------
 		if (InputManager::GetInstance().IsPressed(ControllerButton::ButtonA))
 		{
-			// pText->SetText("Button A Pressed!");
+			pTextComp->SetText("Button A Pressed!");
 		}
 		else if (InputManager::GetInstance().IsPressed(ControllerButton::ButtonB))
 		{
-			// pText->SetText("Button B Pressed!");
+			pTextComp->SetText("Button B Pressed!");
 		}
 		else if (InputManager::GetInstance().IsPressed(ControllerButton::ButtonX))
 		{
-			// pText->SetText("Button X Pressed!");
+			pTextComp->SetText("Button X Pressed!");
 		}
 		else if (InputManager::GetInstance().IsPressed(ControllerButton::ButtonY))
 		{
-			// pText->SetText("Button Y Pressed!");
+			pTextComp->SetText("Button Y Pressed!");
 		}
 
 		// ------------------------------------
@@ -41,19 +34,19 @@ namespace dae
 		// ------------------------------------
 		else if (InputManager::GetInstance().IsPressed(ControllerButton::DPadUp))
 		{
-			// pText->SetText("DPad Up Pressed!");
+			pTextComp->SetText("DPad Up Pressed!");
 		}
 		else if (InputManager::GetInstance().IsPressed(ControllerButton::DPadDown))
 		{
-			// pText->SetText("DPad Down Pressed!");
+			pTextComp->SetText("DPad Down Pressed!");
 		}
 		else if (InputManager::GetInstance().IsPressed(ControllerButton::DPadLeft))
 		{
-			// pText->SetText("DPad Left Pressed!");
+			pTextComp->SetText("DPad Left Pressed!");
 		}
 		else if (InputManager::GetInstance().IsPressed(ControllerButton::DPadRight))
 		{
-			// pText->SetText("DPad Right Pressed!");
+			pTextComp->SetText("DPad Right Pressed!");
 		}
 
 		// ------------------------------------
@@ -61,11 +54,11 @@ namespace dae
 		// ------------------------------------
 		else if (InputManager::GetInstance().IsPressed(ControllerButton::LeftThumb))
 		{
-			// pText->SetText("Left Thumbstick Pressed!");
+			pTextComp->SetText("Left Thumbstick Pressed!");
 		}
 		else if (InputManager::GetInstance().IsPressed(ControllerButton::RightThumb))
 		{
-			// pText->SetText("Right Thumbstick Pressed!");
+			pTextComp->SetText("Right Thumbstick Pressed!");
 		}
 
 		// ------------------------------------
@@ -73,11 +66,11 @@ namespace dae
 		// ------------------------------------
 		else if (InputManager::GetInstance().IsPressed(ControllerButton::LeftShoulder))
 		{
-			// pText->SetText("Left Shoulder Button Pressed!");
+			pTextComp->SetText("Left Shoulder Button Pressed!");
 		}
 		else if (InputManager::GetInstance().IsPressed(ControllerButton::RightShoulder))
 		{
-			// pText->SetText("Right Shoulder Button Pressed!");
+			pTextComp->SetText("Right Shoulder Button Pressed!");
 		}
 
 		// ------------------------------------
@@ -85,11 +78,18 @@ namespace dae
 		// ------------------------------------
 		else if (InputManager::GetInstance().IsPressed(ControllerButton::Start))
 		{
-			// pText->SetText("Start Button Pressed!");
+			pTextComp->SetText("Start Button Pressed!");
 		}
 		else if (InputManager::GetInstance().IsPressed(ControllerButton::Back))
 		{
-			// pText->SetText("Back Button Pressed!");
+			pTextComp->SetText("Back Button Pressed!");
+		}
+
+
+		// No buttons pressed
+		else
+		{
+			pTextComp->SetText("No buttons are pressed!");
 		}
 	}
 }

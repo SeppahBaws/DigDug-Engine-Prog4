@@ -6,7 +6,7 @@ namespace dae
 	class InputTester final : public GameObject
 	{
 	public:
-		InputTester() = default;
+		InputTester();
 
 		virtual void Update() override;
 	};
