@@ -15,7 +15,6 @@
 #include "Components.h"
 
 // Game includes
-#include "InputTester.h"
 #include "InputTesterComponent.h"
 
 void dae::Minigin::Initialize()
@@ -74,7 +73,13 @@ void dae::Minigin::LoadGame() const
 	inputTester->GetComponent<TransformComponent>()->SetPosition(20, 100, 0);
 	std::shared_ptr<Font> pFont = ResourceManager::GetInstance().LoadFont("Lingua.otf", 25);
 	inputTester->AddComponent(std::make_shared<TextComponent>("No buttons pressed", pFont));
-	inputTester->AddComponent(std::make_shared<InputTesterComponent>());
+	inputTester->AddComponent(
+		std::make_shared<TextComponent>("Left trigger: 0, Right trigger: 0", pFont, SDL_Color{255, 255, 255}, glm::vec3{0, 30, 0})
+	);
+	inputTester->AddComponent(
+		std::make_shared<TextComponent>("Left thumbstick: (0,0), Right thumbstick: (0,0)", pFont, SDL_Color{ 255, 255, 255 }, glm::vec3{ 0, 60, 0 }));
+	inputTester->AddComponent(
+		std::make_shared<InputTesterComponent>());
 	scene.Add(inputTester);
 }
 
