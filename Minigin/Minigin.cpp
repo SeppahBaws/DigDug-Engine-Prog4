@@ -28,8 +28,8 @@ void dae::Minigin::Initialize()
 		"DigDug - Seppe Dekeyser - 2DAE06 - 2018-2019",
 		SDL_WINDOWPOS_UNDEFINED,
 		SDL_WINDOWPOS_UNDEFINED,
-		640,
-		480,
+		1280,
+		720,
 		SDL_WINDOW_OPENGL
 	);
 	if (m_pWindow == nullptr) 
@@ -48,10 +48,12 @@ void dae::Minigin::LoadGame() const
 	// Scene 1
 	Scene& scene = SceneManager::GetInstance().CreateScene("Demo", true);
 
+	// Background
 	std::shared_ptr<GameObject> go = std::make_shared<GameObject>();
 	go->AddComponent(std::make_shared<RenderComponent>("background.jpg"));
 	scene.Add(go);
 
+	// Input tester
 	std::shared_ptr<GameObject> inputTester = std::make_shared<GameObject>();
 	inputTester->GetComponent<TransformComponent>()->SetPosition(20, 100, 0);
 	std::shared_ptr<Font> pFont = ResourceManager::GetInstance().LoadFont("Lingua.otf", 25);
@@ -64,6 +66,12 @@ void dae::Minigin::LoadGame() const
 	inputTester->AddComponent(
 		std::make_shared<InputTesterComponent>());
 	scene.Add(inputTester);
+
+	// Sprite tester
+	std::shared_ptr<GameObject> spriteTester = std::make_shared<GameObject>();
+	spriteTester->GetComponent<TransformComponent>()->SetPosition(50, 200, 0);
+	spriteTester->AddComponent(std::make_shared<SpriteComponent>("dwarf-attack.png", SpriteProps{ 11, 1, 6, 10 }));
+	scene.Add(spriteTester);
 }
 
 void dae::Minigin::Cleanup()
