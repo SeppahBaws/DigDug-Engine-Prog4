@@ -5,3 +5,4 @@
 #include "RenderComponent.h"
 #include "TextComponent.h"
 #include "TransformComponent.h"
+#include "SpriteComponent.h"

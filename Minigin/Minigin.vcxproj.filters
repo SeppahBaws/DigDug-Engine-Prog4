@@ -89,6 +89,9 @@
     <ClInclude Include="InputTesterComponent.h">
       <Filter>Game\Custom Components</Filter>
     </ClInclude>
+    <ClInclude Include="SpriteComponent.h">
+      <Filter>Engine\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="InputManager.cpp">
@@ -148,6 +151,9 @@
     </ClCompile>
     <ClCompile Include="InputTesterComponent.cpp">
       <Filter>Game\Custom Components</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteComponent.cpp">
+      <Filter>Engine\Components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
