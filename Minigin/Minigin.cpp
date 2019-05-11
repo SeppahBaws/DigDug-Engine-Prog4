@@ -13,9 +13,11 @@
 #include "Scene.h"
 #include "Time.h"
 #include "Components.h"
+#include "Sprite.h"
 
 // Game includes
 #include "InputTesterComponent.h"
+#include "MovementComponent.h"
 
 void dae::Minigin::Initialize()
 {
@@ -54,23 +56,46 @@ void dae::Minigin::LoadGame() const
 	scene.Add(go);
 
 	// Input tester
-	std::shared_ptr<GameObject> inputTester = std::make_shared<GameObject>();
-	inputTester->GetComponent<TransformComponent>()->SetPosition(20, 100, 0);
-	std::shared_ptr<Font> pFont = ResourceManager::GetInstance().LoadFont("Lingua.otf", 25);
-	inputTester->AddComponent(std::make_shared<TextComponent>("No buttons pressed", pFont));
-	inputTester->AddComponent(
-		std::make_shared<TextComponent>("Left trigger: 0, Right trigger: 0", pFont, SDL_Color{255, 255, 255}, glm::vec3{0, 30, 0})
-	);
-	inputTester->AddComponent(
-		std::make_shared<TextComponent>("Left thumbstick: (0,0), Right thumbstick: (0,0)", pFont, SDL_Color{ 255, 255, 255 }, glm::vec3{ 0, 60, 0 }));
-	inputTester->AddComponent(
-		std::make_shared<InputTesterComponent>());
-	scene.Add(inputTester);
+	// std::shared_ptr<GameObject> inputTester = std::make_shared<GameObject>();
+	// inputTester->GetComponent<TransformComponent>()->SetPosition(20, 100, 0);
+	// std::shared_ptr<Font> pFont = ResourceManager::GetInstance().LoadFont("Lingua.otf", 25);
+	// inputTester->AddComponent(std::make_shared<TextComponent>("No buttons pressed", pFont));
+	// inputTester->AddComponent(
+	// 	std::make_shared<TextComponent>("Left trigger: 0, Right trigger: 0", pFont, SDL_Color{255, 255, 255}, glm::vec3{0, 30, 0})
+	// );
+	// inputTester->AddComponent(
+	// 	std::make_shared<TextComponent>("Left thumbstick: (0,0), Right thumbstick: (0,0)", pFont, SDL_Color{ 255, 255, 255 }, glm::vec3{ 0, 60, 0 }));
+	// inputTester->AddComponent(
+	// 	std::make_shared<InputTesterComponent>());
+	// scene.Add(inputTester);
 
 	// Sprite tester
 	std::shared_ptr<GameObject> spriteTester = std::make_shared<GameObject>();
 	spriteTester->GetComponent<TransformComponent>()->SetPosition(50, 200, 0);
-	spriteTester->AddComponent(std::make_shared<SpriteComponent>("dwarf-attack.png", SpriteProps{ 11, 1, 6, 10 }));
+	std::shared_ptr<SpriteRenderComponent> spriteRenderer = std::make_shared<SpriteRenderComponent>();
+
+	spriteRenderer->AddSprite(std::make_unique<Sprite>(
+		SpriteProps{
+			"DwarfIdle", "dwarf-idle.png",
+			4, 1, 6, 10
+		}
+	));
+	spriteRenderer->AddSprite(std::make_unique<Sprite>(
+		SpriteProps{
+			"DwarfRun", "dwarf-run.png",
+			8, 1, 6, 10
+		}
+	));
+	spriteRenderer->AddSprite(std::make_unique<Sprite>(
+		SpriteProps{
+			"DwarfAttack", "dwarf-attack.png",
+			11, 1, 6, 10
+		}
+	));
+	spriteRenderer->SelectSprite("DwarfIdle");
+
+	spriteTester->AddComponent(spriteRenderer);
+	spriteTester->AddComponent(std::make_shared<MovementComponent>());
 	scene.Add(spriteTester);
 }
 

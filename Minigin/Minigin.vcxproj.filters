@@ -89,7 +89,13 @@
     <ClInclude Include="InputTesterComponent.h">
       <Filter>Game\Custom Components</Filter>
     </ClInclude>
-    <ClInclude Include="SpriteComponent.h">
+    <ClInclude Include="MovementComponent.h">
+      <Filter>Game\Custom Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite.h">
+      <Filter>Engine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteRenderComponent.h">
       <Filter>Engine\Components</Filter>
     </ClInclude>
   </ItemGroup>
@@ -152,7 +158,13 @@
     <ClCompile Include="InputTesterComponent.cpp">
       <Filter>Game\Custom Components</Filter>
     </ClCompile>
-    <ClCompile Include="SpriteComponent.cpp">
+    <ClCompile Include="MovementComponent.cpp">
+      <Filter>Game\Custom Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Sprite.cpp">
+      <Filter>Engine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteRenderComponent.cpp">
       <Filter>Engine\Components</Filter>
     </ClCompile>
   </ItemGroup>
