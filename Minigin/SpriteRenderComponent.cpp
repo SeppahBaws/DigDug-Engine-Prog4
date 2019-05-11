@@ -6,10 +6,19 @@
 
 namespace dae
 {
+	SpriteRenderComponent::SpriteRenderComponent()
+		: m_pSprites()
+		, m_pCurrentSprite()
+		, m_CurrentSpriteIdx(0)
+		, m_Scale(1)
+	{
+	}
+
 	void SpriteRenderComponent::AddSprite(std::unique_ptr<Sprite> pSprite)
 	{
 		m_pSprites.push_back(std::move(pSprite));
 
+		//TODO:
 		// Set this sprite the default one if it's the first one
 		// if (m_pSprites.size() == 1)
 		// {
@@ -28,33 +37,36 @@ namespace dae
 				return;
 			}
 		}
+	}
 
-		// for (auto& sprite : m_pSprites)
-		// {
-		// 	if (sprite->GetName() == name)
-		// 	{
-		// 		m_pCurrentSprite = std::make_shared<Sprite>(*sprite);
-		// 	}
-		// }
+	void SpriteRenderComponent::ResetSprite() const
+	{
+		m_pCurrentSprite.lock()->Reset();
+	}
 
-		// const auto it = std::find_if(m_pSprites.begin(), m_pSprites.end(),
-		// 	[name](std::unique_ptr<Sprite>& pSprite){ return pSprite->GetName() == name; });
-		//
-		// if (it != m_pSprites.end())
-		// {
-		// 	m_pCurrentSprite = std::make_shared<Sprite>(**it);
-		// }
+	void SpriteRenderComponent::ResetSprite(const std::string& name) const
+	{
+		for (int i = 0; i < m_pSprites.size(); i++)
+		{
+			if (m_pSprites[i]->GetName() == name)
+			{
+				m_pSprites[i]->Reset();
+			}
+		}
+	}
+
+	void SpriteRenderComponent::SetScale(int scale)
+	{
+		m_Scale = scale;
 	}
 
 	void SpriteRenderComponent::Update()
 	{
-		// m_pCurrentSprite.lock()->Update();
 		m_pSprites[m_CurrentSpriteIdx]->Update();
 	}
 
 	void SpriteRenderComponent::Render()
 	{
-		// m_pCurrentSprite.lock()->Render(GetGameObject()->GetComponent<TransformComponent>()->GetPosition());
-		m_pSprites[m_CurrentSpriteIdx]->Render(GetGameObject()->GetComponent<TransformComponent>()->GetPosition());
+		m_pSprites[m_CurrentSpriteIdx]->Render(GetGameObject()->GetComponent<TransformComponent>()->GetPosition(), m_Scale);
 	}
 }

@@ -29,7 +29,7 @@ namespace dae
 	void GameObject::AddComponent(std::shared_ptr<BaseComponent> component)
 	{
 		m_Components.push_back(component);
-		component->m_pGameObject = std::make_shared<GameObject>(*this);
+		component->m_pGameObject = this;
 	}
 
 	void GameObject::RemoveComponent(std::shared_ptr<BaseComponent> pComponent)

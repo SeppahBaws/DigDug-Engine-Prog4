@@ -16,7 +16,6 @@ namespace dae
 		int cols = 1;
 		int rows = 1;
 		float framerate = 0;
-		int scale = 1;
 	};
 
 	class Sprite final
@@ -27,7 +26,8 @@ namespace dae
 		void LoadTexture(const std::string& filename);
 
 		void Update();
-		void Render(const glm::vec3& pos);
+		void Render(const glm::vec3& pos, int scale);
+		void Reset();
 
 		std::string GetName() const { return m_Props.name; }
 

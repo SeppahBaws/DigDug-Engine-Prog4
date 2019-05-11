@@ -7,8 +7,8 @@ namespace dae
 	class BaseComponent
 	{
 	public:
-		BaseComponent() = default;
-		virtual ~BaseComponent() = default;
+		BaseComponent();
+		virtual ~BaseComponent();
 		BaseComponent(const BaseComponent& other) = delete;
 		BaseComponent(BaseComponent&& other) noexcept = delete;
 		BaseComponent& operator=(const BaseComponent& other) = delete;
@@ -17,18 +17,11 @@ namespace dae
 		virtual void Update();
 		virtual void Render();
 
-		std::shared_ptr<GameObject> GetGameObject() const
-		{
-			if (std::shared_ptr<GameObject> sp = m_pGameObject.lock())
-			{
-				return sp;
-			}
-			return nullptr;
-		}
+		GameObject* GetGameObject() const { return m_pGameObject; }
 
 	private:
 		friend class GameObject;
 
-		std::weak_ptr<GameObject> m_pGameObject;
+		GameObject* m_pGameObject;
 	};
 }

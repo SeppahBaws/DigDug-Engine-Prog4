@@ -12,6 +12,7 @@ namespace dae
 {
 	Sprite::Sprite(const SpriteProps& props)
 		: m_pSpriteSheet(nullptr), m_Props(props)
+		, m_TextureWidth(0), m_TextureHeight(0)
 		, m_AccuFrames(0), m_CurrentFrame(0)
 	{
 		
@@ -44,23 +45,28 @@ namespace dae
 		}
 	}
 
-	void Sprite::Render(const glm::vec3& pos)
+	void Sprite::Render(const glm::vec3& pos, int scale)
 	{
 		// Calculate source and destination rects
-		SDL_Rect srcRect = SDL_Rect{
+		const SDL_Rect srcRect = SDL_Rect{
 			GetFrameWidth() * (m_CurrentFrame % m_Props.cols),	// calculate the column
 			GetFrameHeight() * (m_CurrentFrame / m_Props.cols),	// calculate the row
 			GetFrameWidth(),
 			GetFrameHeight()
 		};
-		SDL_Rect destRect = SDL_Rect{
+		const SDL_Rect destRect = SDL_Rect{
 			int(pos.x),
 			int(pos.y),
-			GetFrameWidth() * m_Props.scale,
-			GetFrameHeight() * m_Props.scale
+			GetFrameWidth() * scale,
+			GetFrameHeight() * scale
 		};
 
 		Renderer::GetInstance().RenderTexture(*m_pSpriteSheet, srcRect, destRect);
+	}
+
+	void Sprite::Reset()
+	{
+		m_AccuFrames = 0;
 	}
 
 	int Sprite::GetFrameWidth() const

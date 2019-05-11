@@ -74,22 +74,24 @@ void dae::Minigin::LoadGame() const
 	spriteTester->GetComponent<TransformComponent>()->SetPosition(50, 200, 0);
 	std::shared_ptr<SpriteRenderComponent> spriteRenderer = std::make_shared<SpriteRenderComponent>();
 
+	spriteRenderer->SetScale(10);
+
 	spriteRenderer->AddSprite(std::make_unique<Sprite>(
 		SpriteProps{
 			"DwarfIdle", "dwarf-idle.png",
-			4, 1, 6, 10
+			4, 1, 6
 		}
 	));
 	spriteRenderer->AddSprite(std::make_unique<Sprite>(
 		SpriteProps{
 			"DwarfRun", "dwarf-run.png",
-			8, 1, 6, 10
+			8, 1, 10
 		}
 	));
 	spriteRenderer->AddSprite(std::make_unique<Sprite>(
 		SpriteProps{
 			"DwarfAttack", "dwarf-attack.png",
-			11, 1, 6, 10
+			11, 1, 6
 		}
 	));
 	spriteRenderer->SelectSprite("DwarfIdle");

@@ -10,6 +10,10 @@ namespace dae
 	public:
 		GameObject();
 		virtual ~GameObject() = default;
+		GameObject(const GameObject& other) = delete;
+		GameObject(GameObject&& other) = delete;
+		GameObject& operator=(const GameObject& other) = delete;
+		GameObject& operator=(GameObject&& other) = delete;
 
 		virtual void Update();
 		virtual void Render() const;
@@ -38,46 +42,28 @@ namespace dae
 
 		// Returns the first component of given type
 		template<class T>
-		T& GetComponent()
+		std::shared_ptr<T> GetComponent()
 		{
 			const type_info& ti = typeid(T);
-
-			// Old code for reference
-			// for (const std::unique_ptr<BaseComponent>& component : m_Components)
-			// {
-			// 	if (component && typeid(*component) == ti)
-			// 	{
-			// 		return std::dynamic_pointer_cast<T>(component);
-			// 	}
-			// }
-
-			for (auto it = m_Components.begin(); it != m_Components.end(); ++it)
+			for (const std::shared_ptr<BaseComponent> component : m_Components)
 			{
-				if (*it && typeid(*&it) == ti)
+				if (component && typeid(*component) == ti)
 				{
-					return **it;
+					return std::dynamic_pointer_cast<T>(component);
 				}
 			}
 
 			return nullptr;
 		}
 
-#if 0 // temporarily disable this as I figure out how to do all this stuff
 		// Returns all the components of given type
 		template<class T>
 		std::vector<std::shared_ptr<T>> GetComponents()
 		{
 			std::vector<std::shared_ptr<T>> matchingComponents = {};
-			
+
 			const type_info& ti = typeid(T);
-			// for (int i = 0; i < m_Components.size(); i++)
-			// {
-			// 	if (m_Components[i] && typeid(*m_Components[i]) == ti)
-			// 	{
-			// 		matchingComponents.push_back(std::dynamic_pointer_cast<>())
-			// 	}
-			// }
-			for (const std::unique_ptr<BaseComponent>& component : m_Components)
+			for (const std::shared_ptr<BaseComponent> component : m_Components)
 			{
 				if (component && typeid(*component) == ti)
 				{
@@ -87,11 +73,10 @@ namespace dae
 
 			return matchingComponents;
 		}
-#endif
 
 #pragma endregion Templated Functions
 
 	private:
-		std::vector<std::unique_ptr<BaseComponent>> m_Components;
+		std::vector<std::shared_ptr<BaseComponent>> m_Components;
 	};
 }
