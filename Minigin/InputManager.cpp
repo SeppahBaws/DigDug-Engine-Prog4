@@ -101,11 +101,13 @@ namespace dae
 		case ControllerAxis::LeftThumbstick:
 		{
 			glm::vec2 axisValue{ m_CurrentState.Gamepad.sThumbLX, m_CurrentState.Gamepad.sThumbLY };
+			axisValue.y *= -1;
 			return NormalizeJoystickValue(axisValue, 32767, XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE);
 		}
 		case ControllerAxis::RightThumbstick:
 		{
 			glm::vec2 axisValue{ m_CurrentState.Gamepad.sThumbRX, m_CurrentState.Gamepad.sThumbRY };
+			axisValue.y *= -1;
 			return NormalizeJoystickValue(axisValue, 32767, XINPUT_GAMEPAD_RIGHT_THUMB_DEADZONE);
 		}
 		default:

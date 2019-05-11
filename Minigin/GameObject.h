@@ -61,7 +61,7 @@ namespace dae
 		std::vector<std::shared_ptr<T>> GetComponents()
 		{
 			std::vector<std::shared_ptr<T>> matchingComponents = {};
-			
+
 			const type_info& ti = typeid(T);
 			for (const std::shared_ptr<BaseComponent> component : m_Components)
 			{
