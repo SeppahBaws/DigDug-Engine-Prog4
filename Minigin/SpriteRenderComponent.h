@@ -12,6 +12,7 @@ namespace dae
 		int scale;
 	};
 
+	// TODO: add support for sprite playback speed
 	class SpriteRenderComponent final : public BaseComponent
 	{
 	public:

@@ -9,7 +9,7 @@
 #include "Sprite.h"
 
 // Game includes
-#include "MovementComponent.h"
+#include "PlayerMovementComponent.h"
 
 using namespace dae;
 
@@ -26,11 +26,11 @@ void DigDugGame::LoadGame() const
 	go->AddComponent(std::make_shared<RenderComponent>("background.jpg"));
 	scene.Add(go);
 
-	// ---------------------
-	// --- Sprite tester ---
-	// ---------------------
-	std::shared_ptr<GameObject> spriteTester = std::make_shared<GameObject>();
-	spriteTester->GetComponent<TransformComponent>()->SetPosition(50, 200, 0);
+	// ----------------------
+	// ------- Player -------
+	// ----------------------
+	std::shared_ptr<GameObject> player = std::make_shared<GameObject>();
+	player->GetComponent<TransformComponent>()->SetPosition(50, 200, 0);
 	std::shared_ptr<SpriteRenderComponent> spriteRenderer = std::make_shared<SpriteRenderComponent>();
 
 	LuaHelpers::GetInstance().OpenFile("Sprites.lua");
@@ -41,13 +41,13 @@ void DigDugGame::LoadGame() const
 	spriteRenderer->SetScale(config.scale);
 
 	// Read and set sprites
-	std::vector<Sprite> sprites = LuaHelpers::GetInstance().ReadSprites("sprites", { "run", "dig", "pump", "shoot" });
-	for (Sprite& sprite : sprites)
+	std::vector<Sprite> playerSprites = LuaHelpers::GetInstance().ReadSprites("player", { "run", "dig", "pump", "shoot", "death" });
+	for (Sprite& sprite : playerSprites)
 	{
 		spriteRenderer->AddSprite(std::make_unique<Sprite>(sprite));
 	}
 
-	spriteTester->AddComponent(spriteRenderer);
-	spriteTester->AddComponent(std::make_shared<MovementComponent>());
-	scene.Add(spriteTester);
+	player->AddComponent(spriteRenderer);
+	player->AddComponent(std::make_shared<PlayerMovementComponent>());
+	scene.Add(player);
 }

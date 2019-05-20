@@ -3,7 +3,8 @@ spriteRenderConfig = {
 	spriteScale = 3
 }
 
-sprites = {
+-- Player sprites
+player = {
 	run = {
 		name = "Run",
 		fileName = "player-run.png",
@@ -31,9 +32,29 @@ sprites = {
 		cols = 3,
 		rows = 1,
 		framerate = 10
+	},
+	death = {
+		name = "Death",
+		fileName = "player-death.png",
+		cols = 4,
+		rows = 1,
+		framerate = 10
 	}
 }
 
+-- Pooka sprites
+pooka = {
+
+}
+
+-- Fygar sprites
+fygar = {
+
+}
+
+
+
+-- Sprites for testing, the idea was to load them from a single file, using a position and offset
 -- sprites = {
 -- 	run = {
 -- 		name = "Run",
