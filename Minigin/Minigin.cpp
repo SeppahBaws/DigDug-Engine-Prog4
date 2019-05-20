@@ -18,6 +18,7 @@
 // Game includes
 #include "InputTesterComponent.h"
 #include "MovementComponent.h"
+#include "LuaHelpers.h"
 
 void dae::Minigin::Initialize()
 {
@@ -40,6 +41,7 @@ void dae::Minigin::Initialize()
 	}
 
 	Renderer::GetInstance().Init(m_pWindow);
+	LuaHelpers::Init();
 }
 
 /**
@@ -50,51 +52,33 @@ void dae::Minigin::LoadGame() const
 	// Scene 1
 	Scene& scene = SceneManager::GetInstance().CreateScene("Demo", true);
 
-	// Background
+	// ------------------
+	// --- Background ---
+	// ------------------
 	std::shared_ptr<GameObject> go = std::make_shared<GameObject>();
 	go->AddComponent(std::make_shared<RenderComponent>("background.jpg"));
 	scene.Add(go);
 
-	// Input tester
-	// std::shared_ptr<GameObject> inputTester = std::make_shared<GameObject>();
-	// inputTester->GetComponent<TransformComponent>()->SetPosition(20, 100, 0);
-	// std::shared_ptr<Font> pFont = ResourceManager::GetInstance().LoadFont("Lingua.otf", 25);
-	// inputTester->AddComponent(std::make_shared<TextComponent>("No buttons pressed", pFont));
-	// inputTester->AddComponent(
-	// 	std::make_shared<TextComponent>("Left trigger: 0, Right trigger: 0", pFont, SDL_Color{255, 255, 255}, glm::vec3{0, 30, 0})
-	// );
-	// inputTester->AddComponent(
-	// 	std::make_shared<TextComponent>("Left thumbstick: (0,0), Right thumbstick: (0,0)", pFont, SDL_Color{ 255, 255, 255 }, glm::vec3{ 0, 60, 0 }));
-	// inputTester->AddComponent(
-	// 	std::make_shared<InputTesterComponent>());
-	// scene.Add(inputTester);
-
-	// Sprite tester
+	// ---------------------
+	// --- Sprite tester ---
+	// ---------------------
 	std::shared_ptr<GameObject> spriteTester = std::make_shared<GameObject>();
 	spriteTester->GetComponent<TransformComponent>()->SetPosition(50, 200, 0);
 	std::shared_ptr<SpriteRenderComponent> spriteRenderer = std::make_shared<SpriteRenderComponent>();
 
-	spriteRenderer->SetScale(10);
+	LuaHelpers::GetInstance().OpenFile("Sprites.lua");
+	
+	// Read and set sprites config
+	SpriteRenderConfig config = LuaHelpers::GetInstance().ReadSpriteConfig("spriteRenderConfig");
+	spriteRenderer->SelectSprite(config.defaultSprite);
+	spriteRenderer->SetScale(config.scale);
 
-	spriteRenderer->AddSprite(std::make_unique<Sprite>(
-		SpriteProps{
-			"DwarfIdle", "dwarf-idle.png",
-			4, 1, 6
-		}
-	));
-	spriteRenderer->AddSprite(std::make_unique<Sprite>(
-		SpriteProps{
-			"DwarfRun", "dwarf-run.png",
-			8, 1, 10
-		}
-	));
-	spriteRenderer->AddSprite(std::make_unique<Sprite>(
-		SpriteProps{
-			"DwarfAttack", "dwarf-attack.png",
-			11, 1, 6
-		}
-	));
-	spriteRenderer->SelectSprite("DwarfIdle");
+	// Read and set sprites
+	std::vector<Sprite> sprites = LuaHelpers::GetInstance().ReadSprites("sprites", { "idle", "run", "attack" });
+	for (Sprite& sprite : sprites)
+	{
+		spriteRenderer->AddSprite(std::make_unique<Sprite>(sprite));
+	}
 
 	spriteTester->AddComponent(spriteRenderer);
 	spriteTester->AddComponent(std::make_shared<MovementComponent>());
@@ -103,6 +87,7 @@ void dae::Minigin::LoadGame() const
 
 void dae::Minigin::Cleanup()
 {
+	LuaHelpers::Cleanup();
 	Renderer::GetInstance().Destroy();
 	SDL_DestroyWindow(m_pWindow);
 	m_pWindow = nullptr;

@@ -6,6 +6,12 @@ namespace dae
 	// Forward declarations
 	class Sprite;
 
+	struct SpriteRenderConfig
+	{
+		std::string defaultSprite;
+		int scale;
+	};
+
 	class SpriteRenderComponent final : public BaseComponent
 	{
 	public:

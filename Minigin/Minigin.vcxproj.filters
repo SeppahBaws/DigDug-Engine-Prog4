@@ -22,6 +22,12 @@
     <Filter Include="Game\Prefabs">
       <UniqueIdentifier>{a78f0226-9620-4c14-950a-a9c21257e42f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Configuration">
+      <UniqueIdentifier>{70cfcfcb-746e-4a52-857f-474e6a31d9bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Helpers">
+      <UniqueIdentifier>{8fc3022d-6cb1-4fda-a563-1ce17748739f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="InputManager.h">
@@ -98,6 +104,9 @@
     <ClInclude Include="SpriteRenderComponent.h">
       <Filter>Engine\Components</Filter>
     </ClInclude>
+    <ClInclude Include="LuaHelpers.h">
+      <Filter>Engine\Helpers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="InputManager.cpp">
@@ -167,5 +176,13 @@
     <ClCompile Include="SpriteRenderComponent.cpp">
       <Filter>Engine\Components</Filter>
     </ClCompile>
+    <ClCompile Include="LuaHelpers.cpp">
+      <Filter>Engine\Helpers</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Sprites.lua">
+      <Filter>Game\Configuration</Filter>
+    </None>
   </ItemGroup>
 </Project>

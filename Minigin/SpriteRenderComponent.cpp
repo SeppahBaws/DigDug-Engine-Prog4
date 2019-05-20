@@ -29,7 +29,7 @@ namespace dae
 
 	void SpriteRenderComponent::SelectSprite(const std::string& name)
 	{
-		for (int i = 0; i < m_pSprites.size(); i++)
+		for (unsigned int i = 0; i < m_pSprites.size(); i++)
 		{
 			if (m_pSprites[i]->GetName() == name)
 			{
@@ -46,7 +46,7 @@ namespace dae
 
 	void SpriteRenderComponent::ResetSprite(const std::string& name) const
 	{
-		for (int i = 0; i < m_pSprites.size(); i++)
+		for (unsigned int i = 0; i < m_pSprites.size(); i++)
 		{
 			if (m_pSprites[i]->GetName() == name)
 			{
