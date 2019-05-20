@@ -27,26 +27,26 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -72,23 +72,23 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)bin\$(Configuration)-$(Platform)\</OutDir>
-    <IntDir>$(SolutionDir)bin-int\$(Configuration)-$(Platform)\</IntDir>
+    <OutDir>$(SolutionDir)bin\Minigin-$(Configuration)-$(Platform)\</OutDir>
+    <IntDir>$(SolutionDir)bin-int\Minigin-$(Configuration)-$(Platform)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)bin\$(Configuration)-$(Platform)\</OutDir>
-    <IntDir>$(SolutionDir)bin-int\$(Configuration)-$(Platform)\</IntDir>
+    <OutDir>$(SolutionDir)bin\Minigin-$(Configuration)-$(Platform)\</OutDir>
+    <IntDir>$(SolutionDir)bin-int\Minigin-$(Configuration)-$(Platform)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)bin\$(Configuration)-$(Platform)\</OutDir>
-    <IntDir>$(SolutionDir)bin-int\$(Configuration)-$(Platform)\</IntDir>
+    <OutDir>$(SolutionDir)bin\Minigin-$(Configuration)-$(Platform)\</OutDir>
+    <IntDir>$(SolutionDir)bin-int\Minigin-$(Configuration)-$(Platform)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)bin\$(Configuration)-$(Platform)\</OutDir>
-    <IntDir>$(SolutionDir)bin-int\$(Configuration)-$(Platform)\</IntDir>
+    <OutDir>$(SolutionDir)bin\Minigin-$(Configuration)-$(Platform)\</OutDir>
+    <IntDir>$(SolutionDir)bin-int\Minigin-$(Configuration)-$(Platform)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -109,10 +109,8 @@
       <AdditionalDependencies>lua53.lib;SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy "$(SolutionDir)3rdParty\Lua\lib\x86\lua53.dll" "$(OutputPath)" /R /Y
-xcopy "$(SolutionDir)3rdParty\SDL2\lib\x86\SDL2.dll" "$(OutputPath)" /R /Y
-xcopy "$(SolutionDir)3rdParty\SDL2_image\lib\x86\*.dll" "$(OutputPath)" /R /Y
-xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x86\*.dll" "$(OutputPath)" /R /Y</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -134,10 +132,8 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x86\*.dll" "$(OutputPath)" /R /Y</Com
       <AdditionalDependencies>lua53.lib;SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy "$(SolutionDir)3rdParty\Lua\lib\x64\lua53.dll" "$(OutputPath)" /R /Y
-xcopy "$(SolutionDir)3rdParty\SDL2\lib\x64\SDL2.dll" "$(OutputPath)" /R /Y
-xcopy "$(SolutionDir)3rdParty\SDL2_image\lib\x64\*.dll" "$(OutputPath)" /R /Y
-xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x64\*.dll" "$(OutputPath)" /R /Y</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -163,10 +159,8 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x64\*.dll" "$(OutputPath)" /R /Y</Com
       <AdditionalDependencies>lua53.lib;SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy "$(SolutionDir)3rdParty\Lua\lib\x86\lua53.dll" "$(OutputPath)" /R /Y
-xcopy "$(SolutionDir)3rdParty\SDL2\lib\x86\SDL2.dll" "$(OutputPath)" /R /Y
-xcopy "$(SolutionDir)3rdParty\SDL2_image\lib\x86\*.dll" "$(OutputPath)" /R /Y
-xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x86\*.dll" "$(OutputPath)" /R /Y</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -192,26 +186,20 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x86\*.dll" "$(OutputPath)" /R /Y</Com
       <AdditionalDependencies>lua53.lib;SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy "$(SolutionDir)3rdParty\Lua\lib\x64\lua53.dll" "$(OutputPath)" /R /Y
-xcopy "$(SolutionDir)3rdParty\SDL2\lib\x64\SDL2.dll" "$(OutputPath)" /R /Y
-xcopy "$(SolutionDir)3rdParty\SDL2_image\lib\x64\*.dll" "$(OutputPath)" /R /Y
-xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x64\*.dll" "$(OutputPath)" /R /Y</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="BaseComponent.h" />
     <ClInclude Include="Components.h" />
     <ClInclude Include="Font.h" />
-    <ClInclude Include="FpsComponent.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="InputManager.h" />
-    <ClInclude Include="InputTester.h" />
-    <ClInclude Include="InputTesterComponent.h" />
     <ClInclude Include="Log.h" />
     <ClInclude Include="LuaHelpers.h" />
     <ClInclude Include="Minigin.h" />
     <ClInclude Include="MiniginPCH.h" />
-    <ClInclude Include="MovementComponent.h" />
     <ClInclude Include="RenderComponent.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="ResourceManager.h" />
@@ -221,7 +209,6 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x64\*.dll" "$(OutputPath)" /R /Y</Com
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="SpriteRenderComponent.h" />
     <ClInclude Include="targetver.h" />
-    <ClInclude Include="TestComponent.h" />
     <ClInclude Include="TextComponent.h" />
     <ClInclude Include="Texture2D.h" />
     <ClInclude Include="Time.h" />
@@ -230,14 +217,10 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x64\*.dll" "$(OutputPath)" /R /Y</Com
   <ItemGroup>
     <ClCompile Include="BaseComponent.cpp" />
     <ClCompile Include="Font.cpp" />
-    <ClCompile Include="FpsComponent.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="InputManager.cpp" />
-    <ClCompile Include="InputTester.cpp" />
-    <ClCompile Include="InputTesterComponent.cpp" />
     <ClCompile Include="Log.cpp" />
     <ClCompile Include="LuaHelpers.cpp" />
-    <ClCompile Include="Main.cpp" />
     <ClCompile Include="Minigin.cpp" />
     <ClCompile Include="MiniginPCH.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -246,7 +229,6 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x64\*.dll" "$(OutputPath)" /R /Y</Com
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">MiniginPCH.h</PrecompiledHeaderFile>
     </ClCompile>
-    <ClCompile Include="MovementComponent.cpp" />
     <ClCompile Include="RenderComponent.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
@@ -258,9 +240,6 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x64\*.dll" "$(OutputPath)" /R /Y</Com
     <ClCompile Include="Texture2D.cpp" />
     <ClCompile Include="Time.cpp" />
     <ClCompile Include="TransformComponent.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Sprites.lua" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

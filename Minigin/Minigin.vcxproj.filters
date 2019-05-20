@@ -1,188 +1,134 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Game">
-      <UniqueIdentifier>{e5ed7b0d-3ba9-4e0a-97e8-b7ff450b465d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine">
-      <UniqueIdentifier>{c40bdde7-3c09-4b1c-8f1a-599ecc43d42d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\Managers">
-      <UniqueIdentifier>{871ee17a-cd12-413c-a126-c9d8d6f32c6f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\Core">
-      <UniqueIdentifier>{2252f95b-248e-49c0-a573-dd5e01ace0d4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\Components">
+    <Filter Include="Components">
       <UniqueIdentifier>{4f8a395d-74fd-4b5d-afe8-a8a274c112ab}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Custom Components">
-      <UniqueIdentifier>{f9a039ba-ff0a-43a3-8125-78178cb9ea5f}</UniqueIdentifier>
+    <Filter Include="Core">
+      <UniqueIdentifier>{2252f95b-248e-49c0-a573-dd5e01ace0d4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Prefabs">
-      <UniqueIdentifier>{a78f0226-9620-4c14-950a-a9c21257e42f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\Configuration">
-      <UniqueIdentifier>{70cfcfcb-746e-4a52-857f-474e6a31d9bf}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\Helpers">
+    <Filter Include="Helpers">
       <UniqueIdentifier>{8fc3022d-6cb1-4fda-a563-1ce17748739f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Managers">
+      <UniqueIdentifier>{871ee17a-cd12-413c-a126-c9d8d6f32c6f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="InputManager.h">
-      <Filter>Engine\Managers</Filter>
+      <Filter>Managers</Filter>
     </ClInclude>
     <ClInclude Include="ResourceManager.h">
-      <Filter>Engine\Managers</Filter>
+      <Filter>Managers</Filter>
     </ClInclude>
     <ClInclude Include="SceneManager.h">
-      <Filter>Engine\Managers</Filter>
+      <Filter>Managers</Filter>
     </ClInclude>
     <ClInclude Include="MiniginPCH.h" />
     <ClInclude Include="Log.h">
-      <Filter>Engine\Core</Filter>
+      <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="Renderer.h">
-      <Filter>Engine\Core</Filter>
+      <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="Scene.h">
-      <Filter>Engine\Core</Filter>
+      <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="Singleton.h">
-      <Filter>Engine\Core</Filter>
+      <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Time.h">
-      <Filter>Engine\Core</Filter>
+      <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="Font.h">
-      <Filter>Engine\Core</Filter>
+      <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="BaseComponent.h">
-      <Filter>Engine\Components</Filter>
+      <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="TransformComponent.h">
-      <Filter>Engine\Components</Filter>
+      <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="RenderComponent.h">
-      <Filter>Engine\Components</Filter>
+      <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="Texture2D.h">
-      <Filter>Engine\Core</Filter>
+      <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="TextComponent.h">
-      <Filter>Engine\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Minigin.h">
-      <Filter>Game</Filter>
+      <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="Components.h">
-      <Filter>Engine\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="FpsComponent.h">
-      <Filter>Game\Custom Components</Filter>
+      <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="GameObject.h">
-      <Filter>Engine\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="TestComponent.h">
-      <Filter>Game\Custom Components</Filter>
-    </ClInclude>
-    <ClInclude Include="InputTester.h">
-      <Filter>Game\Prefabs</Filter>
-    </ClInclude>
-    <ClInclude Include="InputTesterComponent.h">
-      <Filter>Game\Custom Components</Filter>
-    </ClInclude>
-    <ClInclude Include="MovementComponent.h">
-      <Filter>Game\Custom Components</Filter>
+      <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="Sprite.h">
-      <Filter>Engine\Core</Filter>
+      <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="SpriteRenderComponent.h">
-      <Filter>Engine\Components</Filter>
+      <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="LuaHelpers.h">
-      <Filter>Engine\Helpers</Filter>
+      <Filter>Helpers</Filter>
     </ClInclude>
+    <ClInclude Include="Minigin.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="InputManager.cpp">
-      <Filter>Engine\Managers</Filter>
+      <Filter>Managers</Filter>
     </ClCompile>
     <ClCompile Include="ResourceManager.cpp">
-      <Filter>Engine\Managers</Filter>
+      <Filter>Managers</Filter>
     </ClCompile>
     <ClCompile Include="SceneManager.cpp">
-      <Filter>Engine\Managers</Filter>
+      <Filter>Managers</Filter>
     </ClCompile>
     <ClCompile Include="MiniginPCH.cpp" />
     <ClCompile Include="Log.cpp">
-      <Filter>Engine\Core</Filter>
+      <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="Renderer.cpp">
-      <Filter>Engine\Core</Filter>
+      <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="Scene.cpp">
-      <Filter>Engine\Core</Filter>
+      <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="Time.cpp">
-      <Filter>Engine\Core</Filter>
+      <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="Font.cpp">
-      <Filter>Engine\Core</Filter>
+      <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="BaseComponent.cpp">
-      <Filter>Engine\Components</Filter>
+      <Filter>Components</Filter>
     </ClCompile>
     <ClCompile Include="TransformComponent.cpp">
-      <Filter>Engine\Components</Filter>
+      <Filter>Components</Filter>
     </ClCompile>
     <ClCompile Include="RenderComponent.cpp">
-      <Filter>Engine\Components</Filter>
+      <Filter>Components</Filter>
     </ClCompile>
     <ClCompile Include="Texture2D.cpp">
-      <Filter>Engine\Core</Filter>
+      <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="TextComponent.cpp">
-      <Filter>Engine\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="Minigin.cpp">
-      <Filter>Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Main.cpp">
-      <Filter>Game</Filter>
-    </ClCompile>
-    <ClCompile Include="FpsComponent.cpp">
-      <Filter>Game\Custom Components</Filter>
+      <Filter>Components</Filter>
     </ClCompile>
     <ClCompile Include="GameObject.cpp">
-      <Filter>Engine\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="InputTester.cpp">
-      <Filter>Game\Prefabs</Filter>
-    </ClCompile>
-    <ClCompile Include="InputTesterComponent.cpp">
-      <Filter>Game\Custom Components</Filter>
-    </ClCompile>
-    <ClCompile Include="MovementComponent.cpp">
-      <Filter>Game\Custom Components</Filter>
+      <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="Sprite.cpp">
-      <Filter>Engine\Core</Filter>
+      <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="SpriteRenderComponent.cpp">
-      <Filter>Engine\Components</Filter>
+      <Filter>Components</Filter>
     </ClCompile>
     <ClCompile Include="LuaHelpers.cpp">
-      <Filter>Engine\Helpers</Filter>
+      <Filter>Helpers</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Sprites.lua">
-      <Filter>Game\Configuration</Filter>
-    </None>
+    <ClCompile Include="Minigin.cpp" />
   </ItemGroup>
 </Project>

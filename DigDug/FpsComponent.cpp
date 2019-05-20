@@ -1,4 +1,4 @@
-﻿#include "MiniginPCH.h"
+﻿#include "pch.h"
 #include "FpsComponent.h"
 #include "Time.h"
 #include "GameObject.h"

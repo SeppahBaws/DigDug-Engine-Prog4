@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="DigDugGame.cpp" />
+    <ClCompile Include="FpsComponent.cpp">
+      <Filter>Custom Components</Filter>
+    </ClCompile>
+    <ClCompile Include="InputTesterComponent.cpp">
+      <Filter>Custom Components</Filter>
+    </ClCompile>
+    <ClCompile Include="MovementComponent.cpp">
+      <Filter>Custom Components</Filter>
+    </ClCompile>
+    <ClCompile Include="InputTester.cpp">
+      <Filter>Prefabs</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="targetver.h" />
+    <ClInclude Include="DigDugGame.h" />
+    <ClInclude Include="FpsComponent.h">
+      <Filter>Custom Components</Filter>
+    </ClInclude>
+    <ClInclude Include="InputTesterComponent.h">
+      <Filter>Custom Components</Filter>
+    </ClInclude>
+    <ClInclude Include="MovementComponent.h">
+      <Filter>Custom Components</Filter>
+    </ClInclude>
+    <ClInclude Include="TestComponent.h">
+      <Filter>Custom Components</Filter>
+    </ClInclude>
+    <ClInclude Include="InputTester.h">
+      <Filter>Prefabs</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Configuration">
+      <UniqueIdentifier>{c6782a27-3b56-41cf-bea5-a8b0d16fbd7f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Prefabs">
+      <UniqueIdentifier>{90be8766-ac9c-46b5-bb6c-f4ee1155d87b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Custom Components">
+      <UniqueIdentifier>{cc6a4878-3924-4765-828f-1a05ad6449ad}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Sprites.lua">
+      <Filter>Configuration</Filter>
+    </None>
+  </ItemGroup>
+</Project>

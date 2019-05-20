@@ -1,4 +1,4 @@
-﻿#include "MiniginPCH.h"
+﻿#include "pch.h"
 #include "InputTester.h"
 #include "InputManager.h"
 #include "TextComponent.h"

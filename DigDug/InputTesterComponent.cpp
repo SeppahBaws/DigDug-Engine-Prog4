@@ -1,4 +1,4 @@
-﻿#include "MiniginPCH.h"
+﻿#include "pch.h"
 #include "InputTesterComponent.h"
 #include "GameObject.h"
 #include "InputManager.h"
