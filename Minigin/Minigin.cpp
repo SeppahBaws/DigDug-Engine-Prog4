@@ -59,6 +59,8 @@ void dae::Minigin::Run()
 		SceneManager& sceneManager = SceneManager::GetInstance();
 		InputManager& input = InputManager::GetInstance();
 
+		sceneManager.Start();
+
 		bool doContinue = true;
 		auto lastTime = std::chrono::high_resolution_clock::now();
 		while (doContinue)

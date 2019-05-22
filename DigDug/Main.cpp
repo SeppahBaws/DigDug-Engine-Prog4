@@ -1,5 +1,6 @@
 #include "pch.h"
-#include <iostream>
+// ReSharper Disable Once CppUnusedIncludeDirective
+#include <vld.h>
 #include "DigDugGame.h"
 
 int main()

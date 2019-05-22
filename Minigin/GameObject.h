@@ -5,18 +5,14 @@
 
 namespace dae
 {
-	class GameObject
+	class GameObject final
 	{
 	public:
 		GameObject();
-		virtual ~GameObject() = default;
-		GameObject(const GameObject& other) = delete;
-		GameObject(GameObject&& other) = delete;
-		GameObject& operator=(const GameObject& other) = delete;
-		GameObject& operator=(GameObject&& other) = delete;
 
-		virtual void Update();
-		virtual void Render() const;
+		void Start();
+		void Update();
+		void Render() const;
 
 		void AddComponent(std::shared_ptr<BaseComponent> component);
 		void RemoveComponent(std::shared_ptr<BaseComponent> component);

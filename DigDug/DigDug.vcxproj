@@ -197,7 +197,6 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x64\*.dll" "$(OutputPath)" /R /Y</Com
   <ItemGroup>
     <ClInclude Include="DigDugGame.h" />
     <ClInclude Include="FpsComponent.h" />
-    <ClInclude Include="InputTester.h" />
     <ClInclude Include="InputTesterComponent.h" />
     <ClInclude Include="PlayerMovementComponent.h" />
     <ClInclude Include="pch.h" />
@@ -207,7 +206,6 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x64\*.dll" "$(OutputPath)" /R /Y</Com
   <ItemGroup>
     <ClCompile Include="DigDugGame.cpp" />
     <ClCompile Include="FpsComponent.cpp" />
-    <ClCompile Include="InputTester.cpp" />
     <ClCompile Include="InputTesterComponent.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="PlayerMovementComponent.cpp" />

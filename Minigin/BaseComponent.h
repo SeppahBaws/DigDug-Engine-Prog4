@@ -14,6 +14,7 @@ namespace dae
 		BaseComponent& operator=(const BaseComponent& other) = delete;
 		BaseComponent& operator=(BaseComponent&& other) noexcept = delete;
 
+		virtual void Start();
 		virtual void Update();
 		virtual void Render();
 

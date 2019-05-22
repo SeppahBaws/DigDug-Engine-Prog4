@@ -9,6 +9,7 @@ namespace dae
 	public:
 		Scene & CreateScene(const std::string& name, bool setActive = false);
 
+		void Start();
 		void Update();
 		void Render();
 

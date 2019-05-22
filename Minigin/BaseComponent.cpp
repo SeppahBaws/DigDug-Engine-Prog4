@@ -11,6 +11,10 @@ dae::BaseComponent::~BaseComponent()
 	m_pGameObject = nullptr;
 }
 
+void dae::BaseComponent::Start()
+{
+}
+
 void dae::BaseComponent::Update()
 {
 }

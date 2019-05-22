@@ -10,6 +10,14 @@ namespace dae
 		m_Components.push_back(transformComponent);
 	}
 
+	void GameObject::Start()
+	{
+		for (auto component : m_Components)
+		{
+			component->Start();
+		}
+	}
+
 	void GameObject::Update()
 	{
 		for (auto component : m_Components)

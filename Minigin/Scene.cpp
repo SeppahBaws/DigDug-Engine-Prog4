@@ -13,6 +13,14 @@ void dae::Scene::Add(const std::shared_ptr<GameObject>& object)
 	m_Objects.push_back(object);
 }
 
+void dae::Scene::Start()
+{
+	for (auto gameObject : m_Objects)
+	{
+		gameObject->Start();
+	}
+}
+
 void dae::Scene::Update()
 {
 	for(auto gameObject : m_Objects)

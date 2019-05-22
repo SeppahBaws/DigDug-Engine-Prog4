@@ -9,9 +9,6 @@
     <ClCompile Include="InputTesterComponent.cpp">
       <Filter>Custom Components</Filter>
     </ClCompile>
-    <ClCompile Include="InputTester.cpp">
-      <Filter>Prefabs</Filter>
-    </ClCompile>
     <ClCompile Include="pch.cpp" />
     <ClCompile Include="PlayerMovementComponent.cpp">
       <Filter>Custom Components</Filter>
@@ -29,9 +26,6 @@
     <ClInclude Include="TestComponent.h">
       <Filter>Custom Components</Filter>
     </ClInclude>
-    <ClInclude Include="InputTester.h">
-      <Filter>Prefabs</Filter>
-    </ClInclude>
     <ClInclude Include="pch.h" />
     <ClInclude Include="PlayerMovementComponent.h">
       <Filter>Custom Components</Filter>
@@ -40,9 +34,6 @@
   <ItemGroup>
     <Filter Include="Configuration">
       <UniqueIdentifier>{c6782a27-3b56-41cf-bea5-a8b0d16fbd7f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Prefabs">
-      <UniqueIdentifier>{90be8766-ac9c-46b5-bb6c-f4ee1155d87b}</UniqueIdentifier>
     </Filter>
     <Filter Include="Custom Components">
       <UniqueIdentifier>{cc6a4878-3924-4765-828f-1a05ad6449ad}</UniqueIdentifier>

@@ -4,6 +4,14 @@
 
 namespace dae
 {
+	void SceneManager::Start()
+	{
+		for (const std::shared_ptr<Scene> pScene : m_Scenes)
+		{
+			pScene->Start();
+		}
+	}
+
 	void SceneManager::Update()
 	{
 		m_ActiveScene->Update();

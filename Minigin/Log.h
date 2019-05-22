@@ -1,6 +1,8 @@
 #pragma once
 #include <streambuf>
 
+// #define COUT_TO_VS
+
 namespace dae
 {
 	class DebugStreambuf : public std::streambuf 
@@ -26,9 +28,11 @@ namespace dae
 		Cout2VisualStudioDebugOutput & operator= (const Cout2VisualStudioDebugOutput &&) = delete;
 	};
 
+#ifdef COUT_TO_VS
 #ifdef _DEBUG
 #ifdef _MSC_VER
 	Cout2VisualStudioDebugOutput c2v;
+#endif
 #endif
 #endif
 }
