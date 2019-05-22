@@ -1,5 +1,6 @@
 #include "MiniginPCH.h"
 #include "InputManager.h"
+#include "Command.h"
 #include <SDL.h>
 
 #pragma warning(push)
@@ -11,9 +12,34 @@ namespace dae
 {
 	bool InputManager::ProcessInput()
 	{
+		// Set the State
+		m_PreviousState = m_CurrentState;
 		ZeroMemory(&m_CurrentState, sizeof(XINPUT_STATE));
 		XInputGetState(0, &m_CurrentState);
 
+		// Handle commands
+		for (unsigned int i = 0; i < m_pInputCommands.size(); i++)
+		{
+			switch (m_pInputCommands[i]->GetStatus())
+			{
+			case ControllerButtonState::Pressed:
+				if (IsPressed(m_pInputCommands[i]->GetButton()))
+					m_pInputCommands[i]->Execute();
+				break;
+
+			case ControllerButtonState::Released:
+				if (IsReleased(m_pInputCommands[i]->GetButton()))
+					m_pInputCommands[i]->Execute();
+				break;
+
+			case ControllerButtonState::Down:
+				if (IsDown(m_pInputCommands[i]->GetButton()))
+					m_pInputCommands[i]->Execute();
+				break;
+			}
+		}
+
+		// Handle Events
 		SDL_Event e;
 		while (SDL_PollEvent(&e)) {
 			if (e.type == SDL_QUIT) {
@@ -30,40 +56,26 @@ namespace dae
 		return true;
 	}
 
+	void InputManager::RegisterCommand(std::unique_ptr<Command>&& command)
+	{
+		m_pInputCommands.push_back(std::move(command));
+	}
+
+	bool InputManager::IsDown(ControllerButton button) const
+	{
+		return m_CurrentState.Gamepad.wButtons & (WORD)button;
+	}
+
 	bool InputManager::IsPressed(ControllerButton button) const
 	{
-		switch (button)
-		{
-		case ControllerButton::ButtonA:
-			return m_CurrentState.Gamepad.wButtons& XINPUT_GAMEPAD_A;
-		case ControllerButton::ButtonB:
-			return m_CurrentState.Gamepad.wButtons& XINPUT_GAMEPAD_B;
-		case ControllerButton::ButtonX:
-			return m_CurrentState.Gamepad.wButtons& XINPUT_GAMEPAD_X;
-		case ControllerButton::ButtonY:
-			return m_CurrentState.Gamepad.wButtons& XINPUT_GAMEPAD_Y;
-		case ControllerButton::DPadUp:
-			return m_CurrentState.Gamepad.wButtons& XINPUT_GAMEPAD_DPAD_UP;
-		case ControllerButton::DPadDown:
-			return m_CurrentState.Gamepad.wButtons& XINPUT_GAMEPAD_DPAD_DOWN;
-		case ControllerButton::DPadLeft:
-			return m_CurrentState.Gamepad.wButtons& XINPUT_GAMEPAD_DPAD_LEFT;
-		case ControllerButton::DPadRight:
-			return m_CurrentState.Gamepad.wButtons& XINPUT_GAMEPAD_DPAD_RIGHT;
-		case ControllerButton::Start:
-			return m_CurrentState.Gamepad.wButtons& XINPUT_GAMEPAD_START;
-		case ControllerButton::Back:
-			return m_CurrentState.Gamepad.wButtons& XINPUT_GAMEPAD_BACK;
-		case ControllerButton::LeftThumb:
-			return m_CurrentState.Gamepad.wButtons& XINPUT_GAMEPAD_LEFT_THUMB;
-		case ControllerButton::RightThumb:
-			return m_CurrentState.Gamepad.wButtons& XINPUT_GAMEPAD_RIGHT_THUMB;
-		case ControllerButton::LeftShoulder:
-			return m_CurrentState.Gamepad.wButtons& XINPUT_GAMEPAD_LEFT_SHOULDER;
-		case ControllerButton::RightShoulder:
-			return m_CurrentState.Gamepad.wButtons& XINPUT_GAMEPAD_RIGHT_SHOULDER;
-		default: return false;
-		}
+		return m_CurrentState.Gamepad.wButtons & (WORD)button && 
+			!(m_PreviousState.Gamepad.wButtons & (WORD)button);
+	}
+
+	bool InputManager::IsReleased(ControllerButton button) const
+	{
+		return !(m_CurrentState.Gamepad.wButtons & (WORD)button) &&
+			m_PreviousState.Gamepad.wButtons & (WORD)button;
 	}
 
 	float InputManager::GetAxis(ControllerAxis axis) const

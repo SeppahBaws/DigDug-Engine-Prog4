@@ -13,6 +13,7 @@ class PlayerMovementComponent : public dae::BaseComponent
 public:
 	PlayerMovementComponent();
 
+	void Start() override;
 	void Update() override;
 
 private:

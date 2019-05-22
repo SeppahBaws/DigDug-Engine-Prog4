@@ -6,6 +6,52 @@
 #include "Time.h"
 #include "SpriteRenderComponent.h"
 
+class PlayerAttackCommand : public dae::Command
+{
+public:
+	explicit PlayerAttackCommand(dae::ControllerButton button, dae::ControllerButtonState status, PlayerMovementComponent& comp)
+		: Command(button, status)
+		, m_Movement(comp)
+	{
+	}
+
+	void Execute() override
+	{
+		std::cout << "Player Attack!" << std::endl;
+	}
+
+private:
+	PlayerMovementComponent& m_Movement;
+};
+
+class PlayerJumpCommand : public dae::Command
+{
+public:
+	PlayerJumpCommand(dae::ControllerButton button, dae::ControllerButtonState status)
+		: Command(button, status)
+	{
+	}
+
+	void Execute() override
+	{
+		std::cout << "Player Jump!" << std::endl;
+	}
+};
+
+class PlayerDigCommand : public dae::Command
+{
+public:
+	PlayerDigCommand(dae::ControllerButton button, dae::ControllerButtonState status)
+		: Command(button, status)
+	{
+	}
+
+	void Execute() override
+	{
+		std::cout << "Player digging!" << std::endl;
+	}
+};
+
 PlayerMovementComponent::PlayerMovementComponent()
 	: m_MoveSpeed{ 500 }
 	, m_State{ MovementState::Idle }
@@ -13,6 +59,26 @@ PlayerMovementComponent::PlayerMovementComponent()
 	, m_TotalAttackTime{ 0.16f }
 	, m_IsAttacking{ false }
 {
+}
+
+void PlayerMovementComponent::Start()
+{
+	// Register the commands
+	
+	// Player Attack Command
+	std::unique_ptr<PlayerAttackCommand> attackCommand = std::make_unique<PlayerAttackCommand>(
+		dae::ControllerButton::ButtonA, dae::ControllerButtonState::Pressed, *this);
+	dae::InputManager::GetInstance().RegisterCommand(std::move(attackCommand));
+
+	// Player Jump Command
+	std::unique_ptr<PlayerJumpCommand> jumpCommand = std::make_unique<PlayerJumpCommand>(
+		dae::ControllerButton::ButtonA, dae::ControllerButtonState::Released);
+	dae::InputManager::GetInstance().RegisterCommand(std::move(jumpCommand));
+
+	// Player Dig Command
+	std::unique_ptr<PlayerDigCommand> digCommand = std::make_unique<PlayerDigCommand>(
+		dae::ControllerButton::ButtonX, dae::ControllerButtonState::Down);
+	dae::InputManager::GetInstance().RegisterCommand(std::move(digCommand));
 }
 
 void PlayerMovementComponent::Update()
@@ -29,7 +95,7 @@ void PlayerMovementComponent::Update()
 		{
 			m_State = MovementState::Running;
 		}
-		else if (dae::InputManager::GetInstance().IsPressed(dae::ControllerButton::ButtonA))
+		else if (dae::InputManager::GetInstance().IsDown(dae::ControllerButton::ButtonA))
 		{
 			StartAttack();
 		}

@@ -13,11 +13,11 @@
     <Filter Include="Managers">
       <UniqueIdentifier>{871ee17a-cd12-413c-a126-c9d8d6f32c6f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Input">
+      <UniqueIdentifier>{69d6ef5d-c376-4da7-a786-d51550a24758}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="InputManager.h">
-      <Filter>Managers</Filter>
-    </ClInclude>
     <ClInclude Include="ResourceManager.h">
       <Filter>Managers</Filter>
     </ClInclude>
@@ -75,11 +75,14 @@
       <Filter>Helpers</Filter>
     </ClInclude>
     <ClInclude Include="Minigin.h" />
+    <ClInclude Include="InputManager.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Command.h">
+      <Filter>Input</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="InputManager.cpp">
-      <Filter>Managers</Filter>
-    </ClCompile>
     <ClCompile Include="ResourceManager.cpp">
       <Filter>Managers</Filter>
     </ClCompile>
@@ -130,5 +133,8 @@
       <Filter>Helpers</Filter>
     </ClCompile>
     <ClCompile Include="Minigin.cpp" />
+    <ClCompile Include="InputManager.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

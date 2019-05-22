@@ -26,19 +26,19 @@ namespace dae
 		// ------------------------------------
 		// ABXY buttons
 		// ------------------------------------
-		if (InputManager::GetInstance().IsPressed(ControllerButton::ButtonA))
+		if (InputManager::GetInstance().IsDown(ControllerButton::ButtonA))
 		{
 			pText->SetText("Button A Pressed!");
 		}
-		else if (InputManager::GetInstance().IsPressed(ControllerButton::ButtonB))
+		else if (InputManager::GetInstance().IsDown(ControllerButton::ButtonB))
 		{
 			pText->SetText("Button B Pressed!");
 		}
-		else if (InputManager::GetInstance().IsPressed(ControllerButton::ButtonX))
+		else if (InputManager::GetInstance().IsDown(ControllerButton::ButtonX))
 		{
 			pText->SetText("Button X Pressed!");
 		}
-		else if (InputManager::GetInstance().IsPressed(ControllerButton::ButtonY))
+		else if (InputManager::GetInstance().IsDown(ControllerButton::ButtonY))
 		{
 			pText->SetText("Button Y Pressed!");
 		}
@@ -46,19 +46,19 @@ namespace dae
 		// ------------------------------------
 		// DPad buttons
 		// ------------------------------------
-		else if (InputManager::GetInstance().IsPressed(ControllerButton::DPadUp))
+		else if (InputManager::GetInstance().IsDown(ControllerButton::DPadUp))
 		{
 			pText->SetText("DPad Up Pressed!");
 		}
-		else if (InputManager::GetInstance().IsPressed(ControllerButton::DPadDown))
+		else if (InputManager::GetInstance().IsDown(ControllerButton::DPadDown))
 		{
 			pText->SetText("DPad Down Pressed!");
 		}
-		else if (InputManager::GetInstance().IsPressed(ControllerButton::DPadLeft))
+		else if (InputManager::GetInstance().IsDown(ControllerButton::DPadLeft))
 		{
 			pText->SetText("DPad Left Pressed!");
 		}
-		else if (InputManager::GetInstance().IsPressed(ControllerButton::DPadRight))
+		else if (InputManager::GetInstance().IsDown(ControllerButton::DPadRight))
 		{
 			pText->SetText("DPad Right Pressed!");
 		}
@@ -66,11 +66,11 @@ namespace dae
 		// ------------------------------------
 		// Thumbstick buttons
 		// ------------------------------------
-		else if (InputManager::GetInstance().IsPressed(ControllerButton::LeftThumb))
+		else if (InputManager::GetInstance().IsDown(ControllerButton::LeftThumb))
 		{
 			pText->SetText("Left Thumbstick Pressed!");
 		}
-		else if (InputManager::GetInstance().IsPressed(ControllerButton::RightThumb))
+		else if (InputManager::GetInstance().IsDown(ControllerButton::RightThumb))
 		{
 			pText->SetText("Right Thumbstick Pressed!");
 		}
@@ -78,11 +78,11 @@ namespace dae
 		// ------------------------------------
 		// Shoulder buttons
 		// ------------------------------------
-		else if (InputManager::GetInstance().IsPressed(ControllerButton::LeftShoulder))
+		else if (InputManager::GetInstance().IsDown(ControllerButton::LeftShoulder))
 		{
 			pText->SetText("Left Shoulder Button Pressed!");
 		}
-		else if (InputManager::GetInstance().IsPressed(ControllerButton::RightShoulder))
+		else if (InputManager::GetInstance().IsDown(ControllerButton::RightShoulder))
 		{
 			pText->SetText("Right Shoulder Button Pressed!");
 		}
@@ -90,11 +90,11 @@ namespace dae
 		// ------------------------------------
 		// Special buttons
 		// ------------------------------------
-		else if (InputManager::GetInstance().IsPressed(ControllerButton::Start))
+		else if (InputManager::GetInstance().IsDown(ControllerButton::Start))
 		{
 			pText->SetText("Start Button Pressed!");
 		}
-		else if (InputManager::GetInstance().IsPressed(ControllerButton::Back))
+		else if (InputManager::GetInstance().IsDown(ControllerButton::Back))
 		{
 			pText->SetText("Back Button Pressed!");
 		}
