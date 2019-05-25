@@ -2,7 +2,7 @@
 
 namespace dae
 {
-	enum class ControllerButton
+	enum class GamepadButton
 	{
 		ButtonA			= XINPUT_GAMEPAD_A,
 		ButtonB			= XINPUT_GAMEPAD_B,
@@ -20,14 +20,14 @@ namespace dae
 		RightShoulder	= XINPUT_GAMEPAD_RIGHT_SHOULDER
 	};
 
-	enum class ControllerButtonState
+	enum class GamepadButtonState
 	{
 		Pressed,
 		Released,
 		Down
 	};
 
-	enum class ControllerAxis
+	enum class GamepadAxis
 	{
 		LeftTrigger,
 		RightTrigger,
@@ -38,18 +38,18 @@ namespace dae
 	class Command
 	{
 	public:
-		Command(ControllerButton button, ControllerButtonState status)
+		Command(GamepadButton button, GamepadButtonState status)
 			: m_Button(button)
 			, m_Status(status)
 		{}
 		virtual ~Command() = default;
 		virtual void Execute() = 0;
 
-		ControllerButton GetButton() const { return m_Button; }
-		ControllerButtonState GetStatus() const { return m_Status; }
+		GamepadButton GetButton() const { return m_Button; }
+		GamepadButtonState GetStatus() const { return m_Status; }
 
 	private:
-		ControllerButton m_Button;
-		ControllerButtonState m_Status;
+		GamepadButton m_Button;
+		GamepadButtonState m_Status;
 	};
 }

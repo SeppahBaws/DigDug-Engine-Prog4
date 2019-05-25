@@ -26,19 +26,19 @@ namespace dae
 		// ------------------------------------
 		// ABXY buttons
 		// ------------------------------------
-		if (InputManager::GetInstance().IsDown(ControllerButton::ButtonA))
+		if (InputManager::GetInstance().IsDown(GamepadButton::ButtonA))
 		{
 			pText->SetText("Button A Pressed!");
 		}
-		else if (InputManager::GetInstance().IsDown(ControllerButton::ButtonB))
+		else if (InputManager::GetInstance().IsDown(GamepadButton::ButtonB))
 		{
 			pText->SetText("Button B Pressed!");
 		}
-		else if (InputManager::GetInstance().IsDown(ControllerButton::ButtonX))
+		else if (InputManager::GetInstance().IsDown(GamepadButton::ButtonX))
 		{
 			pText->SetText("Button X Pressed!");
 		}
-		else if (InputManager::GetInstance().IsDown(ControllerButton::ButtonY))
+		else if (InputManager::GetInstance().IsDown(GamepadButton::ButtonY))
 		{
 			pText->SetText("Button Y Pressed!");
 		}
@@ -46,19 +46,19 @@ namespace dae
 		// ------------------------------------
 		// DPad buttons
 		// ------------------------------------
-		else if (InputManager::GetInstance().IsDown(ControllerButton::DPadUp))
+		else if (InputManager::GetInstance().IsDown(GamepadButton::DPadUp))
 		{
 			pText->SetText("DPad Up Pressed!");
 		}
-		else if (InputManager::GetInstance().IsDown(ControllerButton::DPadDown))
+		else if (InputManager::GetInstance().IsDown(GamepadButton::DPadDown))
 		{
 			pText->SetText("DPad Down Pressed!");
 		}
-		else if (InputManager::GetInstance().IsDown(ControllerButton::DPadLeft))
+		else if (InputManager::GetInstance().IsDown(GamepadButton::DPadLeft))
 		{
 			pText->SetText("DPad Left Pressed!");
 		}
-		else if (InputManager::GetInstance().IsDown(ControllerButton::DPadRight))
+		else if (InputManager::GetInstance().IsDown(GamepadButton::DPadRight))
 		{
 			pText->SetText("DPad Right Pressed!");
 		}
@@ -66,11 +66,11 @@ namespace dae
 		// ------------------------------------
 		// Thumbstick buttons
 		// ------------------------------------
-		else if (InputManager::GetInstance().IsDown(ControllerButton::LeftThumb))
+		else if (InputManager::GetInstance().IsDown(GamepadButton::LeftThumb))
 		{
 			pText->SetText("Left Thumbstick Pressed!");
 		}
-		else if (InputManager::GetInstance().IsDown(ControllerButton::RightThumb))
+		else if (InputManager::GetInstance().IsDown(GamepadButton::RightThumb))
 		{
 			pText->SetText("Right Thumbstick Pressed!");
 		}
@@ -78,11 +78,11 @@ namespace dae
 		// ------------------------------------
 		// Shoulder buttons
 		// ------------------------------------
-		else if (InputManager::GetInstance().IsDown(ControllerButton::LeftShoulder))
+		else if (InputManager::GetInstance().IsDown(GamepadButton::LeftShoulder))
 		{
 			pText->SetText("Left Shoulder Button Pressed!");
 		}
-		else if (InputManager::GetInstance().IsDown(ControllerButton::RightShoulder))
+		else if (InputManager::GetInstance().IsDown(GamepadButton::RightShoulder))
 		{
 			pText->SetText("Right Shoulder Button Pressed!");
 		}
@@ -90,11 +90,11 @@ namespace dae
 		// ------------------------------------
 		// Special buttons
 		// ------------------------------------
-		else if (InputManager::GetInstance().IsDown(ControllerButton::Start))
+		else if (InputManager::GetInstance().IsDown(GamepadButton::Start))
 		{
 			pText->SetText("Start Button Pressed!");
 		}
-		else if (InputManager::GetInstance().IsDown(ControllerButton::Back))
+		else if (InputManager::GetInstance().IsDown(GamepadButton::Back))
 		{
 			pText->SetText("Back Button Pressed!");
 		}
@@ -111,8 +111,8 @@ namespace dae
 	{
 		std::string text = "Left trigger: 0, Right trigger: 0";
 
-		const float leftTrigger = InputManager::GetInstance().GetAxis(ControllerAxis::LeftTrigger);
-		const float rightTrigger = InputManager::GetInstance().GetAxis(ControllerAxis::RightTrigger);
+		const float leftTrigger = InputManager::GetInstance().GetAxis(GamepadAxis::LeftTrigger);
+		const float rightTrigger = InputManager::GetInstance().GetAxis(GamepadAxis::RightTrigger);
 
 		std::stringstream ss;
 		ss << "Left trigger: " << leftTrigger << ", Right trigger: " << rightTrigger;
@@ -124,8 +124,8 @@ namespace dae
 	{
 		std::string text = "Left thumbstick: (0,0), Right thumbstick: (0,0)";
 
-		const glm::vec2 left = InputManager::GetInstance().GetThumbstick(ControllerAxis::LeftThumbstick);
-		const glm::vec2 right = InputManager::GetInstance().GetThumbstick(ControllerAxis::RightThumbstick);
+		const glm::vec2 left = InputManager::GetInstance().GetThumbstick(GamepadAxis::LeftThumbstick);
+		const glm::vec2 right = InputManager::GetInstance().GetThumbstick(GamepadAxis::RightThumbstick);
 
 		std::stringstream ss;
 		ss << "Left thumbstick: (" << left.x << "," << left.y << "), ";

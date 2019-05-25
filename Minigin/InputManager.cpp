@@ -22,17 +22,17 @@ namespace dae
 		{
 			switch (m_pInputCommands[i]->GetStatus())
 			{
-			case ControllerButtonState::Pressed:
+			case GamepadButtonState::Pressed:
 				if (IsPressed(m_pInputCommands[i]->GetButton()))
 					m_pInputCommands[i]->Execute();
 				break;
 
-			case ControllerButtonState::Released:
+			case GamepadButtonState::Released:
 				if (IsReleased(m_pInputCommands[i]->GetButton()))
 					m_pInputCommands[i]->Execute();
 				break;
 
-			case ControllerButtonState::Down:
+			case GamepadButtonState::Down:
 				if (IsDown(m_pInputCommands[i]->GetButton()))
 					m_pInputCommands[i]->Execute();
 				break;
@@ -61,62 +61,62 @@ namespace dae
 		m_pInputCommands.push_back(std::move(command));
 	}
 
-	bool InputManager::IsDown(ControllerButton button) const
+	bool InputManager::IsDown(GamepadButton button) const
 	{
 		return m_CurrentState.Gamepad.wButtons & (WORD)button;
 	}
 
-	bool InputManager::IsPressed(ControllerButton button) const
+	bool InputManager::IsPressed(GamepadButton button) const
 	{
 		return m_CurrentState.Gamepad.wButtons & (WORD)button && 
 			!(m_PreviousState.Gamepad.wButtons & (WORD)button);
 	}
 
-	bool InputManager::IsReleased(ControllerButton button) const
+	bool InputManager::IsReleased(GamepadButton button) const
 	{
 		return !(m_CurrentState.Gamepad.wButtons & (WORD)button) &&
 			m_PreviousState.Gamepad.wButtons & (WORD)button;
 	}
 
-	float InputManager::GetAxis(ControllerAxis axis) const
+	float InputManager::GetAxis(GamepadAxis axis) const
 	{
 		switch (axis)
 		{
 			// Triggers
-		case ControllerAxis::LeftTrigger:
+		case GamepadAxis::LeftTrigger:
 			return NormalizeTriggerValue(m_CurrentState.Gamepad.bLeftTrigger, 255.0f, XINPUT_GAMEPAD_TRIGGER_THRESHOLD);
-		case ControllerAxis::RightTrigger:
+		case GamepadAxis::RightTrigger:
 			return NormalizeTriggerValue(m_CurrentState.Gamepad.bRightTrigger, 255.0f, XINPUT_GAMEPAD_TRIGGER_THRESHOLD);
 		default:
 			return 0.0f;
 		}
 	}
 
-	float InputManager::GetAxisRaw(ControllerAxis axis) const
+	float InputManager::GetAxisRaw(GamepadAxis axis) const
 	{
 		switch (axis)
 		{
 			// Triggers
-		case ControllerAxis::LeftTrigger:
+		case GamepadAxis::LeftTrigger:
 			return m_CurrentState.Gamepad.bLeftTrigger;
-		case ControllerAxis::RightTrigger:
+		case GamepadAxis::RightTrigger:
 			return m_CurrentState.Gamepad.bRightTrigger;
 		default:
 			return 0.0f;
 		}
 	}
 
-	glm::vec2 InputManager::GetThumbstick(ControllerAxis axis) const
+	glm::vec2 InputManager::GetThumbstick(GamepadAxis axis) const
 	{
 		switch (axis)
 		{
-		case ControllerAxis::LeftThumbstick:
+		case GamepadAxis::LeftThumbstick:
 		{
 			glm::vec2 axisValue{ m_CurrentState.Gamepad.sThumbLX, m_CurrentState.Gamepad.sThumbLY };
 			axisValue.y *= -1;
 			return NormalizeJoystickValue(axisValue, 32767, XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE);
 		}
-		case ControllerAxis::RightThumbstick:
+		case GamepadAxis::RightThumbstick:
 		{
 			glm::vec2 axisValue{ m_CurrentState.Gamepad.sThumbRX, m_CurrentState.Gamepad.sThumbRY };
 			axisValue.y *= -1;

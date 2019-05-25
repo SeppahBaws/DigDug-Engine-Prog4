@@ -13,6 +13,7 @@
     <ClCompile Include="PlayerMovementComponent.cpp">
       <Filter>Custom Components</Filter>
     </ClCompile>
+    <ClCompile Include="FSMTestRobot.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h" />
@@ -30,6 +31,10 @@
     <ClInclude Include="PlayerMovementComponent.h">
       <Filter>Custom Components</Filter>
     </ClInclude>
+    <ClInclude Include="PlayerFSM.h">
+      <Filter>Configuration</Filter>
+    </ClInclude>
+    <ClInclude Include="FSMTestRobot.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Configuration">

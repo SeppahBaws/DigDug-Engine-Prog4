@@ -16,6 +16,9 @@
     <Filter Include="Input">
       <UniqueIdentifier>{69d6ef5d-c376-4da7-a786-d51550a24758}</UniqueIdentifier>
     </Filter>
+    <Filter Include="FiniteStateMachine">
+      <UniqueIdentifier>{9680e5cf-e82b-4615-8e39-3c88bd933318}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ResourceManager.h">
@@ -81,6 +84,21 @@
     <ClInclude Include="Command.h">
       <Filter>Input</Filter>
     </ClInclude>
+    <ClInclude Include="FiniteStateMachine.h">
+      <Filter>FiniteStateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="FSMState.h">
+      <Filter>FiniteStateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="FSMTransition.h">
+      <Filter>FiniteStateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="FSMAction.h">
+      <Filter>FiniteStateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="FSMCondition.h">
+      <Filter>FiniteStateMachine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ResourceManager.cpp">
@@ -135,6 +153,15 @@
     <ClCompile Include="Minigin.cpp" />
     <ClCompile Include="InputManager.cpp">
       <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="FiniteStateMachine.cpp">
+      <Filter>FiniteStateMachine</Filter>
+    </ClCompile>
+    <ClCompile Include="FSMState.cpp">
+      <Filter>FiniteStateMachine</Filter>
+    </ClCompile>
+    <ClCompile Include="FSMTransition.cpp">
+      <Filter>FiniteStateMachine</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
