@@ -2,19 +2,19 @@
 
 namespace dae
 {
-	class FSMAction;
-	class FSMCondition;
+	class FSMActionBase;
+	class FSMConditionBase;
 	class FSMState;
 
 	class FSMTransition
 	{
 	public:
-		FSMTransition(FSMState* pTargetState, std::vector<FSMCondition*> pConditions, std::vector<FSMAction*> pExitActions);
+		FSMTransition(FSMState* pTargetState, std::vector<FSMConditionBase*> pConditions, std::vector<FSMActionBase*> pExitActions);
 		FSMTransition();
 		~FSMTransition();
 
-		void AddCondition(FSMCondition* pCondition);
-		void AddExitAction(FSMAction* pAction);
+		void AddCondition(FSMConditionBase* pCondition);
+		void AddExitAction(FSMActionBase* pAction);
 		void SetTargetState(FSMState* pState);
 
 		FSMState* GetTargetState() const;
@@ -23,8 +23,8 @@ namespace dae
 		void ExecuteExitActions();
 
 	private:
-		std::vector<FSMCondition*> m_pConditions;
-		std::vector<FSMAction*> m_pExitActions;
+		std::vector<FSMConditionBase*> m_pConditions;
+		std::vector<FSMActionBase*> m_pExitActions;
 		FSMState* m_pTargetState;
 	};
 }

@@ -2,25 +2,25 @@
 
 namespace dae
 {
-	class FSMAction;
+	class FSMActionBase;
 	class FSMTransition;
 
 	class FSMState
 	{
 	public:
 		FSMState() = default;
-		FSMState(const std::vector<FSMAction*>& pEntryActions,
-			const std::vector<FSMAction*>& pActions,
-			const std::vector<FSMAction*>& pExitActions,
+		FSMState(const std::vector<FSMActionBase*>& pEntryActions,
+			const std::vector<FSMActionBase*>& pActions,
+			const std::vector<FSMActionBase*>& pExitActions,
 			const std::vector<FSMTransition*>& pTransitions);
 		~FSMState();
 
-		void SetEntryActions(const std::vector<FSMAction*>& pActions);
-		void SetActions(const std::vector<FSMAction*>& pActions);
-		void SetExitActions(const std::vector<FSMAction*>& pActions);
+		void SetEntryActions(const std::vector<FSMActionBase*>& pActions);
+		void SetActions(const std::vector<FSMActionBase*>& pActions);
+		void SetExitActions(const std::vector<FSMActionBase*>& pActions);
 		void SetTransitions(const std::vector<FSMTransition*>& pTransitions);
 
-		void AddAction(FSMAction* pAction);
+		void AddAction(FSMActionBase* pAction);
 		void AddTransition(FSMTransition* pTransition);
 
 		std::vector<FSMTransition*> GetTransitions() const;
@@ -30,9 +30,9 @@ namespace dae
 		void ExecuteExitActions();
 
 	private:
-		std::vector<FSMAction*> m_pActions;
-		std::vector<FSMAction*> m_pEntryActions;
-		std::vector<FSMAction*> m_pExitActions;
+		std::vector<FSMActionBase*> m_pActions;
+		std::vector<FSMActionBase*> m_pEntryActions;
+		std::vector<FSMActionBase*> m_pExitActions;
 
 		std::vector<FSMTransition*> m_pTransitions;
 	};

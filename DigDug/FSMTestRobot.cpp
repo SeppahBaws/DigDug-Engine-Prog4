@@ -2,151 +2,11 @@
 #include "FSMTestRobot.h"
 #include "FiniteStateMachine.h"
 #include "FSMState.h"
-#include "FSMAction.h"
 #include "FSMTransition.h"
-#include "FSMCondition.h"
+#include "FSMFunctions.h"
 #include "Time.h"
 
-#pragma region FSM Actions
-class CapBatteryAction : public dae::FSMAction
-{
-public:
-	CapBatteryAction(FSMTestRobot* pRobot) : m_pRobot(pRobot) {}
-	void Execute() override
-	{
-		if (m_pRobot->m_BatteryPower > m_pRobot->m_BatteryCapacity)
-			m_pRobot->m_BatteryPower = m_pRobot->m_BatteryCapacity;
-	}
-private:
-	FSMTestRobot* m_pRobot;
-};
-class RefuelAction : public dae::FSMAction
-{
-public:
-	RefuelAction(FSMTestRobot* pRobot) : m_pRobot(pRobot){}
-	void Execute() override
-	{
-		m_pRobot->Refuel();
-	}
-private:
-	FSMTestRobot* m_pRobot;
-};
-class SearchAction : public dae::FSMAction
-{
-public:
-	SearchAction(FSMTestRobot* pRobot) : m_pRobot(pRobot){}
-	void Execute() override
-	{
-		m_pRobot->Search();
-	}
-private:
-	FSMTestRobot* m_pRobot;
-};
-class MoveAction : public dae::FSMAction
-{
-public:
-	MoveAction(FSMTestRobot* pRobot) : m_pRobot(pRobot) {}
-	void Execute() override
-	{
-		m_pRobot->MoveToTrash();
-	}
-private:
-	FSMTestRobot* m_pRobot;
-};
-class RemoveAction : public dae::FSMAction
-{
-public:
-	RemoveAction(FSMTestRobot* pRobot) : m_pRobot(pRobot) {}
-
-	void Execute() override
-	{
-		m_pRobot->RemovingTrash();
-	}
-private:
-	FSMTestRobot* m_pRobot;
-};
-class SetMovingTrashAction : public dae::FSMAction
-{
-public:
-	SetMovingTrashAction(FSMTestRobot* pRobot, bool value) : m_pRobot(pRobot), m_bValue(value) {}
-	void Execute() override
-	{
-		m_pRobot->m_MovingTrash = m_bValue;
-	}
-private:
-	FSMTestRobot* m_pRobot;
-	bool m_bValue;
-};
-class SetTrashInSightAction : public dae::FSMAction
-{
-public:
-	SetTrashInSightAction(FSMTestRobot* pRobot, bool value) : m_pRobot(pRobot), m_bValue(value) {}
-	void Execute() override
-	{
-		m_pRobot->m_FoundTrash = m_bValue;
-	}
-private:
-	FSMTestRobot* m_pRobot;
-	bool m_bValue;
-};
-#pragma endregion
-
-#pragma region FSM Conditions
-class BatteryLowCond : public dae::FSMCondition
-{
-public:
-	BatteryLowCond(FSMTestRobot* pRobot) : m_pRobot(pRobot) {}
-	bool Evaluate() override
-	{
-		return m_pRobot->m_BatteryPower <= m_pRobot->m_CriticalBatteryLevel;
-	}
-private:
-	FSMTestRobot* m_pRobot;
-};
-class BatteryMaxCond : public dae::FSMCondition
-{
-public:
-	BatteryMaxCond(FSMTestRobot* pRobot) : m_pRobot(pRobot) {}
-	bool Evaluate() override
-	{
-		return m_pRobot->m_BatteryPower >= m_pRobot->m_BatteryCapacity;
-	}
-private:
-	FSMTestRobot* m_pRobot;
-};
-class Random1OutOf6 : public dae::FSMCondition
-{
-public:
-	bool Evaluate() override
-	{
-		int r = rand() % 6;
-		return r == 0;
-	}
-};
-class MovingTrashCond : public dae::FSMCondition
-{
-public:
-	MovingTrashCond(FSMTestRobot* pRobot) : m_pRobot(pRobot) {}
-	bool Evaluate() override
-	{
-		return m_pRobot->m_MovingTrash;
-	}
-private:
-	FSMTestRobot* m_pRobot;
-};
-class TrashInSightCond : public dae::FSMCondition
-{
-public:
-	TrashInSightCond(FSMTestRobot* pRobot) : m_pRobot(pRobot) {}
-	bool Evaluate() override
-	{
-		return m_pRobot->m_FoundTrash;
-	}
-private:
-	FSMTestRobot* m_pRobot;
-};
-#pragma endregion
-
+using namespace dae;
 
 FSMTestRobot::~FSMTestRobot()
 {
@@ -155,53 +15,102 @@ FSMTestRobot::~FSMTestRobot()
 
 void FSMTestRobot::Initialize()
 {
-	// Create states
-	dae::FSMState* pRefuelState	= new dae::FSMState();
-	dae::FSMState* pSearchState	= new dae::FSMState();
-	dae::FSMState* pMoveState	= new dae::FSMState();
-	dae::FSMState* pRemoveState	= new dae::FSMState();
+	// +---------------------------+
+	// |   Create all the states   |
+	// +---------------------------+
+	FSMState* pRefuelState	= new FSMState();
+	FSMState* pSearchState	= new FSMState();
+	FSMState* pMoveState	= new FSMState();
+	FSMState* pRemoveState	= new FSMState();
 
-	// Create conditions
-	BatteryLowCond* pBatteryLow		= new BatteryLowCond(this);
-	BatteryMaxCond* pBatteryMax		= new BatteryMaxCond(this);
-	Random1OutOf6* pRandomValue		= new Random1OutOf6();
-	MovingTrashCond* pMovingTrash	= new MovingTrashCond(this);
-	TrashInSightCond* pTrashSight	= new TrashInSightCond(this);
 
-	// Setup states
-	pRefuelState->SetActions({ new RefuelAction(this) });
+	// +--------------------+
+	// |   Action lambdas   |
+	// +--------------------+
+	auto capBatteryLevel = [](float& power, float capacity)
+	{
+		if (power > capacity)
+			power = capacity;
+	};
+	auto setTrashInSight = [](bool& foundTrash, bool state) { foundTrash = state; };
+	auto setMovingTrash = [](bool& movingTrash, bool state) { movingTrash = state; };
+
+
+	// +-----------------------+
+	// |   Condition lambdas   |
+	// +-----------------------+
+	auto isLowOnBattery = [](float& batteryLevel, float batteryLimit)
+	{ return batteryLevel <= batteryLimit; };
+
+	auto hasReachedRechargeLimit = [](float& batteryLevel, float batteryCapacity)
+	{ return batteryLevel >= batteryCapacity; };
+
+	auto random1OutOf6 = []()
+	{
+		auto r = rand() % 6;
+		return r == 0;
+	};
+
+	auto isMovingTrash = [](bool& movingTrash) { return movingTrash; };
+	auto hasTrashInSight = [](bool& foundTrash) { return foundTrash; };
+
+
+	// +----------------------+
+	// |   Action functions   |
+	// +----------------------+
+	FSMActionBase* pRefuelAction = new FSMAction<float&, float>(Refuel, m_BatteryPower, m_BatteryRechargeInterval);
+	FSMActionBase* pRemoveAction = new FSMAction<float&, float>(RemovingTrash, m_BatteryPower, m_BatteryRechargeInterval);
+	FSMActionBase* pMoveAction = new FSMAction<float&, float>(MoveToTrash, m_BatteryPower, m_BatteryRechargeInterval);
+	FSMActionBase* pSearchAction = new FSMAction<>(Search);
+	FSMActionBase* pSetFoundTrashAction = new FSMAction<bool&, bool>(setTrashInSight, m_FoundTrash, true);
+	FSMActionBase* pSetNotFoundTrashAction = new FSMAction<bool&, bool>(setTrashInSight, m_FoundTrash, false);
+	FSMActionBase* pSetRemovingTrashAction = new FSMAction<bool&, bool>(setMovingTrash, m_MovingTrash, true);
+	FSMActionBase* pSetNotRemovingTrashAction = new FSMAction<bool&, bool>(setMovingTrash, m_MovingTrash, false);
+	FSMActionBase* pCapBatteryLevelAction = new FSMAction<float&, float>(capBatteryLevel, m_BatteryPower, m_BatteryCapacity);
+
+
+	// +-------------------------+
+	// |   Condition functions   |
+	// +-------------------------+
+	FSMConditionBase* pLowBatteryCondition = new FSMCondition<float&, float>(isLowOnBattery, m_BatteryPower, m_BatteryCapacity);
+	FSMConditionBase* pRechargedCondition = new FSMCondition<float&, float>(hasReachedRechargeLimit, m_BatteryPower, m_BatteryCapacity);
+	FSMConditionBase* pRandomValueCondition = new FSMCondition<>(random1OutOf6);
+	FSMConditionBase* pMovingTrashCondition = new FSMCondition<bool&>(isMovingTrash, m_MovingTrash);
+	FSMConditionBase* pTrashInSightCondition = new FSMCondition<bool&>(hasTrashInSight, m_FoundTrash);
+
+	
+	// +---------------------------+
+	// |   Set up all the states   |
+	// +---------------------------+
+	pRefuelState->SetActions({ pRefuelAction });
 	pRefuelState->SetTransitions(
 		{
-			new dae::FSMTransition(pSearchState, {pBatteryMax}, {new CapBatteryAction(this)})
+			new FSMTransition(pSearchState, {pRechargedCondition}, {pCapBatteryLevelAction})
 		});
 
-	pSearchState->SetActions({ new SearchAction(this) });
+	pSearchState->SetActions({ pSearchAction });
 	pSearchState->SetTransitions(
 		{
-			new dae::FSMTransition(pRemoveState, {pMovingTrash}, {}),
-			new dae::FSMTransition(pMoveState, {pTrashSight}, {}),
-			new dae::FSMTransition(pMoveState, {pRandomValue}, {new SetTrashInSightAction(this, true)})
+			new FSMTransition(pRemoveState, {pMovingTrashCondition}, {}),
+			new FSMTransition(pMoveState, {pTrashInSightCondition}, {}),
+			new FSMTransition(pMoveState, {pRandomValueCondition}, {pSetFoundTrashAction})
 		});
 
-	pMoveState->SetActions({ new MoveAction(this) });
+	pMoveState->SetActions({ pMoveAction });
 	pMoveState->SetTransitions(
 		{
-			new dae::FSMTransition(pRefuelState, {pBatteryLow}, {}),
-			new dae::FSMTransition(pRemoveState, {pRandomValue}, {new SetMovingTrashAction(this, true)})
+			new FSMTransition(pRefuelState, {pLowBatteryCondition}, {}),
+			new FSMTransition(pRemoveState, {pRandomValueCondition}, {pSetRemovingTrashAction})
 		});
 
-	pRemoveState->SetActions({ new RemoveAction(this) });
+	pRemoveState->SetActions({ pRemoveAction });
 	pRemoveState->SetTransitions(
 		{
-			new dae::FSMTransition(pRefuelState, {pBatteryLow}, {}),
-			new dae::FSMTransition(pSearchState, {pRandomValue},
-				{
-					new SetMovingTrashAction(this, false),
-					new SetTrashInSightAction(this, false)
-				})
+			new FSMTransition(pRefuelState, {pLowBatteryCondition}, {}),
+			new FSMTransition(pSearchState, {pRandomValueCondition}, { pSetNotRemovingTrashAction, pSetNotFoundTrashAction })
 		});
 
-	m_pFSM = new dae::FiniteStateMachine(
+	m_pFSM = new FiniteStateMachine(
 		{ pRefuelState, pSearchState, pMoveState, pRemoveState },
 		pSearchState);
 }
@@ -222,20 +131,20 @@ void FSMTestRobot::Search()
 	std::cout << "Searching for garbage..." << std::endl;
 }
 
-void FSMTestRobot::MoveToTrash()
+void FSMTestRobot::MoveToTrash(float& batteryLevel, float depletionInterval)
 {
-	std::cout << "Moving to trash. BatteryLevel: " << m_BatteryPower << std::endl;
-	m_BatteryPower -= m_BatteryDepletionInterval;
+	std::cout << "Moving to trash. BatteryLevel: " << batteryLevel << std::endl;
+	batteryLevel -= depletionInterval;
 }
 
-void FSMTestRobot::RemovingTrash()
+void FSMTestRobot::RemovingTrash(float& batteryLevel, float depletionInterval)
 {
-	std::cout << "Removing trash! BatteryLevel: " << m_BatteryPower << std::endl;
-	m_BatteryPower -= m_BatteryDepletionInterval;
+	std::cout << "Removing trash! BatteryLevel: " << batteryLevel << std::endl;
+	batteryLevel -= depletionInterval;
 }
 
-void FSMTestRobot::Refuel()
+void FSMTestRobot::Refuel(float& batteryLevel, float rechargeInterval)
 {
-	std::cout << "Refueling... BatteryLevel: " << m_BatteryPower << std::endl;
-	m_BatteryPower += m_BatteryRechargeInterval;
+	std::cout << "Refueling... BatteryLevel: " << batteryLevel << std::endl;
+	batteryLevel += rechargeInterval;
 }

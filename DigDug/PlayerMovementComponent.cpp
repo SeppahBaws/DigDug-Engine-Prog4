@@ -8,8 +8,6 @@
 #include "FiniteStateMachine.h"
 #include "FSMState.h"
 #include "FSMTransition.h"
-#include "FSMAction.h"
-#include "FSMCondition.h"
 
 #include "FSMTestRobot.h"
 
@@ -60,58 +58,6 @@ public:
 	}
 };
 #pragma endregion
-
-#pragma region FSM Classes
-class IdleAction : public dae::FSMAction
-{
-public:
-	IdleAction() = default;
-
-	void Execute() override
-	{
-		
-	}
-
-private:
-	MovementState* m_pMovementState;
-};
-
-class RunningAction : public dae::FSMAction
-{
-public:
-	RunningAction() = default;
-
-	void Execute() override
-	{
-		
-	}
-};
-
-class AttackingAction : public dae::FSMAction
-{
-public:
-	AttackingAction() = default;
-
-	void Execute() override
-	{
-		
-	}
-};
-
-class IdleCondition : public dae::FSMCondition
-{
-public:
-	IdleCondition() = default;
-
-	bool Evaluate() override
-	{
-		if (std::rand() > 500)
-		{
-			
-		}
-	}
-};
-#pragma endregion 
 
 PlayerMovementComponent::PlayerMovementComponent()
 	: m_pFSM(nullptr)

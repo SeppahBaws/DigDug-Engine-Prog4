@@ -194,10 +194,9 @@
     <ClInclude Include="BaseComponent.h" />
     <ClInclude Include="Command.h" />
     <ClInclude Include="Components.h" />
-    <ClInclude Include="FSMCondition.h" />
     <ClInclude Include="FiniteStateMachine.h" />
     <ClInclude Include="Font.h" />
-    <ClInclude Include="FSMAction.h" />
+    <ClInclude Include="FSMFunctions.h" />
     <ClInclude Include="FSMState.h" />
     <ClInclude Include="FSMTransition.h" />
     <ClInclude Include="GameObject.h" />

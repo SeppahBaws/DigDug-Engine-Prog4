@@ -1,11 +1,10 @@
 ﻿#include "MiniginPCH.h"
 #include "FSMTransition.h"
-#include "FSMAction.h"
-#include "FSMCondition.h"
+#include "FSMFunctions.h"
 
 namespace dae
 {
-	FSMTransition::FSMTransition(FSMState* pTargetState, std::vector<FSMCondition*> pConditions, std::vector<FSMAction*> pExitActions)
+	FSMTransition::FSMTransition(FSMState* pTargetState, std::vector<FSMConditionBase*> pConditions, std::vector<FSMActionBase*> pExitActions)
 		: m_pConditions(pConditions)
 		, m_pExitActions(pExitActions)
 		, m_pTargetState(pTargetState)
@@ -23,14 +22,14 @@ namespace dae
 	{
 		m_pTargetState = nullptr;
 
-		for (FSMAction* pAction : m_pExitActions)
+		for (FSMActionBase* pAction : m_pExitActions)
 		{
 			delete pAction;
 			pAction = nullptr;
 		}
 		m_pExitActions.clear();
 
-		for (FSMCondition* pCondition : m_pConditions)
+		for (FSMConditionBase* pCondition : m_pConditions)
 		{
 			delete pCondition;
 			pCondition = nullptr;
@@ -38,12 +37,12 @@ namespace dae
 		m_pConditions.clear();
 	}
 
-	void FSMTransition::AddCondition(FSMCondition* pCondition)
+	void FSMTransition::AddCondition(FSMConditionBase* pCondition)
 	{
 		m_pConditions.push_back(pCondition);
 	}
 
-	void FSMTransition::AddExitAction(FSMAction* pAction)
+	void FSMTransition::AddExitAction(FSMActionBase* pAction)
 	{
 		m_pExitActions.push_back(pAction);
 	}
@@ -60,7 +59,7 @@ namespace dae
 
 	bool FSMTransition::IsTriggered()
 	{
-		for (FSMCondition* pCondition : m_pConditions)
+		for (FSMConditionBase* pCondition : m_pConditions)
 		{
 			if (pCondition->Evaluate())
 			{
@@ -73,7 +72,7 @@ namespace dae
 
 	void FSMTransition::ExecuteExitActions()
 	{
-		for (FSMAction* pAction : m_pExitActions)
+		for (FSMActionBase* pAction : m_pExitActions)
 		{
 			pAction->Execute();
 		}

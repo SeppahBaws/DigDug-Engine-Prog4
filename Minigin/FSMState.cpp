@@ -1,12 +1,13 @@
 ﻿#include "MiniginPCH.h"
 #include "FSMState.h"
 #include "FSMTransition.h"
-#include "FSMAction.h"
+// #include "FSMAction.h"
+#include "FSMFunctions.h"
 
 namespace dae
 {
-	FSMState::FSMState(const std::vector<FSMAction*>& pEntryActions, const std::vector<FSMAction*>& pActions,
-		const std::vector<FSMAction*>& pExitActions, const std::vector<FSMTransition*>& pTransitions)
+	FSMState::FSMState(const std::vector<FSMActionBase*>& pEntryActions, const std::vector<FSMActionBase*>& pActions,
+		const std::vector<FSMActionBase*>& pExitActions, const std::vector<FSMTransition*>& pTransitions)
 	{
 		m_pEntryActions = std::move(pEntryActions);
 		m_pActions = std::move(pActions);
@@ -17,21 +18,21 @@ namespace dae
 
 	FSMState::~FSMState()
 	{
-		for (FSMAction* pAction : m_pActions)
+		for (FSMActionBase* pAction : m_pActions)
 		{
 			delete pAction;
 			pAction = nullptr;
 		}
 		m_pActions.clear();
 
-		for (FSMAction* pAction : m_pEntryActions)
+		for (FSMActionBase* pAction : m_pEntryActions)
 		{
 			delete pAction;
 			pAction = nullptr;
 		}
 		m_pEntryActions.clear();
 
-		for (FSMAction* pAction : m_pExitActions)
+		for (FSMActionBase* pAction : m_pExitActions)
 		{
 			delete pAction;
 			pAction = nullptr;
@@ -46,17 +47,17 @@ namespace dae
 		m_pTransitions.clear();
 	}
 
-	void FSMState::SetEntryActions(const std::vector<FSMAction*>& pActions)
+	void FSMState::SetEntryActions(const std::vector<FSMActionBase*>& pActions)
 	{
 		m_pEntryActions = std::move(pActions);
 	}
 
-	void FSMState::SetActions(const std::vector<FSMAction*>& pActions)
+	void FSMState::SetActions(const std::vector<FSMActionBase*>& pActions)
 	{
 		m_pActions = std::move(pActions);
 	}
 
-	void FSMState::SetExitActions(const std::vector<FSMAction*>& pActions)
+	void FSMState::SetExitActions(const std::vector<FSMActionBase*>& pActions)
 	{
 		m_pExitActions = std::move(pActions);
 	}
@@ -66,7 +67,7 @@ namespace dae
 		m_pTransitions = std::move(pTransitions);
 	}
 
-	void FSMState::AddAction(FSMAction* pAction)
+	void FSMState::AddAction(FSMActionBase* pAction)
 	{
 		m_pActions.push_back(pAction);
 	}
@@ -83,7 +84,7 @@ namespace dae
 
 	void FSMState::Tick()
 	{
-		for (FSMAction* pAction : m_pActions)
+		for (FSMActionBase* pAction : m_pActions)
 		{
 			pAction->Execute();
 		}
@@ -91,7 +92,7 @@ namespace dae
 
 	void FSMState::ExecuteEntryActions()
 	{
-		for (FSMAction* pAction : m_pEntryActions)
+		for (FSMActionBase* pAction : m_pEntryActions)
 		{
 			pAction->Execute();
 		}
@@ -99,7 +100,7 @@ namespace dae
 
 	void FSMState::ExecuteExitActions()
 	{
-		for (FSMAction* pAction : m_pExitActions)
+		for (FSMActionBase* pAction : m_pExitActions)
 		{
 			pAction->Execute();
 		}

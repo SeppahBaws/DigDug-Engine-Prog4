@@ -3,8 +3,8 @@
 namespace dae
 {
 	class FiniteStateMachine;
-	class FSMAction;
-	class FSMCondition;
+	// class FSMAction;
+	// class FSMCondition;
 	class FSMTransition;
 }
 
@@ -40,22 +40,8 @@ private:
 	bool m_MovingTrash = false;
 
 private:
-	friend class CapBatteryAction;
-	friend class RefuelAction;
-	friend class SearchAction;
-	friend class MoveAction;
-	friend class RemoveAction;
-	friend class SetMovingTrashAction;
-	friend class SetTrashInSightAction;
-
-	friend class BatteryLowCond;
-	friend class BatteryMaxCond;
-	friend class Random1OutOf6;
-	friend class MovingTrashCond;
-	friend class TrashInSightCond;
-
-	void Search();
-	void MoveToTrash();
-	void RemovingTrash();
-	void Refuel();
+	static void Search();
+	static void MoveToTrash(float& batteryLevel, float depletionInterval);
+	static void RemovingTrash(float& batteryLevel, float depletionInterval);
+	static void Refuel(float& batteryLevel, float rechargeInterval);
 };
