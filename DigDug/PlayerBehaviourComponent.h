@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include "BaseComponent.h"
-#include <glm/detail/type_vec2.hpp>
+
+#include <glm/vec2.hpp>
 
 // Engine Forward Declarations
 namespace dae
@@ -17,6 +18,8 @@ public:
 	void Start() override;
 	void Update() override;
 
+	void SetCollidingObject(std::shared_ptr<dae::GameObject> pObject);
+
 private:
 	dae::FiniteStateMachine* m_pFSM;
 
@@ -26,4 +29,6 @@ private:
 	float m_AttackAccu;
 	float m_TotalAttackTime;
 	bool m_IsAttacking;
+
+	std::shared_ptr<dae::GameObject> m_pCollidingObject;
 };

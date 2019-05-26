@@ -1,24 +1,33 @@
 #include "MiniginPCH.h"
 #include "BaseComponent.h"
+#include "GameObject.h"
 
-dae::BaseComponent::BaseComponent()
-	: m_pGameObject(nullptr)
+namespace dae
 {
-}
+	BaseComponent::BaseComponent()
+		: m_pGameObject(nullptr)
+	{
+	}
 
-dae::BaseComponent::~BaseComponent()
-{
-	m_pGameObject = nullptr;
-}
+	BaseComponent::~BaseComponent()
+	{
+		m_pGameObject = nullptr;
+	}
 
-void dae::BaseComponent::Start()
-{
-}
+	void BaseComponent::Start()
+	{
+	}
 
-void dae::BaseComponent::Update()
-{
-}
+	void BaseComponent::Update()
+	{
+	}
 
-void dae::BaseComponent::Render()
-{
+	void BaseComponent::Render()
+	{
+	}
+
+	std::shared_ptr<TransformComponent> BaseComponent::GetTransform() const
+	{
+		return m_pGameObject->GetComponent<TransformComponent>();
+	}
 }

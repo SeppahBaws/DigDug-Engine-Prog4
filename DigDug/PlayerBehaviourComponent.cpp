@@ -11,6 +11,7 @@
 #include "FSMFunctions.h"
 #include "FSMTestRobot.h"
 #include <glm/detail/func_geometric.inl>
+#include "BoxColliderComponent.h"
 
 #pragma region Player Commands
 class PlayerAttackCommand : public dae::Command
@@ -119,4 +120,16 @@ void PlayerBehaviourComponent::Update()
 	m_Velocity = dae::InputManager::GetInstance().GetThumbstick(dae::GamepadAxis::LeftThumbstick);
 	m_Velocity *= dae::Time::GetDeltaTime() * m_MovementSpeed;
 	transform->SetPosition(transform->GetPosition() + glm::vec3(m_Velocity.x, m_Velocity.y, 0));
+
+
+	// Check collisions
+	if (GetGameObject()->GetComponent<dae::BoxColliderComponent>()->IsColliding(m_pCollidingObject->GetComponent<dae::BoxColliderComponent>()))
+	{
+		std::cout << "Colliding!" << std::endl;
+	}
+}
+
+void PlayerBehaviourComponent::SetCollidingObject(std::shared_ptr<dae::GameObject> pObject)
+{
+	m_pCollidingObject = pObject;
 }

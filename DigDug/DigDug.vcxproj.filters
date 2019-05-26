@@ -16,6 +16,9 @@
     <ClCompile Include="PlayerBehaviourComponent.cpp">
       <Filter>Custom Components</Filter>
     </ClCompile>
+    <ClCompile Include="PookaBehaviourComponent.cpp">
+      <Filter>Custom Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h" />
@@ -34,6 +37,9 @@
       <Filter>Testings</Filter>
     </ClInclude>
     <ClInclude Include="PlayerBehaviourComponent.h">
+      <Filter>Custom Components</Filter>
+    </ClInclude>
+    <ClInclude Include="PookaBehaviourComponent.h">
       <Filter>Custom Components</Filter>
     </ClInclude>
   </ItemGroup>

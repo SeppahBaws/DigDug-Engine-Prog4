@@ -192,6 +192,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="BaseComponent.h" />
+    <ClInclude Include="BoxColliderComponent.h" />
     <ClInclude Include="Command.h" />
     <ClInclude Include="Components.h" />
     <ClInclude Include="FiniteStateMachine.h" />
@@ -221,6 +222,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BaseComponent.cpp" />
+    <ClCompile Include="BoxColliderComponent.cpp" />
     <ClCompile Include="FiniteStateMachine.cpp" />
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="FSMState.cpp" />

@@ -10,6 +10,7 @@ This project is my assignment for the final exam of the Programming 4 course at 
 	- Different states (Button Pressed, Button Released, Button Held Down)
 - Sprites system (animated sprites, sprite render component)
 - Finite State Machine
+- AABB collision detection with BoxColliders
 
 [Github Repo](https://github.com/SeppahBaws/DigDug-Engine-Prog4)
 
