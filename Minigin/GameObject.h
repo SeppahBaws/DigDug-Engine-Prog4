@@ -18,6 +18,8 @@ namespace dae
 		void AddComponent(std::shared_ptr<BaseComponent> component);
 		void RemoveComponent(std::shared_ptr<BaseComponent> component);
 
+		std::shared_ptr<TransformComponent> GetTransform();
+
 #pragma region Templated Functions
 
 		template<class T>
