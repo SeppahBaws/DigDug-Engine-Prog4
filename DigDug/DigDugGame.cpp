@@ -9,7 +9,7 @@
 #include "Sprite.h"
 
 // Game includes
-#include "PlayerMovementComponent.h"
+#include "PlayerBehaviourComponent.h"
 
 using namespace dae;
 
@@ -19,16 +19,16 @@ void DigDugGame::LoadGame() const
 	Scene& scene = SceneManager::GetInstance().CreateScene("Demo");
 	SceneManager::GetInstance().SetActiveScene("Demo");
 
-	// ------------------
-	// --- Background ---
-	// ------------------
+	// +----------------+
+	// |   Background   |
+	// +----------------+
 	std::shared_ptr<GameObject> go = std::make_shared<GameObject>();
 	go->AddComponent(std::make_shared<RenderComponent>("background.jpg"));
 	scene.Add(go);
 
-	// ----------------------
-	// ------- Player -------
-	// ----------------------
+	// +------------+
+	// |   Player   |
+	// +------------+
 	std::shared_ptr<GameObject> player = std::make_shared<GameObject>();
 	player->GetComponent<TransformComponent>()->SetPosition(50, 200, 0);
 	std::shared_ptr<SpriteRenderComponent> spriteRenderer = std::make_shared<SpriteRenderComponent>();
@@ -48,6 +48,6 @@ void DigDugGame::LoadGame() const
 	}
 
 	player->AddComponent(spriteRenderer);
-	player->AddComponent(std::make_shared<PlayerMovementComponent>());
+	player->AddComponent(std::make_shared<PlayerBehaviourComponent>());
 	scene.Add(player);
 }

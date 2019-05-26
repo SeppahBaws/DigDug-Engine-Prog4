@@ -10,6 +10,7 @@ namespace dae
 		FiniteStateMachine(const std::vector<FSMState*>& pStates, FSMState* pStartState);
 		~FiniteStateMachine();
 
+		void Initialize();
 		void Update();
 
 	private:

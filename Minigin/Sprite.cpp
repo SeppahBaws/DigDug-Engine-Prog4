@@ -27,9 +27,9 @@ namespace dae
 		SDL_QueryTexture(m_pSpriteSheet->GetSDLTexture(), nullptr, nullptr, &m_TextureWidth, &m_TextureHeight);
 	}
 
-	void Sprite::Update()
+	void Sprite::Update(float speed)
 	{
-		m_AccuFrames += Time::GetDeltaTime();
+		m_AccuFrames += speed * Time::GetDeltaTime();
 
 		if (m_AccuFrames >= 1 / m_Props.framerate)
 		{
