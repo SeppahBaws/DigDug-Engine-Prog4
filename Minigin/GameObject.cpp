@@ -6,8 +6,7 @@ namespace dae
 {
 	GameObject::GameObject()
 	{
-		const auto transformComponent = std::make_shared<TransformComponent>();
-		m_Components.push_back(transformComponent);
+		m_Components.push_back(std::make_shared<TransformComponent>());
 	}
 
 	void GameObject::Start()
@@ -46,5 +45,10 @@ namespace dae
 
 		m_Components.erase(it);
 		pComponent = nullptr;  // Set pComponent to nullptr since it doesn't exist anymore
+	}
+
+	std::shared_ptr<TransformComponent> GameObject::GetTransform()
+	{
+		return GetComponent<TransformComponent>();
 	}
 }

@@ -9,7 +9,7 @@
 #include "Sprite.h"
 
 // Game includes
-#include "PlayerMovementComponent.h"
+#include "PlayerBehaviourComponent.h"
 
 using namespace dae;
 
@@ -19,16 +19,16 @@ void DigDugGame::LoadGame() const
 	Scene& scene = SceneManager::GetInstance().CreateScene("Demo");
 	SceneManager::GetInstance().SetActiveScene("Demo");
 
-	// ------------------
-	// --- Background ---
-	// ------------------
+	// +----------------+
+	// |   Background   |
+	// +----------------+
 	std::shared_ptr<GameObject> go = std::make_shared<GameObject>();
-	go->AddComponent(std::make_shared<RenderComponent>("background.jpg"));
+	go->AddComponent(std::make_shared<RenderComponent>("Background-01.png"));
 	scene.Add(go);
 
-	// ----------------------
-	// ------- Player -------
-	// ----------------------
+	// +------------+
+	// |   Player   |
+	// +------------+
 	std::shared_ptr<GameObject> player = std::make_shared<GameObject>();
 	player->GetComponent<TransformComponent>()->SetPosition(50, 200, 0);
 	std::shared_ptr<SpriteRenderComponent> spriteRenderer = std::make_shared<SpriteRenderComponent>();
@@ -48,6 +48,19 @@ void DigDugGame::LoadGame() const
 	}
 
 	player->AddComponent(spriteRenderer);
-	player->AddComponent(std::make_shared<PlayerMovementComponent>());
+	std::shared_ptr<PlayerBehaviourComponent> playerBehaviour = std::make_shared<PlayerBehaviourComponent>();
+	player->AddComponent(playerBehaviour);
+
+	std::shared_ptr<BoxColliderComponent> boxCollider = std::make_shared<BoxColliderComponent>();
+	boxCollider->SetCenterOffset({ 25, 25 });
+	boxCollider->SetExtents({ 25, 25 });
+	player->AddComponent(boxCollider);
 	scene.Add(player);
+
+	std::shared_ptr<GameObject> box = std::make_shared<GameObject>();
+	box->GetComponent<TransformComponent>()->SetPosition(100, 250, 0);
+	box->AddComponent(std::make_shared<BoxColliderComponent>(glm::vec2(0, 0), glm::vec2(20, 20)));
+	scene.Add(box);
+
+	playerBehaviour->SetCollidingObject(box);
 }

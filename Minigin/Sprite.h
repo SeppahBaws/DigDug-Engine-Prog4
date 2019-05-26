@@ -25,7 +25,7 @@ namespace dae
 
 		void LoadTexture(const std::string& filename);
 
-		void Update();
+		void Update(float speed = 1.0f);
 		void Render(const glm::vec3& pos, int scale);
 		void Reset();
 

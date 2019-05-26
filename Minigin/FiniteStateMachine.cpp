@@ -26,6 +26,11 @@ namespace dae
 		m_pStates.clear();
 	}
 
+	void FiniteStateMachine::Initialize()
+	{
+		m_pCurrentState->ExecuteEntryActions();
+	}
+
 	void FiniteStateMachine::Update()
 	{
 		bool isTransitioning = false;

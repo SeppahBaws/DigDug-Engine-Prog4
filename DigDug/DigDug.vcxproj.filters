@@ -10,10 +10,15 @@
       <Filter>Custom Components</Filter>
     </ClCompile>
     <ClCompile Include="pch.cpp" />
-    <ClCompile Include="PlayerMovementComponent.cpp">
+    <ClCompile Include="FSMTestRobot.cpp">
+      <Filter>Testings</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerBehaviourComponent.cpp">
       <Filter>Custom Components</Filter>
     </ClCompile>
-    <ClCompile Include="FSMTestRobot.cpp" />
+    <ClCompile Include="PookaBehaviourComponent.cpp">
+      <Filter>Custom Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h" />
@@ -28,13 +33,15 @@
       <Filter>Custom Components</Filter>
     </ClInclude>
     <ClInclude Include="pch.h" />
-    <ClInclude Include="PlayerMovementComponent.h">
+    <ClInclude Include="FSMTestRobot.h">
+      <Filter>Testings</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerBehaviourComponent.h">
       <Filter>Custom Components</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerFSM.h">
-      <Filter>Configuration</Filter>
+    <ClInclude Include="PookaBehaviourComponent.h">
+      <Filter>Custom Components</Filter>
     </ClInclude>
-    <ClInclude Include="FSMTestRobot.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Configuration">
@@ -42,6 +49,9 @@
     </Filter>
     <Filter Include="Custom Components">
       <UniqueIdentifier>{cc6a4878-3924-4765-828f-1a05ad6449ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Testings">
+      <UniqueIdentifier>{18be3fbe-f3ae-4e94-9f97-728209838836}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

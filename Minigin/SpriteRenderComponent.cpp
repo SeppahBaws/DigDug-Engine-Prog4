@@ -11,6 +11,7 @@ namespace dae
 		, m_pCurrentSprite()
 		, m_CurrentSpriteIdx(0)
 		, m_Scale(1)
+		, m_Speed(1.0f)
 	{
 	}
 
@@ -60,9 +61,14 @@ namespace dae
 		m_Scale = scale;
 	}
 
+	void SpriteRenderComponent::SetSpeed(float speed)
+	{
+		m_Speed = speed;
+	}
+
 	void SpriteRenderComponent::Update()
 	{
-		m_pSprites[m_CurrentSpriteIdx]->Update();
+		m_pSprites[m_CurrentSpriteIdx]->Update(m_Speed);
 	}
 
 	void SpriteRenderComponent::Render()

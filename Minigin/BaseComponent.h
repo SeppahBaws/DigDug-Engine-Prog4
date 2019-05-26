@@ -3,6 +3,7 @@
 namespace dae
 {
 	class GameObject;
+	class TransformComponent;
 
 	class BaseComponent
 	{
@@ -19,6 +20,7 @@ namespace dae
 		virtual void Render();
 
 		GameObject* GetGameObject() const { return m_pGameObject; }
+		std::shared_ptr<TransformComponent> GetTransform() const;
 
 	private:
 		friend class GameObject;

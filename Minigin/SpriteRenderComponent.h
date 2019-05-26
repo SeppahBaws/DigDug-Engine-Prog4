@@ -23,6 +23,7 @@ namespace dae
 		void ResetSprite() const;
 		void ResetSprite(const std::string& name) const;
 		void SetScale(int scale);
+		void SetSpeed(float speed);
 
 		void Update() override;
 		void Render() override;
@@ -32,5 +33,6 @@ namespace dae
 		std::weak_ptr<Sprite> m_pCurrentSprite{};
 		int m_CurrentSpriteIdx{};
 		int m_Scale;
+		float m_Speed;
 	};
 }

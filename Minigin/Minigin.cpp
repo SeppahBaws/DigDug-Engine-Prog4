@@ -11,7 +11,7 @@
 #include "SceneManager.h"
 #include "Time.h"
 
-void dae::Minigin::Initialize()
+void dae::Minigin::Initialize(const WindowProperties& properties)
 {
 	if (SDL_Init(SDL_INIT_VIDEO) != 0) 
 	{
@@ -19,11 +19,11 @@ void dae::Minigin::Initialize()
 	}
 
 	m_pWindow = SDL_CreateWindow(
-		"DigDug - Seppe Dekeyser - 2DAE06 - 2018-2019",
+		properties.title.c_str(),
 		SDL_WINDOWPOS_UNDEFINED,
 		SDL_WINDOWPOS_UNDEFINED,
-		1280,
-		720,
+		properties.width,
+		properties.height,
 		SDL_WINDOW_OPENGL
 	);
 	if (m_pWindow == nullptr) 
@@ -46,8 +46,6 @@ void dae::Minigin::Cleanup()
 
 void dae::Minigin::Run()
 {
-	Initialize();
-
 	// tell the resource manager where he can find the game data
 	ResourceManager::GetInstance().Init("../Data/");
 
