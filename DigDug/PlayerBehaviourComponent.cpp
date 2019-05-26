@@ -38,13 +38,13 @@ PlayerBehaviourComponent::PlayerBehaviourComponent()
 	, m_MovementSpeed{ 500 }
 	, m_AttackAccu{ 0 }
 	, m_TotalAttackTime{ 0.16f }
-	, m_IsAttacking{ false }
 {
 }
 
 PlayerBehaviourComponent::~PlayerBehaviourComponent()
 {
 	delete m_pFSM;
+	m_pFSM = nullptr;
 }
 
 void PlayerBehaviourComponent::Start()
@@ -64,8 +64,13 @@ void PlayerBehaviourComponent::Start()
 	// Create states
 	dae::FSMState* pIdleState = new dae::FSMState();
 	dae::FSMState* pRunningState = new dae::FSMState();
+	// dae::FSMState* pPumpingState = new dae::FSMState();
 
 	// Action lambdas
+	// auto pumpAction = [](float& accuTime)
+	// {
+	// 	accuTime += dae::Time::GetDeltaTime();
+	// };
 	auto enterIdle = [](std::shared_ptr<dae::SpriteRenderComponent> pSpriteRenderer)
 	{
 		pSpriteRenderer->SelectSprite("Run");
@@ -82,6 +87,7 @@ void PlayerBehaviourComponent::Start()
 	auto isNotMoving = [](glm::vec2& velocity) { return glm::length(velocity) <= 0; };
 
 	// Action functions
+	// dae::FSMActionBase* pPumpingAction = new dae::FSMAction<float&>(pumpAction, m_AttackAccu);
 	dae::FSMActionBase* pEnterIdleAction = new dae::FSMAction<std::shared_ptr<dae::SpriteRenderComponent>>(enterIdle,
 		GetGameObject()->GetComponent<dae::SpriteRenderComponent>());
 	dae::FSMActionBase* pEnterRunningAction = new dae::FSMAction<std::shared_ptr<dae::SpriteRenderComponent>>(enterRunning,
@@ -103,6 +109,12 @@ void PlayerBehaviourComponent::Start()
 		{
 			new dae::FSMTransition(pIdleState, {pNotMovingCondition}, {})
 		});
+
+	// pPumpingState->SetActions({ pPumpingAction });
+	// pPumpingState->SetTransitions(
+	// 	{
+	//
+	// 	});
 	
 	// Create FiniteStateMachine
 	m_pFSM = new dae::FiniteStateMachine(
@@ -123,13 +135,8 @@ void PlayerBehaviourComponent::Update()
 
 
 	// Check collisions
-	if (GetGameObject()->GetComponent<dae::BoxColliderComponent>()->IsColliding(m_pCollidingObject->GetComponent<dae::BoxColliderComponent>()))
+	if (GetGameObject()->GetComponent<dae::BoxColliderComponent>()->IsColliding())
 	{
 		std::cout << "Colliding!" << std::endl;
 	}
-}
-
-void PlayerBehaviourComponent::SetCollidingObject(std::shared_ptr<dae::GameObject> pObject)
-{
-	m_pCollidingObject = pObject;
 }

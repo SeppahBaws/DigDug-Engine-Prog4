@@ -44,7 +44,20 @@ player = {
 
 -- Pooka sprites
 pooka = {
-
+	run = {
+		name = "Run",
+		fileName = "pooka-run.png",
+		cols = 2,
+		rows = 1,
+		framerate = 2
+	},
+	ghost = {
+		name = "Ghost",
+		fileName = "pooka-ghost.png",
+		cols = 2,
+		rows = 1,
+		framerate = 2
+	}
 }
 
 -- Fygar sprites

@@ -10,6 +10,7 @@
 
 // Game includes
 #include "PlayerBehaviourComponent.h"
+#include "PookaBehaviourComponent.h"
 
 using namespace dae;
 
@@ -57,10 +58,25 @@ void DigDugGame::LoadGame() const
 	player->AddComponent(boxCollider);
 	scene.Add(player);
 
-	std::shared_ptr<GameObject> box = std::make_shared<GameObject>();
-	box->GetComponent<TransformComponent>()->SetPosition(100, 250, 0);
-	box->AddComponent(std::make_shared<BoxColliderComponent>(glm::vec2(0, 0), glm::vec2(20, 20)));
-	scene.Add(box);
 
-	playerBehaviour->SetCollidingObject(box);
+	// +-----------+
+	// |   Pooka   |
+	// +-----------+
+	std::shared_ptr<GameObject> pooka = std::make_shared<GameObject>();
+	pooka->GetTransform()->SetPosition(300, 500, 0);
+	pooka->AddComponent(std::make_shared<PookaBehaviourComponent>());
+
+	std::shared_ptr<SpriteRenderComponent> pookaSpriteRenderer = std::make_shared<SpriteRenderComponent>();
+
+	pookaSpriteRenderer->SelectSprite(config.defaultSprite);
+	pookaSpriteRenderer->SetScale(config.scale);
+
+	std::vector<Sprite> pookaSprites = LuaHelpers::GetInstance().ReadSprites("pooka", { "run", "ghost" });
+	for (Sprite& sprite : pookaSprites)
+	{
+		pookaSpriteRenderer->AddSprite(std::make_unique<Sprite>(sprite));
+	}
+
+	pooka->AddComponent(pookaSpriteRenderer);
+	scene.Add(pooka);
 }

@@ -18,8 +18,6 @@ public:
 	void Start() override;
 	void Update() override;
 
-	void SetCollidingObject(std::shared_ptr<dae::GameObject> pObject);
-
 private:
 	dae::FiniteStateMachine* m_pFSM;
 
@@ -28,7 +26,4 @@ private:
 	float m_MovementSpeed;
 	float m_AttackAccu;
 	float m_TotalAttackTime;
-	bool m_IsAttacking;
-
-	std::shared_ptr<dae::GameObject> m_pCollidingObject;
 };
