@@ -4,11 +4,16 @@
 #include "TransformComponent.h"
 #include "Renderer.h"
 #include <SDL.h>
+#pragma warning(push)
+#pragma warning(disable:4201)
+#include <glm/detail/func_geometric.inl>
+#pragma warning(pop)
 
 namespace dae
 {
 	BoxColliderComponent::BoxColliderComponent(const glm::vec2& center, const glm::vec2& extents)
-		: m_CenterOffset(center), m_Extents(extents)
+		: BaseComponent()
+		, m_CenterOffset(center), m_Extents(extents)
 	{
 	}
 
@@ -17,12 +22,25 @@ namespace dae
 		DrawDebug();
 	}
 
-	bool BoxColliderComponent::IsColliding(std::shared_ptr<BoxColliderComponent> other)
+	bool BoxColliderComponent::IsColliding()
+	{
+		return m_IsColliding;
+	}
+
+	void BoxColliderComponent::CheckColliding(std::shared_ptr<BoxColliderComponent> other)
 	{
 		glm::vec2 otherPosition = glm::vec2(other->GetTransform()->GetPosition()) + other->m_CenterOffset;
 		glm::vec2 myPosition = glm::vec2(GetTransform()->GetPosition()) + m_CenterOffset;
 
-		RECT otherRect =  {
+		// Early-out if the distance between the two objects is too large
+		if (glm::length(glm::distance(myPosition, otherPosition)) > length(other->m_Extents) + length(m_Extents))
+		{
+			m_IsColliding = false;
+			std::cout << "Early-out on collision detection because too far!" << std::endl;
+			return;
+		}
+
+		RECT otherRect = {
 			LONG(otherPosition.x - other->m_Extents.x),
 			LONG(otherPosition.y - other->m_Extents.y),
 			LONG(otherPosition.x + other->m_Extents.x),
@@ -40,11 +58,12 @@ namespace dae
 		{
 			if (otherRect.top < myRect.bottom && otherRect.bottom > myRect.top)
 			{
-				return true;
+				m_IsColliding = true;
+				return;
 			}
 		}
 
-		return false;
+		m_IsColliding = false;
 	}
 
 	void BoxColliderComponent::SetCenterOffset(const glm::vec2& offset)

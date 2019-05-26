@@ -13,6 +13,7 @@ namespace dae
 
 		void Start();
 		void Update();
+		void PhysicsUpdate(); // Handles all the collisions
 		void Render() const;
 
 		inline std::string GetName() const { return m_Name; }
