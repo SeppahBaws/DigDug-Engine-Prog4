@@ -37,8 +37,6 @@ private:
 PlayerBehaviourComponent::PlayerBehaviourComponent()
 	: m_pFSM(nullptr)
 	, m_MovementSpeed{ 500 }
-	, m_AttackAccu{ 0 }
-	, m_TotalAttackTime{ 0.16f }
 {
 }
 

@@ -24,6 +24,4 @@ private:
 	glm::vec2 m_Velocity;
 
 	float m_MovementSpeed;
-	float m_AttackAccu;
-	float m_TotalAttackTime;
 };

@@ -18,8 +18,8 @@ using namespace dae;
 void DigDugGame::LoadGame() const
 {
 	// Scene 1
-	Scene& scene = SceneManager::GetInstance().CreateScene("Demo");
-	SceneManager::GetInstance().SetActiveScene("Demo");
+	Scene& scene = SceneManager::GetInstance().CreateScene("Level1");
+	SceneManager::GetInstance().SetActiveScene("Level1");
 
 	// +----------------+
 	// |   Background   |
