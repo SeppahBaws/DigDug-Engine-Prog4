@@ -19,7 +19,7 @@
     <ClCompile Include="PookaBehaviourComponent.cpp">
       <Filter>Custom Components</Filter>
     </ClCompile>
-    <ClCompile Include="GameManagerComponent.cpp">
+    <ClCompile Include="GameManager.cpp">
       <Filter>Custom Components</Filter>
     </ClCompile>
   </ItemGroup>
@@ -42,7 +42,7 @@
     <ClInclude Include="PookaBehaviourComponent.h">
       <Filter>Custom Components</Filter>
     </ClInclude>
-    <ClInclude Include="GameManagerComponent.h">
+    <ClInclude Include="GameManager.h">
       <Filter>Custom Components</Filter>
     </ClInclude>
   </ItemGroup>

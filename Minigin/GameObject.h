@@ -18,7 +18,7 @@ namespace dae
 		void AddComponent(std::shared_ptr<BaseComponent> component);
 		void RemoveComponent(std::shared_ptr<BaseComponent> component);
 
-		void SetActive(bool value) { m_Active = value; }
+		void SetActive(bool value);
 		bool IsActive() const { return m_Active; }
 
 		std::shared_ptr<TransformComponent> GetTransform();

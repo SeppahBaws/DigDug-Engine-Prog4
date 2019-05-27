@@ -22,6 +22,11 @@ namespace dae
 		DrawDebug();
 	}
 
+	void BoxColliderComponent::OnDisable()
+	{
+		m_pCollidingComponent = nullptr;
+	}
+
 	bool BoxColliderComponent::IsColliding()
 	{
 		return m_pCollidingComponent != nullptr;

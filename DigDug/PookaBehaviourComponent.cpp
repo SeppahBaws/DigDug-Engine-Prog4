@@ -1,15 +1,18 @@
 ﻿#include "pch.h"
 #include "PookaBehaviourComponent.h"
-#include "FiniteStateMachine.h"
-#include "FSMState.h"
-#include "FSMTransition.h"
-#include "FSMFunctions.h"
+
 #include "SpriteRenderComponent.h"
 #include "GameObject.h"
 #include "Time.h"
 #include "BoxColliderComponent.h"
+
+#include "FiniteStateMachine.h"
+#include "FSMState.h"
+#include "FSMTransition.h"
+#include "FSMFunctions.h"
+
 #include "PlayerBehaviourComponent.h"
-#include "GameManagerComponent.h"
+#include "GameManager.h"
 
 PookaBehaviourComponent::PookaBehaviourComponent()
 	: m_pFSM(nullptr)
@@ -24,6 +27,10 @@ PookaBehaviourComponent::~PookaBehaviourComponent()
 
 void PookaBehaviourComponent::Start()
 {
+	// Register Pooka in the Game Manager
+	GameManager::GetInstance()->RegisterPooka(GetGameObject());
+
+
 	// +--------------------------------+
 	// |   Finite State Machine setup   |
 	// +--------------------------------+
@@ -107,9 +114,11 @@ void PookaBehaviourComponent::Update()
 	if (boxCollider && boxCollider->IsColliding())
 	{
 		auto player = boxCollider->GetCollidingComponent()->GetGameObject()->GetComponent<PlayerBehaviourComponent>();
+		if (!player->GetGameObject()->IsActive()) return;
+
 		if (player)
 		{
-			GameManagerComponent::KillPlayer(3);
+			GameManager::GetInstance()->KillPlayer(3);
 			std::cout << "Pooka: Killed player, he'll respawn in 3 seconds" << std::endl;
 		}
 	}

@@ -1,18 +1,23 @@
 ﻿#include "pch.h"
 #include "PlayerBehaviourComponent.h"
+
 #include "GameObject.h"
 #include "TransformComponent.h"
 #include "InputManager.h"
 #include "Time.h"
 #include "SpriteRenderComponent.h"
+#include "BoxColliderComponent.h"
+#include "SceneManager.h"
+#include "Scene.h"
+
 #include "FiniteStateMachine.h"
 #include "FSMState.h"
 #include "FSMTransition.h"
 #include "FSMFunctions.h"
-#include "FSMTestRobot.h"
+
 #include <glm/detail/func_geometric.inl>
-#include "BoxColliderComponent.h"
-#include "GameManagerComponent.h"
+
+#include "GameManager.h"
 
 #pragma region Player Commands
 class PlayerAttackCommand : public dae::Command
@@ -20,17 +25,37 @@ class PlayerAttackCommand : public dae::Command
 public:
 	explicit PlayerAttackCommand(dae::GamepadButton button, dae::GamepadButtonState status, PlayerBehaviourComponent& comp)
 		: Command(button, status)
-		, m_Movement(comp)
+		, m_PlayerBehaviour(comp)
+		, m_AttackDistance(100)
 	{
 	}
 
 	void Execute() override
 	{
 		std::cout << "Player Attack!" << std::endl;
+
+		std::vector<dae::GameObject*> pPookas = GameManager::GetInstance()->GetPookas();
+
+		glm::vec3 playerPos = m_PlayerBehaviour.GetTransform()->GetPosition();
+		
+		for (dae::GameObject* pPooka : pPookas)
+		{
+			if (!pPooka->IsActive())
+				continue;
+
+			if (glm::distance(playerPos, pPooka->GetTransform()->GetPosition()) <= m_AttackDistance)
+			{
+				std::cout << "Pooka in range!" << std::endl;
+
+				// Just set the pookas inactive, because we can't dynamically add or destroy objects in a scene
+				pPooka->SetActive(false);
+			}
+		}
 	}
 
 private:
-	PlayerBehaviourComponent& m_Movement;
+	PlayerBehaviourComponent& m_PlayerBehaviour;
+	float m_AttackDistance;
 };
 #pragma endregion
 
@@ -49,7 +74,7 @@ PlayerBehaviourComponent::~PlayerBehaviourComponent()
 void PlayerBehaviourComponent::Start()
 {
 	// Register the player with the game manager
-	GameManagerComponent::RegisterPlayer(GetGameObject());
+	GameManager::GetInstance()->RegisterPlayer(GetGameObject());
 
 
 	// +---------------------------------+
@@ -67,13 +92,7 @@ void PlayerBehaviourComponent::Start()
 	// Create states
 	dae::FSMState* pIdleState = new dae::FSMState();
 	dae::FSMState* pRunningState = new dae::FSMState();
-	// dae::FSMState* pPumpingState = new dae::FSMState();
 
-	// Action lambdas
-	// auto pumpAction = [](float& accuTime)
-	// {
-	// 	accuTime += dae::Time::GetDeltaTime();
-	// };
 	auto enterIdle = [](std::shared_ptr<dae::SpriteRenderComponent> pSpriteRenderer)
 	{
 		pSpriteRenderer->SelectSprite("Run");
@@ -112,16 +131,10 @@ void PlayerBehaviourComponent::Start()
 		{
 			new dae::FSMTransition(pIdleState, {pNotMovingCondition}, {})
 		});
-
-	// pPumpingState->SetActions({ pPumpingAction });
-	// pPumpingState->SetTransitions(
-	// 	{
-	//
-	// 	});
 	
 	// Create FiniteStateMachine
 	m_pFSM = new dae::FiniteStateMachine(
-		{ pIdleState, pRunningState/*, pStateShooting, pStatePumping*/ },
+		{ pIdleState, pRunningState },
 		pIdleState);
 	m_pFSM->Initialize();
 }
@@ -135,11 +148,4 @@ void PlayerBehaviourComponent::Update()
 	m_Velocity = dae::InputManager::GetInstance().GetThumbstick(dae::GamepadAxis::LeftThumbstick);
 	m_Velocity *= dae::Time::GetDeltaTime() * m_MovementSpeed;
 	transform->SetPosition(transform->GetPosition() + glm::vec3(m_Velocity.x, m_Velocity.y, 0));
-
-
-	// Check collisions
-	if (GetGameObject()->GetComponent<dae::BoxColliderComponent>()->IsColliding())
-	{
-		std::cout << "Colliding!" << std::endl;
-	}
 }

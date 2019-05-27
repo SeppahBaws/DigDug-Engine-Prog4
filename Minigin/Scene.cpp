@@ -14,11 +14,6 @@ void dae::Scene::Add(const std::shared_ptr<GameObject>& object)
 	m_Objects.push_back(object);
 }
 
-void dae::Scene::Destroy(const std::shared_ptr<GameObject>& object)
-{
-	m_Objects.erase(std::remove(m_Objects.begin(), m_Objects.end(), object));
-}
-
 void dae::Scene::Start()
 {
 	for (auto gameObject : m_Objects)

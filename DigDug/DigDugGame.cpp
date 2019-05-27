@@ -11,7 +11,7 @@
 // Game includes
 #include "PlayerBehaviourComponent.h"
 #include "PookaBehaviourComponent.h"
-#include "GameManagerComponent.h"
+#include "GameManager.h"
 
 using namespace dae;
 
@@ -33,7 +33,7 @@ void DigDugGame::LoadGame() const
 	// |   Game Manager   |
 	// +------------------+
 	std::shared_ptr<GameObject> gameManager = std::make_shared<GameObject>();
-	gameManager->AddComponent(std::make_shared<GameManagerComponent>());
+	gameManager->AddComponent(std::make_shared<GameManager>());
 	scene.Add(gameManager);
 
 
@@ -44,7 +44,7 @@ void DigDugGame::LoadGame() const
 	player->GetComponent<TransformComponent>()->SetPosition(50, 200, 0);
 	std::shared_ptr<SpriteRenderComponent> spriteRenderer = std::make_shared<SpriteRenderComponent>();
 
-	LuaHelpers::GetInstance().OpenFile("Sprites.lua");
+	LuaHelpers::GetInstance().OpenFile("../Data/Sprites.lua");
 
 	// Read and set sprites config
 	SpriteRenderConfig config = LuaHelpers::GetInstance().ReadSpriteConfig("spriteRenderConfig");

@@ -59,8 +59,3 @@ pooka = {
 		framerate = 2
 	}
 }
-
--- Fygar sprites
-fygar = {
-
-}

@@ -16,6 +16,7 @@ namespace dae
 		BoxColliderComponent(const glm::vec2& center, const glm::vec2& extents);
 
 		void Render() override;
+		void OnDisable() override;
 
 		bool IsColliding();
 		void CheckColliding(std::shared_ptr<BoxColliderComponent> other);

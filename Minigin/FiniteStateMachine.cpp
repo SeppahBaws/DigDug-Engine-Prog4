@@ -15,7 +15,7 @@ namespace dae
 	{
 		m_pCurrentState = nullptr;
 
-		for (int i = 0; i < m_pStates.size(); i++)
+		for (size_t i = 0; i < m_pStates.size(); i++)
 		{
 			if (m_pStates[i] != nullptr)
 			{

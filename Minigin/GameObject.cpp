@@ -53,6 +53,26 @@ namespace dae
 		pComponent = nullptr;  // Set pComponent to nullptr since it doesn't exist anymore
 	}
 
+	void GameObject::SetActive(bool value)
+	{
+		m_Active = value;
+
+		if (value)
+		{
+			for (auto component : m_Components)
+			{
+				component->OnEnable();
+			}
+		}
+		else
+		{
+			for (auto component : m_Components)
+			{
+				component->OnDisable();
+			}
+		}
+	}
+
 	std::shared_ptr<TransformComponent> GameObject::GetTransform()
 	{
 		return GetComponent<TransformComponent>();
