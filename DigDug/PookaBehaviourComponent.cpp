@@ -7,6 +7,9 @@
 #include "SpriteRenderComponent.h"
 #include "GameObject.h"
 #include "Time.h"
+#include "BoxColliderComponent.h"
+#include "PlayerBehaviourComponent.h"
+#include "GameManagerComponent.h"
 
 PookaBehaviourComponent::PookaBehaviourComponent()
 	: m_pFSM(nullptr)
@@ -99,4 +102,15 @@ void PookaBehaviourComponent::Start()
 void PookaBehaviourComponent::Update()
 {
 	m_pFSM->Update();
+
+	auto boxCollider = GetGameObject()->GetComponent<dae::BoxColliderComponent>();
+	if (boxCollider && boxCollider->IsColliding())
+	{
+		auto player = boxCollider->GetCollidingComponent()->GetGameObject()->GetComponent<PlayerBehaviourComponent>();
+		if (player)
+		{
+			GameManagerComponent::KillPlayer(3);
+			std::cout << "Pooka: Killed player, he'll respawn in 3 seconds" << std::endl;
+		}
+	}
 }

@@ -24,7 +24,7 @@ namespace dae
 
 	bool BoxColliderComponent::IsColliding()
 	{
-		return m_IsColliding;
+		return m_pCollidingComponent != nullptr;
 	}
 
 	void BoxColliderComponent::CheckColliding(std::shared_ptr<BoxColliderComponent> other)
@@ -35,8 +35,7 @@ namespace dae
 		// Early-out if the distance between the two objects is too large
 		if (glm::length(glm::distance(myPosition, otherPosition)) > length(other->m_Extents) + length(m_Extents))
 		{
-			m_IsColliding = false;
-			std::cout << "Early-out on collision detection because too far!" << std::endl;
+			m_pCollidingComponent = nullptr;
 			return;
 		}
 
@@ -58,12 +57,17 @@ namespace dae
 		{
 			if (otherRect.top < myRect.bottom && otherRect.bottom > myRect.top)
 			{
-				m_IsColliding = true;
+				m_pCollidingComponent = other;
 				return;
 			}
 		}
 
-		m_IsColliding = false;
+		m_pCollidingComponent = nullptr;
+	}
+
+	std::shared_ptr<BoxColliderComponent> BoxColliderComponent::GetCollidingComponent()
+	{
+		return m_pCollidingComponent;
 	}
 
 	void BoxColliderComponent::SetCenterOffset(const glm::vec2& offset)

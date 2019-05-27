@@ -19,6 +19,7 @@ namespace dae
 
 		bool IsColliding();
 		void CheckColliding(std::shared_ptr<BoxColliderComponent> other);
+		std::shared_ptr<BoxColliderComponent> GetCollidingComponent();
 
 		void SetCenterOffset(const glm::vec2& offset);
 		void SetExtents(const glm::vec2& extents);
@@ -30,6 +31,6 @@ namespace dae
 		glm::vec2 m_CenterOffset;
 		glm::vec2 m_Extents;
 
-		bool m_IsColliding = false;
+		std::shared_ptr<BoxColliderComponent> m_pCollidingComponent;
 	};
 }

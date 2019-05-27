@@ -18,6 +18,9 @@ namespace dae
 		void AddComponent(std::shared_ptr<BaseComponent> component);
 		void RemoveComponent(std::shared_ptr<BaseComponent> component);
 
+		void SetActive(bool value) { m_Active = value; }
+		bool IsActive() const { return m_Active; }
+
 		std::shared_ptr<TransformComponent> GetTransform();
 
 #pragma region Templated Functions
@@ -77,5 +80,6 @@ namespace dae
 
 	private:
 		std::vector<std::shared_ptr<BaseComponent>> m_Components;
+		bool m_Active = true;
 	};
 }

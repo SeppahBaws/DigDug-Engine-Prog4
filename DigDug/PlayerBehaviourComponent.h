@@ -9,7 +9,7 @@ namespace dae
 	class FiniteStateMachine;
 }
 
-class PlayerBehaviourComponent : public dae::BaseComponent
+class PlayerBehaviourComponent final : public dae::BaseComponent
 {
 public:
 	PlayerBehaviourComponent();

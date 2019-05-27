@@ -12,6 +12,7 @@
 #include "FSMTestRobot.h"
 #include <glm/detail/func_geometric.inl>
 #include "BoxColliderComponent.h"
+#include "GameManagerComponent.h"
 
 #pragma region Player Commands
 class PlayerAttackCommand : public dae::Command
@@ -49,6 +50,10 @@ PlayerBehaviourComponent::~PlayerBehaviourComponent()
 
 void PlayerBehaviourComponent::Start()
 {
+	// Register the player with the game manager
+	GameManagerComponent::RegisterPlayer(GetGameObject());
+
+
 	// +---------------------------------+
 	// |   Player Input Commands setup   |
 	// +---------------------------------+

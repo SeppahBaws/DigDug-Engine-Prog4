@@ -11,6 +11,7 @@
 // Game includes
 #include "PlayerBehaviourComponent.h"
 #include "PookaBehaviourComponent.h"
+#include "GameManagerComponent.h"
 
 using namespace dae;
 
@@ -26,6 +27,15 @@ void DigDugGame::LoadGame() const
 	std::shared_ptr<GameObject> go = std::make_shared<GameObject>();
 	go->AddComponent(std::make_shared<RenderComponent>("Background-01.png"));
 	scene.Add(go);
+
+
+	// +------------------+
+	// |   Game Manager   |
+	// +------------------+
+	std::shared_ptr<GameObject> gameManager = std::make_shared<GameObject>();
+	gameManager->AddComponent(std::make_shared<GameManagerComponent>());
+	scene.Add(gameManager);
+
 
 	// +------------+
 	// |   Player   |
@@ -78,5 +88,6 @@ void DigDugGame::LoadGame() const
 	}
 
 	pooka->AddComponent(pookaSpriteRenderer);
+	pooka->AddComponent(std::make_shared<BoxColliderComponent>(glm::vec2(25, 25), glm::vec2(25, 25)));
 	scene.Add(pooka);
 }

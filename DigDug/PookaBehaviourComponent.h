@@ -7,7 +7,7 @@ namespace dae
 	class FiniteStateMachine;
 }
 
-class PookaBehaviourComponent : public dae::BaseComponent
+class PookaBehaviourComponent final : public dae::BaseComponent
 {
 public:
 	PookaBehaviourComponent();

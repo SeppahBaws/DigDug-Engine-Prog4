@@ -11,6 +11,8 @@ namespace dae
 
 	void GameObject::Start()
 	{
+		if (!m_Active) return;
+
 		for (auto component : m_Components)
 		{
 			component->Start();
@@ -19,6 +21,8 @@ namespace dae
 
 	void GameObject::Update()
 	{
+		if (!m_Active) return;
+
 		for (auto component : m_Components)
 		{
 			component->Update();
@@ -27,6 +31,8 @@ namespace dae
 
 	void GameObject::Render() const
 	{
+		if (!m_Active) return;
+
 		for (auto component : m_Components)
 		{
 			component->Render();
